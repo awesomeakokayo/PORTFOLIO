@@ -6,6 +6,18 @@ hamburger.addEventListener("click", () => {
 });
 
 const contactButton = document.getElementById("contactButton");
-contactButton.addEventListener("click", () => {
-  window.location.hash = "#experience";
-});
+if (contactButton) {
+  contactButton.addEventListener("click", () => {
+    window.location.hash = "#socials";
+  });
+}
+
+// const resumeButton = document.getElementById("resumeButton");
+// if (resumeButton) {
+//   resumeButton.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     // Placeholder for resume link - user will add their resume PDF link
+//     // resumeButton.href = "path/to/resume.pdf";
+//     alert("Resume download link will be added here. Please update the href in the HTML.");
+//   });
+// }
