@@ -12,10 +12,9 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-between relative overflow-hidden"
+      className="bg-black min-h-screen flex items-center justify-between relative overflow-hidden"
     >
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900"></div>
+      <div className="bg-black"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -25,14 +24,15 @@ const Hero = () => {
           className="flex flex-col min-h-auto text-center max-w-auto mx-auto justify-between mt-40"
         >
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            whileHover={{ textSizeAdjust: 9 }}
-            className="text-15xl md:text-9xl font-bold text-white font-ojuju"
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-4xl sm:text-10xl md:text-10xl font-bold text-white font-ojuju uppercase leading-1.3"
           >
             Awesome
           </motion.h1>
+
+
 
           {/* <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -47,7 +47,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="inline-block text-lg text-neutral-400 mb-8 max-w-3xl mx-auto leading-relaxed text-white"
+            className="inline-block text-lg text-neutral-400 md:mt-15 mb-8 max-w-3xl mx-auto leading-relaxed text-white"
           >
             Hey! I'm Awesome Akokayo, I'm who you'd call when you need an
             effective system.
@@ -87,13 +87,13 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.8 }}
             whileHover={{ scale: 1.12 }}
-            className='flex flex-row min-w-screen mt-40 justify-between'
+            className='flex flex-row min-w-screen mt-40 sm:mt-55 md:mt-90 justify-between md: justify-left'
           >
-            <motion.p className='ml-20'>
+            <motion.p className='md:flex md:justify-left ml-20 md:ml-0'>
               Scroll to view more 👇
             </motion.p>
 
-            <motion.p className='mr-20'>
+            <motion.p className='hidden md:block mr-20'>
               Enjoy 🍸
             </motion.p>
           </motion.div>

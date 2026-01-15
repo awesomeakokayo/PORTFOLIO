@@ -19,7 +19,7 @@ const UpcomingProjects = () => {
   }
 
   return (
-    <section ref={ref} className="py-20 px-4 bg-neutral-800/50">
+    <section ref={ref} className="py-20 px-4 bg-black">
       <div className="container mx-auto max-w-6xl">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

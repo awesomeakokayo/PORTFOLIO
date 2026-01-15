@@ -18,7 +18,7 @@ const WhatICanDo = () => {
   ]
 
   return (
-    <section id="what-i-can-do" ref={ref} className="py-20 px-4 bg-neutral-900">
+    <section id="what-i-can-do" ref={ref} className="py-20 px-4 bg-black">
       <div className="container mx-auto max-w-4xl">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
