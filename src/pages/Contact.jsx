@@ -56,9 +56,15 @@ const Contact = () => {
         setSubmitStatus('success')
         setFormData({ name: '', email: '', projectBrief: '', budgetRange: '' })
       } else {
-        const errorData = await response.json()
+        const contentType = response.headers.get('content-type')
+        if (contentType && contentType.includes('application/json')) {
+          const errorData = await response.json()
+          console.error('Submission failed:', errorData.error)
+        } else {
+          const errorText = await response.text()
+          console.error('Submission failed (non-JSON):', errorText)
+        }
         setSubmitStatus('error')
-        console.error('Submission failed:', errorData.error)
       }
     } catch (error) {
       setSubmitStatus('error')
