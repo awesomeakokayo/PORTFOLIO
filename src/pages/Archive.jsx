@@ -25,7 +25,7 @@ const Archive = () => {
   const filteredProjects = useMemo(() => {
     return projects.filter(project => {
       const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                           project.summary.toLowerCase().includes(searchQuery.toLowerCase())
+        project.summary.toLowerCase().includes(searchQuery.toLowerCase())
       const matchesTech = selectedTech === 'all' || project.tech.includes(selectedTech)
       return matchesSearch && matchesTech
     })
@@ -45,7 +45,7 @@ const Archive = () => {
     <div className="min-h-screen">
       <SkipToContent />
       <Navigation />
-      <section className="pt-32 pb-20 px-4 bg-neutral-900 min-h-screen">
+      <section className="pt-32 pb-20 px-4 bg-black min-h-screen">
         <div className="container mx-auto max-w-6xl">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -78,15 +78,14 @@ const Archive = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-neutral-100 focus:outline-none focus:border-primary"
             />
-            
+
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setSelectedTech('all')}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  selectedTech === 'all'
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedTech === 'all'
                     ? 'bg-primary text-neutral-900'
                     : 'bg-neutral-800 text-neutral-300 hover:bg-neutral-700'
-                }`}
+                  }`}
               >
                 All
               </button>
@@ -94,11 +93,10 @@ const Archive = () => {
                 <button
                   key={tech}
                   onClick={() => setSelectedTech(tech)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                    selectedTech === tech
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedTech === tech
                       ? 'bg-primary text-neutral-900'
                       : 'bg-neutral-800 text-neutral-300 hover:bg-neutral-700'
-                  }`}
+                    }`}
                 >
                   {tech}
                 </button>

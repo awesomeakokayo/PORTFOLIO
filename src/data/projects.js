@@ -70,23 +70,43 @@ export const projects = [
     ],
     status: "complete",
     featured: true
-  }
-];
-
-export const upcomingProjects = [
-  {
-    id: 4,
-    title: "Routine Management App",
-    summary: "Time management app for tracking and organizing daily routines",
-    status: "in-progress",
-    tech: ["React Native", "FastAPI", "WebSockets"]
   },
   {
     id: 5,
     title: "Real-time flood reporting app",
+    role: "Full-Stack Developer",
     summary: "Real-time flood reporting app for tracking and reporting floods in south-west nigeria",
+    description: "Real-time flood reporting app for tracking and reporting floods in south-west nigeria",
+    tech: ["React Native", "TypeScript", "FastAPI", "WebSockets", "PostgreSQL", "Gemini-flash", "Render", "Expo"],
+    links: {
+      backend: "https://github.com/awesomeakokayo/Flood-Report-App/tree/main/app",
+      frontend: "https://github.com/awesomeakokayo/Flood-Report-App/tree/main/src"
+    },
+    highlights: [
+      "Designed RESTful API for submissions, authentication, AI verification of flood reports, and flood reporting.",
+      "Implemented responsive frontend with modular UI for Flood reporting and review flows from AI.",
+      "Deployed services to Render."
+    ],
+    impact: "Enabled users to report floods in real-time and verify reports with AI; simplified admin workflows for content management.",
+    images: [
+      "/assets/floodreport1.jpg",
+      "/assets/floodreport2.jpg",
+      "/assets/floodreport3.jpg",
+      "/assets/floodreport4.jpg",
+      "/assets/floodreport5.jpg"
+    ],
+    status: "complete",
+    featured: true
+  },
+];
+
+export const upcomingProjects = [
+  {
+    id: 5,
+    title: "Routine Management App",
+    summary: "Time management app for tracking and organizing daily routines",
     status: "in-progress",
-    tech: ["React Native", "FastAPI", "WebSockets", "PostgreSQL"]
+    tech: ["React Native", "FastAPI", "WebSockets"]
   },
 
 ];

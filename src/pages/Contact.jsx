@@ -41,17 +41,34 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitStatus(null)
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', projectBrief: '', budgetRange: '' })
+      } else {
+        const errorData = await response.json()
+        setSubmitStatus('error')
+        console.error('Submission failed:', errorData.error)
+      }
+    } catch (error) {
+      setSubmitStatus('error')
+      console.error('Submission error:', error)
+    } finally {
       setIsSubmitting(false)
-      setSubmitStatus('success')
-      setFormData({ name: '', email: '', projectBrief: '', budgetRange: '' })
-
       setTimeout(() => {
         setSubmitStatus(null)
       }, 5000)
-    }, 1500)
+    }
   }
 
   const handleChange = (e) => {
@@ -162,6 +179,16 @@ const Contact = () => {
                     className="p-4 bg-neutral-900 text-white rounded-lg text-center"
                   >
                     Message sent successfully! I'll be in touch soon.
+                  </motion.div>
+                )}
+                {submitStatus === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="p-4 bg-red-600 text-white rounded-lg text-center"
+                  >
+                    Failed to send message. Please try again later.
                   </motion.div>
                 )}
               </AnimatePresence>

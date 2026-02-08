@@ -10,10 +10,17 @@
   },
   "dependencies": {
     "@fontsource/manrope": "^5.2.8",
+    "concurrently": "^9.2.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.4",
+    "dotenv-expand": "^12.0.3",
+    "express": "^5.2.1",
     "framer-motion": "^10.16.16",
+    "nodemailer": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.0"
+    "react-router-dom": "^6.20.0",
+    "tsx": "^4.21.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

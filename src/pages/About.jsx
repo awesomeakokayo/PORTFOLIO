@@ -9,7 +9,7 @@ const About = () => {
   const skills = [
     {
       title: 'Frontend',
-      description: 'React, HTML/CSS, responsive design, performance optimization'
+      description: 'React, React Native, HTML/CSS, Tailwind CSS, responsive design, performance optimization'
     },
     {
       title: 'Backend',
@@ -25,12 +25,12 @@ const About = () => {
     },
     {
       title: 'Database & Auth',
-      description: 'Postgre, Firebase, Supabase, Auth0'
+      description: 'Neon, Postgre, Firebase, Supabase, Auth0'
     }
   ]
 
   return (
-    <section id="about" ref={ref} className="py-20 px-4 bg-neutral-800/50">
+    <section id="about" ref={ref} className="py-20 px-4 bg-black">
       <div className="container mx-auto max-w-6xl">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -49,7 +49,7 @@ const About = () => {
             className="flex-shrink-0 mx-auto md:mx-0"
           >
             <img
-              src="https://avatars.githubusercontent.com/u/10604382?v=4"
+              src="/assets/awesomeimage1.jpg"
               alt="Awesome Akokayo"
               className="w-64 h-64 rounded-full object-cover border-4 border-primary shadow-xl"
             />
