@@ -8,7 +8,7 @@ const Trust = () => {
 
   const stats = [
     { value: '4+', label: 'Years Experience' },
-    { value: '15+', label: 'Projects Delivered' },
+    { value: '10+', label: 'Projects Delivered' },
     { value: '100%', label: 'Client Satisfaction' },
     { value: '24/7', label: 'Support Available' },
   ]
@@ -17,7 +17,7 @@ const Trust = () => {
     <section id="trust" ref={ref} className="relative py-24 md:py-32 bg-dark-900">
       {/* Top border accent */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-500/30 to-transparent" />
-      
+
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         {/* Section header */}
         <motion.div
@@ -50,7 +50,7 @@ const Trust = () => {
               <div className="relative p-8 md:p-10 rounded-2xl bg-dark-800/50 transition-all duration-400 text-center">
                 {/* Subtle glow on hover */}
                 <div className="absolute inset-0 rounded-2xl bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none" />
-                
+
                 <div className="relative z-10">
                   <span className="font-ojuju text-4xl md:text-5xl lg:text-6xl font-bold text-gold-400 block mb-2">
                     {stat.value}
