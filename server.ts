@@ -3,7 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import handler from './api/contact.ts';
+import handler from './api/contact.js';
 
 dotenv.config({ path: './api/.env' });
 

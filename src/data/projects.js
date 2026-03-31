@@ -1,5 +1,52 @@
 export const projects = [
   {
+    id: 6,
+    title: "ERIN Marketing",
+    role: "Frontend Developer",
+    summary: "A conversion-focused landing page for a marketing agency specializing in data-driven ads.",
+    description: "ERIN Marketing is a professional landing page designed to convert visitors into leads. It highlights a proven 4-step ad system starting from deep audience research to ongoing optimization, featuring a clear, compelling offer.",
+    tech: ["HTML", "CSS", "JavaScript", "React"],
+    links: {
+      live: "https://erinmarketing.net"
+    },
+    highlights: [
+      "Built a modern, responsive landing page with conversion-focused design principles.",
+      "Implemented clean UI sections for services, success stories, and FAQs.",
+      "Integrated scheduling and booking call-to-actions."
+    ],
+    impact: "Provides a professional digital presence that effectively converts browsers into booked strategy calls.",
+    images: [
+      "/assets/Erin Logo.png",
+      "/assets/erinpage.jpg",
+      "/assets/erinpage2.jpg"
+    ],
+    status: "complete",
+    featured: true
+  },
+  {
+    id: 7,
+    title: "Vertu Motors",
+    role: "Frontend Developer",
+    summary: "A sleek automotive retail platform showcasing the new BMW i4 range and dealerships.",
+    description: "Vertu Motors is a responsive UI showcase for a car dealership platform, featuring the new BMW i4 range with detailed trim levels, pricing, and performance specs. It emphasizes clean aesthetics and simple navigation.",
+    tech: ["HTML", "CSS", "JavaScript", "React"],
+    links: {
+      live: "https://vertumotors.netlify.app"
+    },
+    highlights: [
+      "Designed an elegant vehicle showcase interface highlighting trims, specs, and features.",
+      "Developed responsive layouts for optimal viewing on desktop and mobile devices.",
+      "Created a modern navigation system for browsing car categories and dealership services."
+    ],
+    impact: "Delivers a premium browsing experience that matches the high quality of the vehicles showcased.",
+    images: [
+      "/assets/vertu.png",
+      "/assets/vertu-motors.jpg"
+    ],
+    status: "complete",
+    featured: true
+  },
+  {
     id: 1,
     title: "NaviPro",
     role: "Lead / Full-Stack Developer",
@@ -18,6 +65,7 @@ export const projects = [
     ],
     impact: "Production-ready LLM orchestration supporting roadmap and mentor flows for early users.",
     images: [
+      "/assets/Navipro_logo.png",
       "/assets/naviprotop.png",
       "/assets/naviproaboutus.png"
     ],
@@ -42,6 +90,7 @@ export const projects = [
     ],
     impact: "Delivered a production-ready submission & review system for the university with modular UI and secure backend endpoints.",
     images: [
+      "/assets/aefunai_logo.png",
       "/assets/aefunaijournalarchives.png",
       "/assets/aefunai journaldetails.png"
     ],
@@ -65,6 +114,7 @@ export const projects = [
     ],
     impact: "Enabled artists to manage catalogs and push uploads to streaming platforms; simplified admin workflows for content management.",
     images: [
+      "/assets/ambitonsmiler.png",
       "/assets/ambitionsmilercover.png",
       "/assets/ambitionsmiler trackdetails.png"
     ],

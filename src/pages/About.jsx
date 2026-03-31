@@ -49,7 +49,7 @@ const About = () => {
             className="flex-shrink-0 mx-auto md:mx-0"
           >
             <img
-              src="/assets/awesomeimage1.jpg"
+              src="/assets/awesomeimage1.png"
               alt="Awesome Akokayo"
               className="w-64 h-64 rounded-full object-cover border-4 border-primary shadow-xl"
             />
