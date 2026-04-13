@@ -1,26 +1,26 @@
 import Navigation from '../components/Navigation'
-import SkipToContent from '../components/SkipToContent'
 import Hero from '../components/Hero'
-import Trust from '../components/Trust'
 import About from '../components/About'
-import Services from '../components/Services'
 import Projects from '../components/Projects'
+import Skills from '../components/Skills'
 import Process from '../components/Process'
+import Stats from '../components/Stats'
 import Testimonials from '../components/Testimonials'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
+import GlassCursor from '../components/GlassCursor'
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-dark-900">
-      <SkipToContent />
+    <div className="min-h-screen bg-[hsl(0,0%,4%)]">
+      <GlassCursor />
       <Navigation />
       <Hero />
-      <Trust />
       <About />
-      <Services />
       <Projects />
+      <Skills />
       <Process />
+      <Stats />
       {/* <Testimonials /> */}
       <Contact />
       <Footer />

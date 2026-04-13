@@ -151,6 +151,16 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                         Repository
                       </a>
                     )}
+                    {project.links.download && (
+                      <a
+                        href={project.links.download}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-neutral-900 transition-colors"
+                      >
+                        Download APK
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

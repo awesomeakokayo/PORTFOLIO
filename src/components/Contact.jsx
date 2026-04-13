@@ -1,55 +1,38 @@
-import { motion, AnimatePresence } from 'framer-motion'
-import { useInView } from 'framer-motion'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { useRef, useState, useCallback } from 'react'
+import BlurText from './BlurText'
+import FadeIn from './FadeIn'
 
-// Confetti component for celebration effect
-const Confetti = ({ active }) => {
+// Simple success animation
+const SuccessAnimation = ({ active }) => {
   if (!active) return null
 
-  const colors = ['#ffb347', '#ffcc80', '#ffd8a6', '#ffffff', '#f0f0f0']
-  const pieces = Array.from({ length: 50 }, (_, i) => ({
-    id: i,
-    color: colors[Math.floor(Math.random() * colors.length)],
-    left: Math.random() * 100,
-    delay: Math.random() * 0.5,
-    duration: 1 + Math.random() * 1,
-    rotation: Math.random() * 360,
-    scale: 0.5 + Math.random() * 0.5,
-  }))
-
   return (
-    <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
-      {pieces.map((piece) => (
-        <motion.div
-          key={piece.id}
-          initial={{
-            y: -20,
-            x: `${piece.left}%`,
-            opacity: 1,
-            rotate: 0,
-            scale: piece.scale
-          }}
-          animate={{
-            y: '100vh',
-            opacity: 0,
-            rotate: piece.rotation,
-            scale: 0
-          }}
-          transition={{
-            duration: piece.duration,
-            delay: piece.delay,
-            ease: 'easeOut'
-          }}
-          className="absolute top-0"
-          style={{
-            width: 10,
-            height: 10,
-            backgroundColor: piece.color,
-            borderRadius: Math.random() > 0.5 ? '50%' : '0%',
-          }}
-        />
-      ))}
-    </div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.8 }}
+      className="fixed inset-0 pointer-events-none z-50 flex items-center justify-center"
+    >
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: [0, 1.2, 1] }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        className="w-24 h-24 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center"
+      >
+        <svg className="w-12 h-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+        </svg>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="absolute mt-32 text-white font-body text-lg"
+      >
+        Message Sent!
+      </motion.div>
+    </motion.div>
   )
 }
 
@@ -59,7 +42,7 @@ const Contact = () => {
   const [formState, setFormState] = useState({ name: '', email: '', project: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null) // 'success', 'error', or null
-  const [showConfetti, setShowConfetti] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
 
   const socialLinks = [
     {
@@ -121,9 +104,9 @@ const Contact = () => {
       })
 
       if (response.ok) {
-        // Trigger confetti celebration
-        setShowConfetti(true)
-        setTimeout(() => setShowConfetti(false), 3000)
+        // Trigger success animation
+        setShowSuccess(true)
+        setTimeout(() => setShowSuccess(false), 2000)
 
         // Show success
         setSubmitStatus('success')
@@ -144,88 +127,97 @@ const Contact = () => {
   }, [formState])
 
   return (
-    <section id="contact" ref={ref} className="relative py-24 md:py-32 bg-dark-900">
-      <Confetti active={showConfetti} />
+    <section id="contact" ref={ref} className="relative py-32 md:py-40 bg-[hsl(0,0%,4%)] overflow-hidden">
+      <SuccessAnimation active={showSuccess} />
 
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold-900/20 via-dark-900 to-dark-900" />
+      {/* Background */}
+      <div className="absolute inset-0">
+        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] rounded-full bg-white/[0.01] blur-[150px]" />
+      </div>
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
+      <div className="relative z-10 section-padding">
         <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <span className="text-caption uppercase tracking-wider text-gold-400 mb-4 block">Get In Touch</span>
-            <h2 className="font-ojuju text-heading-xl text-white mb-4">Let Us Build Something Great Together</h2>
-            <p className="text-neutral-400 max-w-xl mx-auto">Have a project in mind? I am currently available for new opportunities and would love to hear about what you are building.</p>
-          </motion.div>
+          {/* Header */}
+          <div className="text-center mb-16">
+            <FadeIn direction="up" delay={0.1}>
+              <span className="font-body text-xs font-medium tracking-[0.2em] uppercase text-white/40 mb-4 block">
+                Get In Touch
+              </span>
+            </FadeIn>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="p-8 md:p-12 rounded-3xl bg-dark-800/50 backdrop-blur-sm"
-          >
-            {/* Success/Error Messages */}
-            <AnimatePresence>
-              {submitStatus === 'success' && (
-                <motion.div
-                  initial={{ opacity: 0, y: -20, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -20, scale: 0.9 }}
-                  className="mb-6 p-4 rounded-xl bg-green-500/10 border border-green-500/30 text-green-400 text-center"
-                >
-                  <div className="flex items-center justify-center gap-2 mb-1">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-semibold">Message Sent Successfully!</span>
-                  </div>
-                  <p className="text-sm text-green-400/80">Thank you! I will be in touch within 24 hours.</p>
-                </motion.div>
-              )}
+            <BlurText
+              text="Let's work together"
+              className="font-heading italic text-heading-xl text-white mb-4"
+              delay={0.2}
+            />
 
-              {submitStatus === 'error' && (
-                <motion.div
-                  initial={{ opacity: 0, y: -20, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -20, scale: 0.9 }}
-                  className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-center"
-                >
-                  <div className="flex items-center justify-center gap-2 mb-1">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    <span className="font-semibold">Something went wrong</span>
-                  </div>
-                  <p className="text-sm text-red-400/80">Please try again or email me directly.</p>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <FadeIn direction="up" delay={0.3}>
+              <p className="font-body text-lg text-white/50 max-w-xl mx-auto">
+                Have a project in mind? I'm currently available for new opportunities.
+              </p>
+            </FadeIn>
+          </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <FadeIn direction="up" delay={0.4}>
+            <div className="liquid-glass rounded-2xl p-8 md:p-12">
+              {/* Success/Error Messages */}
+              <AnimatePresence>
+                {submitStatus === 'success' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -20, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                    className="mb-6 p-4 rounded-xl bg-white/10 border border-white/20 text-white text-center"
+                  >
+                    <div className="flex items-center justify-center gap-2 mb-1">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="font-body font-medium">Message Sent Successfully!</span>
+                    </div>
+                    <p className="text-sm text-white/70">Thank you! I'll be in touch within 24 hours.</p>
+                  </motion.div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -20, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                    className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-center"
+                  >
+                    <div className="flex items-center justify-center gap-2 mb-1">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      <span className="font-body font-medium">Something went wrong</span>
+                    </div>
+                    <p className="text-sm text-red-300/80">Please try again or email me directly.</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-body-sm text-neutral-400 mb-2">Your Name</label>
+                  <label className="block font-body text-sm text-white/60 mb-2">Your Name</label>
                   <input
                     type="text"
                     value={formState.name}
                     onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-dark-900 border border-neutral-700 text-white placeholder-neutral-600 focus:border-gold-500/50 focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:bg-white/[0.07] focus:outline-none transition-all duration-300 font-body"
                     placeholder="John Doe"
                     required
                     disabled={isSubmitting}
                   />
                 </div>
                 <div>
-                  <label className="block text-body-sm text-neutral-400 mb-2">Email Address</label>
+                  <label className="block font-body text-sm text-white/60 mb-2">Email Address</label>
                   <input
                     type="email"
                     value={formState.email}
                     onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-dark-900 border border-neutral-700 text-white placeholder-neutral-600 focus:border-gold-500/50 focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:bg-white/[0.07] focus:outline-none transition-all duration-300 font-body"
                     placeholder="john@example.com"
                     required
                     disabled={isSubmitting}
@@ -233,12 +225,12 @@ const Contact = () => {
                 </div>
               </div>
               <div>
-                <label className="block text-body-sm text-neutral-400 mb-2">Tell Me About Your Project</label>
+                <label className="block font-body text-sm text-white/60 mb-2">Tell Me About Your Project</label>
                 <textarea
                   value={formState.project}
                   onChange={(e) => setFormState({ ...formState, project: e.target.value })}
                   rows={5}
-                  className="w-full px-4 py-3 rounded-xl bg-dark-900 border border-neutral-700 text-white placeholder-neutral-600 focus:border-gold-500/50 focus:outline-none transition-colors resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:border-white/30 focus:bg-white/[0.07] focus:outline-none transition-all duration-300 font-body resize-none"
                   placeholder="Describe your project, goals, and timeline..."
                   required
                   disabled={isSubmitting}
@@ -247,7 +239,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full md:w-auto px-10 py-4 bg-gold-500 text-dark-900 font-semibold rounded-full hover:shadow-[0_0_40px_rgba(255,179,71,0.3)] hover:scale-105 transition-all duration-400 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
+                className="liquid-glass-strong w-full md:w-auto px-10 py-4 rounded-full font-body font-medium text-white hover:bg-white/10 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 group"
               >
                 {isSubmitting ? (
                   <>
@@ -255,49 +247,21 @@ const Contact = () => {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                     </svg>
-                    Sending...
+                    <span>Sending...</span>
                   </>
                 ) : (
                   <>
-                    Send Message
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <span>Send Message</span>
+                    <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </>
                 )}
               </button>
             </form>
-
-            {/* Social Links with Icons */}
-            <div className="mt-10 pt-8 border-t border-neutral-800/50">
-              <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-                <a
-                  href="mailto:awesomeakokayo@gmail.com"
-                  className="text-neutral-400 hover:text-gold-400 transition-colors flex items-center gap-2"
-                >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  awesomeakokayo@gmail.com
-                </a>
-                <div className="flex gap-4">
-                  {socialLinks.map((social) => (
-                    <a
-                      key={social.name}
-                      href={social.url}
-                      target={social.url.startsWith('http') ? '_blank' : undefined}
-                      rel={social.url.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      className="group flex items-center gap-2 px-4 py-2 rounded-full bg-dark-700/50 text-neutral-400 hover:text-gold-400 hover:bg-dark-700 transition-all duration-300"
-                      title={social.name}
-                    >
-                      {social.icon}
-                      <span className="text-sm hidden sm:inline">{social.name}</span>
-                    </a>
-                  ))}
-                </div>
-              </div>
             </div>
-          </motion.div>
+          </FadeIn>
+
         </div>
       </div>
     </section>

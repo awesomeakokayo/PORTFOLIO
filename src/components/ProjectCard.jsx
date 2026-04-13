@@ -80,9 +80,9 @@ const ProjectCard = ({ project, index, onOpenModal }) => {
                 Live Demo
               </a>
             )}
-            {(project.links.backend || project.links.frontend || project.links.repo) && (
+            {(project.links.backend || project.links.frontend || project.links.repo || project.links.download) && (
               <a
-                href={project.links.backend || project.links.frontend || project.links.repo}
+                href={project.links.backend || project.links.frontend || project.links.repo || project.links.download}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}

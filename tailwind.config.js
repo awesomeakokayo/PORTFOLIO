@@ -4,13 +4,28 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'allura': ['Allura', 'cursive'],
-        'manrope': ['Manrope', 'system-ui', 'sans-serif'],
-        'poppins': ['Poppins', 'sans-serif'],
-        'ojuju': ['Ojuju', 'sans-serif'],
+        'heading': ["'Instrument Serif'", 'serif'],
+        'body': ["'Barlow'", 'sans-serif'],
       },
       colors: {
-        // Premium dark palette
+        // CSS Custom Properties mapped to Tailwind
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        card: 'hsl(var(--card))',
+        'card-foreground': 'hsl(var(--card-foreground))',
+        primary: 'hsl(var(--primary))',
+        'primary-foreground': 'hsl(var(--primary-foreground))',
+        secondary: 'hsl(var(--secondary))',
+        'secondary-foreground': 'hsl(var(--secondary-foreground))',
+        muted: 'hsl(var(--muted))',
+        'muted-foreground': 'hsl(var(--muted-foreground))',
+        accent: 'hsl(var(--accent))',
+        'accent-foreground': 'hsl(var(--accent-foreground))',
+        destructive: 'hsl(var(--destructive))',
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        // Legacy compatibility
         dark: {
           900: '#0a0a0a',
           800: '#111111',
@@ -20,7 +35,6 @@ export default {
           400: '#333333',
           300: '#444444',
         },
-        // Warm gold/amber accents (preserving existing colorway)
         gold: {
           50: '#fffbf0',
           100: '#fff5d6',
@@ -32,12 +46,6 @@ export default {
           700: '#cc8c37',
           800: '#a6732e',
           900: '#8a5f26',
-        },
-        // Legacy primary (mapped to gold for compatibility)
-        primary: {
-          DEFAULT: "#ffb347",
-          dark: "#e6a03f",
-          light: "#ffd8a6",
         },
       },
       fontSize: {

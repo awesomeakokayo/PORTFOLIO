@@ -1,6 +1,7 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import BlurText from './BlurText'
+import FadeIn from './FadeIn'
 
 const Process = () => {
   const ref = useRef(null)
@@ -9,92 +10,97 @@ const Process = () => {
   const steps = [
     {
       number: '01',
-      title: 'Discovery',
-      description: 'We start with a deep dive into your vision, goals, and requirements. Understanding the problem thoroughly is the foundation of a successful solution.',
+      title: 'Discover',
+      description: 'Every great project starts with understanding. I dive deep into your goals, audience, and constraints to build a solid foundation.',
     },
     {
       number: '02',
-      title: 'Strategy',
-      description: 'I create a detailed roadmap with technical architecture, timeline, and milestones. Every decision is documented and aligned with your business objectives.',
+      title: 'Build',
+      description: 'With clarity comes creation. I move fast but stay thoughtful, crafting solutions that balance technical excellence with human experience.',
     },
     {
       number: '03',
-      title: 'Development',
-      description: 'The build phase happens in iterative sprints with regular check-ins. You will see progress in real-time and can provide feedback at every stage.',
+      title: 'Refine',
+      description: 'Good work becomes great through iteration. I test, optimize, and polish until every detail feels intentional and every interaction matters.',
     },
     {
       number: '04',
-      title: 'Delivery',
-      description: 'After thorough testing and optimization, your product is deployed to production. I handle the technical setup and ensure everything runs smoothly.',
-    },
-    {
-      number: '05',
-      title: 'Support',
-      description: 'The relationship does not end at launch. I provide ongoing support, maintenance, and enhancements to keep your product at its best.',
+      title: 'Deliver',
+      description: 'The finish line is just the beginning. I launch with confidence, ensuring your product is ready to make its mark from day one.',
     },
   ]
 
   return (
-    <section id="process" ref={ref} className="relative py-24 md:py-32 bg-dark-800">
-      {/* Background pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-gold-900/10 via-dark-800 to-dark-800" />
-      
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16 md:mb-24"
-        >
-          <span className="text-caption uppercase tracking-wider text-gold-400 mb-4 block">
-            My Process
-          </span>
-          <h2 className="font-ojuju text-heading-xl text-white mb-6">
-            How We Will Work Together
-          </h2>
-          <p className="text-body-lg text-neutral-400">
-            A proven, transparent process designed to deliver exceptional results 
-            while keeping you informed every step of the way.
-          </p>
-        </motion.div>
+    <section
+      id="process"
+      ref={ref}
+      className="relative py-32 md:py-40 bg-[hsl(0,0%,4%)] overflow-hidden"
+    >
+      {/* Background */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      </div>
 
-        {/* Process steps */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Connecting line */}
-          <div className="absolute left-8 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-gold-500/50 via-gold-500/30 to-gold-500/10 hidden sm:block" />
+      <div className="relative z-10 section-padding">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="max-w-3xl mb-20">
+            <FadeIn direction="up" delay={0.1}>
+              <span className="font-body text-xs font-medium tracking-[0.2em] uppercase text-white/40 mb-4 block">
+                Process
+              </span>
+            </FadeIn>
 
-          {steps.map((step, index) => (
-            <motion.div
-              key={step.number}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.15 * index }}
-              className={`relative flex flex-col sm:flex-row gap-8 mb-12 last:mb-0 ${
-                index % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'
-              }`}
-            >
-              {/* Timeline dot */}
-              <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-gold-500 border-4 border-dark-800 z-10 hidden sm:block" />
-              
-              {/* Number circle - mobile only */}
-              <div className="sm:hidden w-12 h-12 rounded-full bg-gold-500/10 border border-gold-500/30 flex items-center justify-center flex-shrink-0">
-                <span className="font-ojuju font-bold text-gold-400">{step.number}</span>
-              </div>
+            <BlurText
+              text="How I work"
+              className="font-heading italic text-heading-xl text-white mb-4"
+              delay={0.2}
+            />
 
-              {/* Content card */}
-              <div className={`sm:w-5/12 ${index % 2 === 0 ? 'sm:text-right sm:pr-12' : 'sm:text-left sm:pl-12'}`}>
-                <div className="hidden sm:block font-ojuju text-6xl font-bold text-gold-500/10 mb-2">
-                  {step.number}
+            <FadeIn direction="up" delay={0.3}>
+              <p className="font-body text-lg text-white/50 leading-relaxed">
+                A simple, intentional approach to creating work that matters.
+              </p>
+            </FadeIn>
+          </div>
+
+          {/* Process Steps */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {steps.map((step, index) => (
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 * index, ease: [0.16, 1, 0.3, 1] }}
+                className="relative"
+              >
+                <div className="liquid-glass rounded-2xl p-6 h-full">
+                  {/* Step Number */}
+                  <div className="mb-6">
+                    <span className="font-heading italic text-5xl text-white/10">
+                      {step.number}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-heading italic text-xl text-white mb-3">
+                    {step.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="font-body text-sm text-white/50 leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
-                <h3 className="text-heading-md text-white mb-3">{step.title}</h3>
-                <p className="text-neutral-400 leading-relaxed">{step.description}</p>
-              </div>
 
-              {/* Spacer for alternating layout */}
-              <div className="hidden sm:block sm:w-5/12" />
-            </motion.div>
-          ))}
+                {/* Connector line (except last) */}
+                {index < steps.length - 1 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-px bg-gradient-to-r from-white/20 to-transparent" />
+                )}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

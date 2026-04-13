@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
+import BlurText from './BlurText'
 
 const Hero = () => {
   const scrollToSection = (id) => {
@@ -11,143 +12,197 @@ const Hero = () => {
 
   return (
     <section
-      id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-dark-900"
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[hsl(0,0%,4%)] pt-24 md:pt-32"
     >
-      {/* Subtle background texture */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gold-900/20 via-dark-900 to-dark-900" />
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffb347%22%20fill-opacity%3D%220.03%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30" />
-      
-      {/* Accent glow */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-gold-600/5 rounded-full blur-3xl" />
+      {/* Cinematic Background with Basketball Court Floor Effect */}
+      <div className="absolute inset-0">
+        {/* Dark base */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[hsl(0,0%,6%)] via-[hsl(0,0%,4%)] to-[hsl(0,0%,2%)]" />
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
-        <div className="max-w-5xl mx-auto text-center">
-          {/* Top label */}
-          {/* <motion.div
+        {/* Subtle court lines effect - horizontal */}
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div className="absolute top-1/4 left-0 right-0 h-px bg-white" />
+          <div className="absolute top-1/2 left-0 right-0 h-px bg-white" />
+          <div className="absolute top-3/4 left-0 right-0 h-px bg-white" />
+        </div>
+
+        {/* Spotlight effect from top */}
+        <div className="absolute inset-0 spotlight-gradient" />
+
+        {/* Ambient glow orbs */}
+        <motion.div
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute top-1/4 left-1/3 w-[600px] h-[600px] rounded-full bg-white/[0.02] blur-[120px]"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+          className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-white/[0.03] blur-[100px]"
+        />
+
+        {/* Grain texture overlay */}
+        <div className="grain-overlay absolute inset-0" />
+      </div>
+
+      {/* Content Container */}
+      <div className="relative z-10 w-full section-padding">
+        <div className="max-w-5xl mx-auto">
+          {/* Intro Badge */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex items-center justify-center gap-2 mb-8"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex items-center gap-3 mb-8"
           >
-            <svg className="w-4 h-4 text-gold-400" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
-            <span className="text-caption uppercase tracking-wider text-gold-300/80 font-medium">
-              Full-Stack & Mobile Developer
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white/40" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-white/70" />
             </span>
-            <svg className="w-4 h-4 text-gold-400" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
-          </motion.div> */}
+            <span className="text-xs font-body font-medium tracking-[0.2em] uppercase text-white/50">
+              Developer & Builder
+            </span>
+          </motion.div>
 
-          {/* Main headline with Ojuju font */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-            className="font-ojuju font-bold text-display-xl text-white mt-12 mb-6"
-          >
-            <span className="block">AWESOME</span>
-            <span className="block text-gold-400">AKOKAYO</span>
-          </motion.h1>
+          {/* Main Headline */}
+          <div className="mb-8">
+            <BlurText
+              text="Built with discipline."
+              className="font-heading italic text-display-xl text-white block"
+              delay={0.4}
+              staggerDelay={0.05}
+            />
+            <BlurText
+              text="Shipped with precision."
+              className="font-heading italic text-display-xl text-white/80 block"
+              delay={0.6}
+              staggerDelay={0.05}
+            />
+          </div>
 
-          {/* Subheading */}
+          {/* Subtext */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-body-lg md:text-xl text-neutral-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+            transition={{ duration: 0.8, delay: 1 }}
+            className="font-body text-lg md:text-xl text-white/50 max-w-2xl mb-12 leading-relaxed"
           >
-            From concept to deployment, I transform complex problems into 
-            user-centric, scalable solutions.
+            A builder's mindset. I craft digital experiences that perform —
+            where technical precision meets human intuition.
           </motion.p>
 
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="flex flex-col sm:flex-row items-start gap-4"
           >
             <button
-              onClick={() => scrollToSection('#contact')}
-              className="group relative px-8 py-4 bg-gold-500 text-dark-900 font-semibold rounded-full overflow-hidden transition-all duration-400 hover:shadow-[0_0_40px_rgba(255,179,71,0.3)] hover:scale-105"
+              onClick={() => scrollToSection('#projects')}
+              className="liquid-glass-strong px-8 py-4 rounded-full font-body font-medium text-white hover:bg-white/10 transition-all duration-300 group"
             >
-              <span className="relative z-10 flex items-center gap-2">
-                Start a Project
-                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <span className="flex items-center gap-2">
+                View Projects
+                <svg
+                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </span>
             </button>
-            
+
             <button
-              onClick={() => scrollToSection('#projects')}
-              className="group px-8 py-4 border border-neutral-700 text-neutral-300 font-medium rounded-full transition-all duration-400 hover:border-gold-500/50 hover:text-gold-300 hover:bg-gold-500/5"
+              onClick={() => scrollToSection('#contact')}
+              className="px-8 py-4 rounded-full font-body font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/30 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300"
             >
-              <span className="flex items-center gap-2">
-                View My Work
-              </span>
+              Contact Me
             </button>
           </motion.div>
 
-          {/* Status indicator */}
+          {/* Identity Tags */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex items-center justify-center gap-3"
+            transition={{ duration: 0.8, delay: 1.4 }}
+            className="flex flex-wrap gap-3 mt-12"
           >
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-            </span>
-            <span className="text-body-sm text-neutral-500">
-              Available for new projects
-            </span>
+            {['Developer', 'Builder', 'Creator', 'Problem Solver'].map((tag, index) => (
+              <motion.span
+                key={tag}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 1.5 + index * 0.1 }}
+                className="liquid-glass px-4 py-2 rounded-full text-xs font-body font-medium text-white/60"
+              >
+                {tag}
+              </motion.span>
+            ))}
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Floating Stats Card */}
+      <motion.div
+        initial={{ opacity: 0, x: 30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 1.6 }}
+        className="absolute bottom-24 right-8 lg:right-16 hidden md:block"
+      >
+        <div className="liquid-glass rounded-2xl p-5">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+              <svg className="w-6 h-6 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <div>
+              <p className="font-heading italic text-2xl text-white">10+</p>
+              <p className="font-body text-xs text-white/50 uppercase tracking-wider">Projects Shipped</p>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1 }}
+        transition={{ duration: 0.8, delay: 2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <button
-          onClick={() => scrollToSection('#trust')}
-          className="group flex flex-col items-center gap-2 text-neutral-500 hover:text-gold-400 transition-colors duration-300"
+          onClick={() => scrollToSection('#about')}
+          className="flex flex-col items-center gap-2 text-white/30 hover:text-white/60 transition-colors duration-300"
         >
-          <span className="text-caption uppercase tracking-widest">Scroll</span>
+          <span className="text-[10px] font-body uppercase tracking-[0.3em]">Scroll</span>
           <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <ArrowDown className="w-5 h-5" />
+            <ArrowDown className="w-4 h-4" />
           </motion.div>
         </button>
       </motion.div>
-
-      {/* Side decorative elements */}
-      <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-4">
-        <div className="w-px h-20 bg-gradient-to-b from-transparent via-neutral-700 to-transparent" />
-        <span className="text-caption text-neutral-600 rotate-180 [writing-mode:vertical-lr] tracking-widest uppercase">
-          Developer
-        </span>
-        <div className="w-px h-20 bg-gradient-to-b from-transparent via-neutral-700 to-transparent" />
-      </div>
-
-      <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-4">
-        <div className="w-px h-20 bg-gradient-to-b from-transparent via-neutral-700 to-transparent" />
-        <span className="text-caption text-neutral-600 [writing-mode:vertical-lr] tracking-widest uppercase">
-          Designer
-        </span>
-        <div className="w-px h-20 bg-gradient-to-b from-transparent via-neutral-700 to-transparent" />
-      </div>
     </section>
   )
 }

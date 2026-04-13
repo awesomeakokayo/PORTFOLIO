@@ -130,7 +130,8 @@ export const projects = [
     tech: ["React Native", "TypeScript", "FastAPI", "WebSockets", "PostgreSQL", "Gemini-flash", "Render", "Expo"],
     links: {
       backend: "https://github.com/awesomeakokayo/Flood-Report-App/tree/main/app",
-      frontend: "https://github.com/awesomeakokayo/Flood-Report-App/tree/main/src"
+      frontend: "https://github.com/awesomeakokayo/Flood-Report-App/tree/main/src",
+      download: "https://expo.dev/accounts/awesomeakokayo/projects/flood-monitor/builds/9a60c99b-41c0-4ab1-8d60-23a3e74e5013"
     },
     highlights: [
       "Designed RESTful API for submissions, authentication, AI verification of flood reports, and flood reporting.",
