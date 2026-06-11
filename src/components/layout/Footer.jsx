@@ -24,10 +24,22 @@ const GithubIcon = ({ size = 24 }) => (
 
 export const Footer = () => {
   const socials = [
-    { name: "GitHub", href: "https://github.com/awesomeakokayo", icon: GithubIcon },
-    { name: "Twitter/X", href: "https://twitter.com/awesomeakokayo", icon: TwitterIcon },
-    { name: "LinkedIn", href: "https://linkedin.com/in/awesomeakokayo", icon: LinkedinIcon },
-    { name: "TechSkillHub", href: "https://techskillhub.cv", icon: Globe }
+    {
+      name: "GitHub",
+      href: "https://github.com/awesomeakokayo",
+      icon: GithubIcon,
+    },
+    {
+      name: "Twitter/X",
+      href: "https://twitter.com/awesomeakokayo",
+      icon: TwitterIcon,
+    },
+    {
+      name: "LinkedIn",
+      href: "www.linkedin.com/in/awesome-stephens",
+      icon: LinkedinIcon,
+    },
+    { name: "TechSkillHub", href: "https://techskillhub.cv", icon: Globe },
   ];
 
   return (

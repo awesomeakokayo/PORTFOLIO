@@ -97,15 +97,15 @@ const Contact = () => {
                 Let's build something that works.
               </h1>
               <p className="font-['Manrope'] text-[17px] text-[#6E6E73] mb-8 leading-relaxed">
-                Tell me about your project. I'll respond within 24 hours
-                with my initial thoughts — no sales pitch, just clarity.
+                Tell me about your project. I'll respond within 24 hours with my
+                initial thoughts — no sales pitch, just clarity.
               </p>
 
               {/* Reassurance List */}
               <div className="space-y-3 mb-10">
                 {reassuranceItems.map((item) => (
                   <div key={item} className="flex items-center gap-2">
-                    <Check size={18} style={{ color: '#2563EB' }} />
+                    <Check size={18} style={{ color: "#2563EB" }} />
                     <span className="font-['Manrope'] text-[15px] text-[#6E6E73]">
                       {item}
                     </span>
@@ -126,7 +126,7 @@ const Contact = () => {
                     {CONTACT_EMAIL}
                   </a>
                   <a
-                    href="https://www.linkedin.com/in/awesomestephens"
+                    href="www.linkedin.com/in/awesome-stephens"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-['Manrope'] text-[14px] text-[#2563EB] hover:opacity-70 transition-opacity block"
@@ -157,12 +157,19 @@ const Contact = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+              transition={{
+                duration: 0.6,
+                delay: 0.1,
+                ease: [0.25, 0.1, 0.25, 1],
+              }}
             >
               <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Name */}
                 <div>
-                  <label htmlFor="name" className="font-['Manrope'] text-[14px] font-[500] text-[#1D1D1F] mb-1.5 block">
+                  <label
+                    htmlFor="name"
+                    className="font-['Manrope'] text-[14px] font-[500] text-[#1D1D1F] mb-1.5 block"
+                  >
                     Name *
                   </label>
                   <input
@@ -179,7 +186,10 @@ const Contact = () => {
 
                 {/* Email */}
                 <div>
-                  <label htmlFor="email" className="font-['Manrope'] text-[14px] font-[500] text-[#1D1D1F] mb-1.5 block">
+                  <label
+                    htmlFor="email"
+                    className="font-['Manrope'] text-[14px] font-[500] text-[#1D1D1F] mb-1.5 block"
+                  >
                     Email *
                   </label>
                   <input
@@ -196,7 +206,10 @@ const Contact = () => {
 
                 {/* Service Type */}
                 <div>
-                  <label htmlFor="serviceType" className="font-['Manrope'] text-[14px] font-[500] text-[#1D1D1F] mb-1.5 block">
+                  <label
+                    htmlFor="serviceType"
+                    className="font-['Manrope'] text-[14px] font-[500] text-[#1D1D1F] mb-1.5 block"
+                  >
                     What do you need? *
                   </label>
                   <select
@@ -206,19 +219,30 @@ const Contact = () => {
                     value={formData.serviceType}
                     onChange={handleChange}
                     className="w-full border border-[#D2D2D7] rounded-xl px-4 py-3.5 text-[16px] font-[400] text-[#1D1D1F] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition bg-white font-['Manrope'] appearance-none"
-                    style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236E6E73' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 16px center', paddingRight: '40px' }}
+                    style={{
+                      backgroundImage:
+                        "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236E6E73' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\")",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "right 16px center",
+                      paddingRight: "40px",
+                    }}
                   >
                     <option value="">Please select...</option>
                     <option value="business-website">Business Website</option>
                     <option value="web-application">Web Application</option>
-                    <option value="redesign">Redesign / Fix Existing Site</option>
+                    <option value="redesign">
+                      Redesign / Fix Existing Site
+                    </option>
                     <option value="not-sure">Not Sure Yet — Let's Talk</option>
                   </select>
                 </div>
 
                 {/* Project Details */}
                 <div>
-                  <label htmlFor="projectDetails" className="font-['Manrope'] text-[14px] font-[500] text-[#1D1D1F] mb-1.5 block">
+                  <label
+                    htmlFor="projectDetails"
+                    className="font-['Manrope'] text-[14px] font-[500] text-[#1D1D1F] mb-1.5 block"
+                  >
                     Tell me about your project
                   </label>
                   <textarea
@@ -234,7 +258,10 @@ const Contact = () => {
 
                 {/* Budget Range */}
                 <div>
-                  <label htmlFor="budgetRange" className="font-['Manrope'] text-[14px] font-[500] text-[#1D1D1F] mb-1.5 block">
+                  <label
+                    htmlFor="budgetRange"
+                    className="font-['Manrope'] text-[14px] font-[500] text-[#1D1D1F] mb-1.5 block"
+                  >
                     Budget range (optional)
                   </label>
                   <select
@@ -243,25 +270,34 @@ const Contact = () => {
                     value={formData.budgetRange}
                     onChange={handleChange}
                     className="w-full border border-[#D2D2D7] rounded-xl px-4 py-3.5 text-[16px] font-[400] text-[#1D1D1F] focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition bg-white font-['Manrope'] appearance-none"
-                    style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236E6E73' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\")", backgroundRepeat: 'no-repeat', backgroundPosition: 'right 16px center', paddingRight: '40px' }}
+                    style={{
+                      backgroundImage:
+                        "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236E6E73' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\")",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "right 16px center",
+                      paddingRight: "40px",
+                    }}
                   >
                     <option value="">Prefer not to say</option>
                     <option value="1k-3k">$1,000 – $3,000</option>
                     <option value="3k-5k">$3,000 – $5,000</option>
                     <option value="5k-10k">$5,000 – $10,000</option>
-                    <option value="above-10k">Above $10,000 / Let's discuss</option>
+                    <option value="above-10k">
+                      Above $10,000 / Let's discuss
+                    </option>
                   </select>
                 </div>
 
                 {/* Submit Status */}
-                {submitStatus === 'success' && (
+                {submitStatus === "success" && (
                   <div className="p-4 rounded-xl text-center font-['Manrope'] bg-[#10B981] text-white">
                     Message sent successfully! I'll be in touch within 24 hours.
                   </div>
                 )}
-                {submitStatus === 'error' && (
+                {submitStatus === "error" && (
                   <div className="p-4 rounded-xl text-center font-['Manrope'] bg-[#EF4444] text-white">
-                    Something went wrong. Please email me directly at {CONTACT_EMAIL}
+                    Something went wrong. Please email me directly at{" "}
+                    {CONTACT_EMAIL}
                   </div>
                 )}
 
@@ -271,7 +307,7 @@ const Contact = () => {
                   disabled={isSubmitting}
                   className="w-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-[600] py-4 rounded-xl transition-colors duration-200 text-[16px] font-['Manrope']"
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message →'}
+                  {isSubmitting ? "Sending..." : "Send Message →"}
                 </button>
 
                 <p className="font-['Manrope'] text-[13px] text-center mt-3 text-[#A1A1A6]">

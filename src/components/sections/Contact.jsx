@@ -59,15 +59,27 @@ export const Contact = () => {
   ];
 
   const socialLinks = [
-    { name: "GitHub", href: "https://github.com/awesomeakokayo", icon: GithubIcon },
-    { name: "Twitter/X", href: "https://twitter.com/awesomeakokayo", icon: TwitterIcon },
-    { name: "LinkedIn", href: "https://linkedin.com/in/awesomeakokayo", icon: LinkedinIcon },
-    { name: "TechSkillHub", href: "https://techskillhub.cv", icon: Globe }
+    {
+      name: "GitHub",
+      href: "https://github.com/awesomeakokayo",
+      icon: GithubIcon,
+    },
+    {
+      name: "Twitter/X",
+      href: "https://twitter.com/awesomeakokayo",
+      icon: TwitterIcon,
+    },
+    {
+      name: "LinkedIn",
+      href: "www.linkedin.com/in/awesome-stephens",
+      icon: LinkedinIcon,
+    },
+    { name: "TechSkillHub", href: "https://techskillhub.cv", icon: Globe },
   ];
 
   return (
-    <section 
-      id="contact" 
+    <section
+      id="contact"
       ref={ref}
       className="min-h-[90vh] py-24 flex flex-col justify-center items-center bg-base px-6 overflow-hidden relative"
     >
@@ -82,18 +94,21 @@ export const Contact = () => {
 
           {/* Section Heading */}
           <h2 className="text-[clamp(40px,6vw,80px)] font-bold tracking-tight text-text-primary leading-[1.05] mb-6">
-            Have an idea?<br />
+            Have an idea?
+            <br />
             <span className="text-accent font-extrabold">I build things.</span>
           </h2>
 
           {/* Body Text */}
           <p className="font-body text-[16px] sm:text-[17px] text-text-secondary leading-[1.85] max-w-[560px] mb-12">
-            Whether you need a product built from scratch, a developer 
-            to join your team, or you're an investor curious about what 
-            I'm working on — the door is open.<br /><br />
-            Not looking to hire directly? If you know someone who needs 
-            a builder, I'd love the introduction. Referrals are how good 
-            work finds good people.
+            Whether you need a product built from scratch, a developer to join
+            your team, or you're an investor curious about what I'm working on —
+            the door is open.
+            <br />
+            <br />
+            Not looking to hire directly? If you know someone who needs a
+            builder, I'd love the introduction. Referrals are how good work
+            finds good people.
           </p>
 
           {/* Availability grid */}
@@ -122,9 +137,9 @@ export const Contact = () => {
             >
               Send me an email
             </a>
-            
+
             <a
-              href="https://linkedin.com/in/awesomeakokayo"
+              href="www.linkedin.com/in/awesome-stephens"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center font-display font-medium text-[15px] text-text-secondary border border-border-lit rounded-full px-8 py-4 transition-all duration-200 hover:border-accent hover:text-text-primary cursor-pointer"
@@ -134,7 +149,7 @@ export const Contact = () => {
           </div>
 
           {/* Visible Copy Email */}
-          <button 
+          <button
             onClick={handleCopyEmail}
             className="font-body text-[15px] text-text-muted hover:text-text-secondary transition-colors duration-200 mb-12 flex items-center gap-2 cursor-pointer focus:outline-none"
             aria-label="Copy email address"
@@ -163,7 +178,6 @@ export const Contact = () => {
               );
             })}
           </div>
-
         </motion.div>
       </div>
 
@@ -171,10 +185,22 @@ export const Contact = () => {
       <AnimatePresence>
         {showToast && (
           <motion.div
-            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 50, x: '-50%' }}
-            animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0, x: '-50%' }}
-            exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 50, x: '-50%' }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+            initial={
+              prefersReducedMotion
+                ? { opacity: 0 }
+                : { opacity: 0, y: 50, x: "-50%" }
+            }
+            animate={
+              prefersReducedMotion
+                ? { opacity: 1 }
+                : { opacity: 1, y: 0, x: "-50%" }
+            }
+            exit={
+              prefersReducedMotion
+                ? { opacity: 0 }
+                : { opacity: 0, y: 50, x: "-50%" }
+            }
+            transition={{ type: "spring", stiffness: 200, damping: 20 }}
             className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-accent text-white px-6 py-3 rounded-full shadow-lg font-body text-sm font-semibold z-50 select-none whitespace-nowrap"
           >
             Email copied ✓
