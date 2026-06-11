@@ -1,23 +1,39 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import Archive from './pages/Archive'
-import Contact from './pages/Contact'
-import About from './pages/About'
-import ScrollToTop from './components/ScrollToTop'
-import './App.css'
+import React from 'react';
+import Nav from './components/layout/Nav';
+import Footer from './components/layout/Footer';
+import Hero from './components/sections/Hero';
+import ProofStrip from './components/sections/ProofStrip';
+import About from './components/sections/About';
+import Stack from './components/sections/Stack';
+import Ventures from './components/sections/Ventures';
+import InvestorSignal from './components/sections/InvestorSignal';
+import Credibility from './components/sections/Credibility';
+import CurrentlyBuilding from './components/sections/CurrentlyBuilding';
+import Contact from './components/sections/Contact';
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/archive" element={<Archive />} />
-        <Route path='/about' element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
-    </Router>
+    <div id="top" className="bg-base text-text-primary min-h-screen selection:bg-accent selection:text-white font-body">
+      {/* Sticky Header Navigation */}
+      <Nav />
+
+      {/* Main Content Sections */}
+      <main>
+        <Hero />
+        <ProofStrip />
+        <About />
+        <Stack />
+        <Ventures />
+        <InvestorSignal />
+        <Credibility />
+        <CurrentlyBuilding />
+        <Contact />
+      </main>
+
+      {/* Minimal Footer */}
+      <Footer />
+    </div>
   );
 }
 
-export default App
+export default App;

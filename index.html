@@ -3,25 +3,63 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description"
-    content="Content Creator & Computer Science Undergraduate. Building software with discipline, creating content with vision. Where code meets culture and motion.">
-  <meta name="keywords"
-    content="Content Creator, Developer, Computer Science, React, Web Development, Creative Technologist, Portfolio">
-  <meta property="og:title" content="Awesome Akokayo — Creator & Developer">
-  <meta property="og:description"
-    content="Built with discipline. Designed with vision. A creator's eye. A builder's mind.">
-  <meta property="og:type" content="website">
+
+  <!-- Primary -->
+  <title>Awesome Akokayo — Full-Stack Developer & AI Builder</title>
+  <meta name="description" content="Full-stack developer and AI builder from Nigeria. I build production-grade web and mobile products — React Native, FastAPI, AI APIs. Founder of EmoHabit & TechSkillHub. Open to freelance, contract work, and investment conversations." />
+  <meta name="keywords" content="Full-Stack Developer Nigeria, React Native Developer, AI Product Builder, Hire Developer Africa, FastAPI Developer, EmoHabit, TechSkillHub, Awesome Akokayo, Software Engineer Nigeria" />
+  <meta name="author" content="Awesome Akokayo" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://awesomeakokayo.vercel.app/" />
+  <meta property="og:title" content="Awesome Akokayo — I Build AI-Powered Products" />
+  <meta property="og:description" content="Full-stack developer & AI builder from Nigeria. I turn ideas into production-ready products. Founder. Builder. Open to work." />
+  <meta property="og:image" content="/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@awesomeakokayo" />
+  <meta name="twitter:title" content="Awesome Akokayo — Full-Stack Dev & AI Builder" />
+  <meta name="twitter:description" content="I build AI-powered products. Founder of EmoHabit & TechSkillHub. Open to work & collab." />
+  <meta name="twitter:image" content="/og-image.png" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://awesomeakokayo.vercel.app/" />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Awesome Akokayo",
+    "jobTitle": "Full-Stack Developer & AI Builder",
+    "url": "https://awesomeakokayo.vercel.app",
+    "sameAs": [
+      "https://twitter.com/awesomeakokayo",
+      "https://linkedin.com/in/awesomeakokayo",
+      "https://github.com/awesomeakokayo"
+    ],
+    "knowsAbout": ["React Native", "FastAPI", "AI APIs", "Full-Stack Development", "Mobile Development"],
+    "nationality": "Nigerian"
+  }
+  </script>
+
+  <!-- Preconnect to Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
-  <title>Awesome Akokayo — Creator & Developer</title>
+  
+  <!-- Preload the Ojuju bold font file to prevent Flash of Unstyled Text (FOUT) -->
+  <link rel="preload" href="https://fonts.gstatic.com/s/ojuju/v5/7r3bqXF7v9ApbrMih3jYQBVm9-n_yp455w.ttf" as="font" type="font/ttf" crossorigin>
+  
+  <!-- Import Fonts: Ojuju (display), Inter (body), JetBrains Mono (code/badges) -->
+  <link href="https://fonts.googleapis.com/css2?family=Ojuju:wght@200;300;400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="/logo.png" />
 </head>
 
-<body>
+<body class="bg-base text-text-primary antialiased selection:bg-accent selection:text-white">
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
