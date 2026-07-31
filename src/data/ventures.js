@@ -49,7 +49,7 @@ export const ventures = [
   },
   {
     id: 'aefunai',
-    name: 'AEFUNAI Phonai Journal',
+    name: 'AE-FUNAI Journal of Education',
     client: 'Alex Ekwueme Federal University Ndufu-Alike (AEFUNAI)',
     clientShort: 'Federal University — Nigeria',
     tagline: 'Academic Journal Submission & Publishing Platform',
