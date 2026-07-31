@@ -15,7 +15,7 @@ export const CurrentlyBuilding = () => {
       id: 'ajo',
       name: 'Àjó',
       type: 'Rotating Savings App',
-      note: 'Core savings circles live. Dual payment integrations built (ALATPay + Nomba). Submitted to ALATPay Buildathon & Nomba Hackathon.',
+      note: 'Core savings circles live. Payment integrations in progress.',
       stack: ['React Native', 'Expo', 'FastAPI', 'Groq AI'],
       status: 'building',
       statusLabel: 'In active development',
