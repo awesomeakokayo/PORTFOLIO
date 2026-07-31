@@ -76,7 +76,7 @@ const Hero = () => {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-white/70" />
             </span>
             <span className="text-xs font-body font-medium tracking-[0.2em] uppercase text-white/50">
-              Developer & Builder
+              Software Engineer & Builder
             </span>
           </motion.div>
 
@@ -146,7 +146,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 1.4 }}
             className="flex flex-wrap gap-3 mt-12"
           >
-            {['Developer', 'Builder', 'Creator', 'Problem Solver'].map((tag, index) => (
+            {['Software Engineer', 'Builder', 'Creator', 'Problem Solver'].map((tag, index) => (
               <motion.span
                 key={tag}
                 initial={{ opacity: 0, scale: 0.9 }}

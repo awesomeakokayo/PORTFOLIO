@@ -8,7 +8,7 @@ const About = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   const identityTags = [
-    'Developer',
+    'Software Engineer',
     'Builder',
     'Creator',
     'Storyteller',
@@ -82,7 +82,7 @@ const About = () => {
               <FadeIn direction="up" delay={0.4}>
                 <div className="space-y-5 text-white/60 font-body leading-relaxed">
                   <p className="text-lg">
-                    I'm a developer and builder with a passion for creating software
+                    I'm a software engineer and builder with a passion for creating software
                     that makes a real difference. My work exists at the intersection
                     of technology and storytelling.
                   </p>

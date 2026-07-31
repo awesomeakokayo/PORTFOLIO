@@ -46,7 +46,7 @@ const AboutSection = () => {
 
             <div className="space-y-5">
               <p className="font-['Manrope'] text-[17px] text-[#6E6E73] leading-[1.75]">
-                I'm Awesome Akokayo — a full-stack developer based in Lagos, Nigeria.
+                I'm Awesome Akokayo — a software engineer based in Lagos, Nigeria.
                 For the past 3 years I've been helping businesses stop losing clients
                 to poorly built websites and start winning them back with software
                 that actually works.

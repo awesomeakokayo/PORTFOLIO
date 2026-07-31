@@ -9,7 +9,7 @@ export const About = () => {
   const prefersReducedMotion = typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
 
   const bulletPoints = [
-    "Full-Stack Developer & AI Builder",
+    "Software Engineer & AI Builder",
     "Founder — EmoHabit · TechSkillHub · NaviPro",
     "Springer ETMIS 2025 — Presenter",
     "NACOS Vice President — Coal City University",
@@ -40,7 +40,7 @@ export const About = () => {
           
           <div className="space-y-6 font-body text-[16px] sm:text-[18px] text-text-secondary leading-[1.85]">
             <p>
-              I'm Awesome Akokayo — a full-stack developer and AI builder who turns ideas into 
+              I'm Awesome Akokayo — a software engineer and AI builder who turns ideas into 
               production-grade software. My stack is React Native, React.js, FastAPI, PostgreSQL, 
               Firebase, and AI APIs. I don't just write code — I architect systems, make product 
               decisions, and ship things that actually work.

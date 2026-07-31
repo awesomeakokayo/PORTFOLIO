@@ -52,7 +52,7 @@ export const Hero = () => {
           transition={{ duration: fadeUpDuration, delay: prefersReducedMotion ? 0 : 0.1 }}
           className="font-body text-[11px] font-medium tracking-[0.15em] text-text-secondary uppercase mb-6"
         >
-          FULL-STACK DEVELOPER &nbsp;·&nbsp; AI BUILDER &nbsp;·&nbsp; OPEN TO WORK
+          SOFTWARE ENGINEER &nbsp;·&nbsp; AI BUILDER &nbsp;·&nbsp; OPEN TO WORK
         </motion.div>
 
         {/* Main Headline */}

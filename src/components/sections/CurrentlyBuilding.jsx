@@ -12,10 +12,21 @@ export const CurrentlyBuilding = () => {
 
   const buildItems = [
     {
+      id: 'ajo',
+      name: 'Àjó',
+      type: 'Rotating Savings App',
+      note: 'Core savings circles live. Dual payment integrations built (ALATPay + Nomba). Submitted to ALATPay Buildathon & Nomba Hackathon.',
+      stack: ['React Native', 'Expo', 'FastAPI', 'Groq AI'],
+      status: 'building',
+      statusLabel: 'In active development',
+      linkText: null,
+      href: null
+    },
+    {
       id: 'emohabit',
       name: 'EmoHabit',
       type: 'AI Habit Tracker',
-      note: 'Finishing core habit scheduling engine. Testing streak system.',
+      note: 'Core habit scheduling engine complete. Streak system and freeze tokens in testing.',
       status: 'building',
       statusLabel: 'In active development',
       linkText: 'Follow @Emo_habits',
@@ -25,11 +36,12 @@ export const CurrentlyBuilding = () => {
       id: 'techskillhub',
       name: 'TechSkillHub',
       type: 'Free Tech Education for Africa',
-      note: '17 tracks live. Growing resource library.',
+      note: '17 tracks live. Guided Path (paid sequential learning) launched. Growing resource library.',
+      stack: [],
       status: 'live',
       statusLabel: 'Live',
       linkText: 'Visit techskillhub.cv',
-      href: 'https://techskillhub.cv' // Wait, the domain is techskillhub.cv from current update
+      href: 'https://techskillhub.cv'
     }
   ];
 
@@ -60,7 +72,7 @@ export const CurrentlyBuilding = () => {
                 <span className="animate-pulse-glow absolute inline-flex h-full w-full rounded-full bg-[#4ADE80] opacity-50" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#4ADE80]" />
               </span>
-              <span>Updated June 2026</span>
+              <span>Updated July 31, 2026</span>
             </div>
           </div>
 
@@ -92,20 +104,28 @@ export const CurrentlyBuilding = () => {
                     <p className="font-body text-[14px] text-text-secondary leading-relaxed mt-1">
                       {item.note}
                     </p>
+
+                    {item.stack && item.stack.length > 0 && (
+                      <p className="font-body text-xs text-text-muted mt-1">
+                        {item.stack.join(' · ')}
+                      </p>
+                    )}
                   </div>
                 </div>
 
                 {/* Right Side: Link Action */}
-                <div className="shrink-0 self-start sm:self-auto">
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center font-display font-medium text-xs text-text-secondary border border-border-lit rounded-full px-4 py-2 transition-all duration-200 hover:border-accent hover:text-text-primary cursor-pointer whitespace-nowrap"
-                  >
-                    {item.linkText}
-                  </a>
-                </div>
+                {item.href && (
+                  <div className="shrink-0 self-start sm:self-auto">
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center font-display font-medium text-xs text-text-secondary border border-border-lit rounded-full px-4 py-2 transition-all duration-200 hover:border-accent hover:text-text-primary cursor-pointer whitespace-nowrap"
+                    >
+                      {item.linkText}
+                    </a>
+                  </div>
+                )}
               </div>
             ))}
           </div>

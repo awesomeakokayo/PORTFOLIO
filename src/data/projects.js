@@ -49,7 +49,7 @@ export const projects = [
   {
     id: 1,
     title: "NaviPro",
-    role: "Lead / Full-Stack Developer",
+    role: "Lead / Software Engineer",
     summary: "AI-powered learning assistant: roadmap & daily-task generation, conversational mentor, and video recommendations.",
     description: "NaviPro is an AI-powered learning platform that helps users create personalized learning roadmaps, get daily task recommendations, and interact with an AI mentor. The platform integrates with YouTube to provide relevant video content based on learning goals.",
     tech: ["FastAPI", "React", "React Native", "PostgreSQL", "Redis", "Docker", "Render", "Netlify", "OpenAI", "Groq"],
@@ -75,7 +75,7 @@ export const projects = [
   {
     id: 2,
     title: "Alex Ekwueme Federal University — Journal Platform",
-    role: "Full-Stack Developer",
+    role: "Software Engineer",
     summary: "Submission & editorial platform with admin review workflows and secure submission handling.",
     description: "A comprehensive journal submission and editorial management system for the university. The platform enables researchers to submit papers, track their status, and allows administrators to review, approve, or request revisions.",
     tech: ["FastAPI", "PostgreSQL", "Neon", "HTML", "CSS", "JavaScript", "Render"],
@@ -100,7 +100,7 @@ export const projects = [
   {
     id: 3,
     title: "Ambition Smiler — Artist Music Catalog",
-    role: "Full-Stack Developer",
+    role: "Software Engineer",
     summary: "Admin content management for music uploads, streaming links, and catalog management.",
     description: "A content management system for artists to manage their music catalog, upload tracks, manage streaming links, and organize their discography. Features an admin dashboard for easy content management.",
     tech: ["PostgreSQL", "Render", "Netlify", "Node.js", "FastAPI"],
@@ -124,7 +124,7 @@ export const projects = [
   {
     id: 5,
     title: "Real-time flood reporting app",
-    role: "Full-Stack Developer",
+    role: "Software Engineer",
     summary: "Real-time flood reporting app for tracking and reporting floods in south-west nigeria",
     description: "Real-time flood reporting app for tracking and reporting floods in south-west nigeria",
     tech: ["React Native", "TypeScript", "FastAPI", "WebSockets", "PostgreSQL", "Gemini-flash", "Render", "Expo"],
@@ -146,6 +146,48 @@ export const projects = [
       "/assets/floodreport4.jpg",
       "/assets/floodreport5.jpg"
     ],
+    status: "complete",
+    featured: true
+  },
+  {
+    id: 8,
+    title: "Blancquake Foundation",
+    role: "Frontend Developer",
+    summary: "NGO Website — Neurological Health & Blood Donation",
+    description:
+      "A purpose-built website for Blancquake Foundation, an Enugu-based NGO focused on neurological health awareness and life-saving blood donation campaigns. The site gives the organisation a credible digital presence to recruit donors, share health education, and drive their flagship #BecomeASuperHero campaign.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    links: {
+      live: "https://blancquakefoundation.org"
+    },
+    highlights: [
+      "Built a clean, responsive NGO website with campaign-focused landing sections.",
+      "Implemented a blood donation CTA flow and health education content.",
+      "Integrated social media channels to amplify donor recruitment campaigns."
+    ],
+    impact:
+      "Gave the foundation a credible, shareable digital home — supporting their partnership with Coal City University and enabling their 2024 World Blood Donor Day campaign to reach a wider audience.",
+    images: [],
+    status: "complete",
+    featured: true
+  },
+  {
+    id: 9,
+    title: "CCU Journal of Education",
+    role: "Software Engineer",
+    summary: "Academic Journal Submission & Publishing Platform",
+    description:
+      "A full peer-review workflow platform built for Coal City University, Enugu. Researchers and lecturers submit manuscripts; designated editors review, approve, and publish them. Published journals are publicly accessible to students, staff, and readers worldwide. Features include volume/issue management, biannual publication scheduling, spam protection, and an admin dashboard.",
+    tech: ["Next.js", "PostgreSQL", "Neon", "Prisma", "Auth.js v5"],
+    links: {},
+    highlights: [
+      "Built on Next.js App Router with Neon/Prisma database and Auth.js v5 authentication.",
+      "Layered spam protection: Vercel BotID, rate limiting, email verification, and per-user submission caps.",
+      "Admins manage the full editorial lifecycle; the public portal shows current issues and a searchable archive."
+    ],
+    impact:
+      "Replaced a fragmented manual process with a fully digital editorial pipeline. The platform went live with its first published volume (Vol. 1, No. 1 — Faculty of Allied Health and Applied Sciences, July 2026) and is now the official submission system for the university's research output.",
+    images: [],
     status: "complete",
     featured: true
   },

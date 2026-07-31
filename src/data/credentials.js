@@ -21,6 +21,6 @@ export const credentials = [
     label: 'TRACK RECORD',
     title: '5+ Products Shipped',
     body: 'From NaviPro to TechSkillHub, I have taken ideas from zero to live — solo and with teams. Not side projects. Products with users, with purpose, with deployed infrastructure.',
-    tags: ['Full-Stack', 'Founder', 'AI Products'],
+    tags: ['Software Engineer', 'Founder', 'AI Products'],
   },
 ];
