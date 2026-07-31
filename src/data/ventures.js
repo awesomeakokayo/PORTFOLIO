@@ -69,7 +69,7 @@ export const ventures = [
     statusLabel: 'Live — blancquakefoundation.org',
     description: 'A purpose-built website for Blancquake Foundation, an Enugu-based NGO focused on neurological health awareness and life-saving blood donation campaigns. The site gives the organisation a credible digital presence to recruit donors, share health education, and drive their flagship #BecomeASuperHero campaign.',
     problem: 'The foundation had no online presence to support recruitment for blood donation drives or to reach new volunteers — limiting their community impact to word of mouth.',
-    stack: ['HTML', 'CSS', 'JavaScript'],
+    stack: ['React', 'Tailwind CSS', 'JavaScript'],
     links: { live: 'https://blancquakefoundation.org' },
     featured: false,
   },

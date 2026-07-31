@@ -156,7 +156,7 @@ export const projects = [
     summary: "NGO Website — Neurological Health & Blood Donation",
     description:
       "A purpose-built website for Blancquake Foundation, an Enugu-based NGO focused on neurological health awareness and life-saving blood donation campaigns. The site gives the organisation a credible digital presence to recruit donors, share health education, and drive their flagship #BecomeASuperHero campaign.",
-    tech: ["HTML", "CSS", "JavaScript"],
+    tech: ["React", "Tailwind CSS", "JavaScript"],
     links: {
       live: "https://blancquakefoundation.org"
     },
