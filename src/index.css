@@ -4,30 +4,35 @@
 
 :root {
   /* Backgrounds */
-  --bg-base:        #080808;   /* Page background — near black, not pure */
-  --bg-surface:     #0F0F0F;   /* Cards, sections */
-  --bg-elevated:    #1A1A1A;   /* Hovered/focused cards */
-  --bg-glass:       rgba(15, 15, 15, 0.85); /* Glassmorphism nav */
+  --bg-base:        #080808;   /* Page background — ink */
+  --bg-surface:     #0e0e0d;   /* Cards, sections */
+  --bg-elevated:    #121210;   /* Hovered/focused cards */
+  --bg-glass:       rgba(8, 8, 8, 0.85); /* Glassmorphism nav */
 
-  /* Accent — Orange (#FF6200 connects to EmoHabit brand, consistent identity) */
-  --accent:         #FF6200;
-  --accent-hover:   #FF7A29;
-  --accent-dim:     rgba(255, 98, 0, 0.10);
-  --accent-glow:    rgba(255, 98, 0, 0.22);
-  --accent-border:  rgba(255, 98, 0, 0.35);
+  /* Accent — Brand orange (frozen per brand system) */
+  --accent:         #ff5c00;
+  --accent-hover:   #ff7324;
+  --accent-dim:     rgba(255, 92, 0, 0.10);
+  --accent-glow:    rgba(255, 92, 0, 0.22);
+  --accent-border:  rgba(255, 92, 0, 0.35);
 
   /* Text */
-  --text-primary:   #F2F2F2;   /* Main text — off-white, easier on eyes */
-  --text-secondary: #888888;   /* Labels, secondary copy */
-  --text-muted:     #444444;   /* Metadata, fine print */
+  --text-primary:   #f4f3ef;   /* Paper — main text */
+  --text-secondary: #9c9b94;   /* Muted — secondary copy */
+  --text-muted:     #67665f;   /* Faint — metadata */
 
   /* Borders */
   --border:         #1C1C1C;
-  --border-lit:     #2E2E2E;
+  --border-lit:     rgba(244, 243, 239, 0.1);
 
   /* Semantic */
   --success:        #22C55E;
-  --live-dot:       #4ADE80;   /* Green pulse for "Live" status indicators */
+  --live-dot:       #4ade80;   /* Green pulse for "Live" status indicators */
+
+  /* Typography — 3 families, defined once, referenced everywhere */
+  --font-display:   'Ojuju', system-ui, sans-serif;                                 /* display only: hero H1 + section H2s */
+  --font-body:      'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;  /* everything else sans */
+  --font-mono:      'Space Mono', 'JetBrains Mono', monospace;                       /* eyebrows, badges, tags */
 }
 
 @layer base {
@@ -42,14 +47,14 @@
   body {
     background-color: var(--bg-base);
     color: var(--text-primary);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Ojuju', sans-serif;
+  h1, h2 {
+    font-family: var(--font-display);
   }
 
   /* Keyboard focus styles */
@@ -92,6 +97,60 @@
     transform: scale(1.8);
     opacity: 0;
   }
+}
+
+@layer components {
+  .hairline-b { border-bottom: 1px solid rgba(244,243,239,0.1); }
+  .hairline-t { border-top: 1px solid rgba(244,243,239,0.1); }
+
+  .surface { background: #0e0e0d; border: 1px solid rgba(244,243,239,0.1); }
+  .surface-hover:hover { border-color: rgba(255,92,0,0.4); background: #121210; }
+
+  .chip { background: rgba(244,243,239,0.04); border: 1px solid rgba(244,243,239,0.1); color: #9c9b94; }
+
+  .swatch { border: 1px solid rgba(244,243,239,0.1); }
+
+  .btn-primary { background: #ff5c00; color: #080808; }
+  .btn-primary:hover { background: #ff7324; }
+
+  .btn-outline { border: 1px solid rgba(244,243,239,0.25); color: #f4f3ef; background: transparent; }
+  .btn-outline:hover { border-color: #f4f3ef; background: rgba(244,243,239,0.06); }
+
+  .nav-link { color: #9c9b94; }
+  .nav-link:hover { color: #f4f3ef; }
+
+  .icon-link { color: #9c9b94; border: 1px solid rgba(244,243,239,0.12); }
+  .icon-link:hover { color: #080808; background: #f4f3ef; border-color: #f4f3ef; }
+
+  .link-arrow { color: #f4f3ef; }
+  .link-arrow:hover { color: #ff5c00; }
+  .link-arrow:hover .arrow-icon { transform: translate(3px, -3px); }
+  .arrow-icon { transition: transform 0.25s ease; }
+
+  .fade-up { animation: fadeUp 0.9s cubic-bezier(.16,.84,.44,1) both; }
+  .delay-1 { animation-delay: .08s; }
+  .delay-2 { animation-delay: .16s; }
+  .delay-3 { animation-delay: .24s; }
+  .delay-4 { animation-delay: .36s; }
+  .delay-5 { animation-delay: .48s; }
+
+  .bounce-slow { animation: bounceSlow 2.2s ease-in-out infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up { animation: none !important; opacity: 1 !important; transform: none !important; }
+    .bounce-slow { animation: none !important; }
+    * { transition-duration: .01ms !important; }
+  }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(0); opacity: .5; }
+  50% { transform: translateY(6px); opacity: 1; }
 }
 
 .animate-pulse-glow {

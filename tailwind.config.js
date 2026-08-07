@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./index.html', './PortfolioBrandSystem.jsx', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -16,9 +16,15 @@ export default {
         'border-lit': 'var(--border-lit)',
       },
       fontFamily: {
-        display: ['Ojuju', 'sans-serif'],
-        body:    ['Inter', 'sans-serif'],
-        mono:    ['JetBrains Mono', 'monospace'],
+        display: ['var(--font-display)'],
+        body:    ['var(--font-body)'],
+        mono:    ['var(--font-mono)'],
+      },
+      fontSize: {
+        'display-3xl': ['clamp(2.75rem, 8vw, 7rem)',    { lineHeight: '1.02', letterSpacing: '-0.03em' }],
+        'display-2xl': ['clamp(2.25rem, 5vw, 4.5rem)',   { lineHeight: '1.04', letterSpacing: '-0.025em' }],
+        'display-xl':  ['clamp(1.75rem, 3.5vw, 2.75rem)',{ lineHeight: '1.1',  letterSpacing: '-0.02em' }],
+        'display-sm':  ['clamp(1.125rem, 2vw, 1.5rem)',  { lineHeight: '1.2',  letterSpacing: '-0.01em' }],
       },
     },
   },

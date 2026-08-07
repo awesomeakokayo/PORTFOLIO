@@ -5,30 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:api": "tsx server.ts",
-    "dev:all": "concurrently \"npm run dev\" \"npm run dev:api\"",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fontsource/manrope": "^5.2.8",
-    "@paper-design/shaders-react": "^0.0.76",
-    "@radix-ui/react-slot": "^1.2.4",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "concurrently": "^9.2.1",
-    "cors": "^2.8.6",
-    "dotenv": "^17.2.4",
-    "dotenv-expand": "^12.0.3",
-    "express": "^5.2.1",
-    "framer-motion": "^10.18.0",
     "lucide-react": "^1.7.0",
-    "nodemailer": "^8.0.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.0",
-    "tailwind-merge": "^3.6.0",
-    "tsx": "^4.21.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
