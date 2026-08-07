@@ -13,6 +13,7 @@ import {
   Menu,
   X,
   ChevronDown,
+  Globe,
 } from "lucide-react";
 
 /* ============================================================
@@ -58,7 +59,7 @@ const STATS = [
   { value: "5+", label: "Products shipped" },
   { value: "18", label: "Learning tracks built" },
   { value: "1", label: "Springer presenter" },
-  { value: "NG →", label: "Nigeria. Global reach." },
+  { value: "NG →", label: "Nigeria. Global reach.", globe: true },
 ];
 
 const CREDS = [
@@ -421,8 +422,9 @@ function Hero() {
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-6 py-8 md:grid-cols-4 md:px-10 lg:px-16">
           {STATS.map((s) => (
             <div key={s.label}>
-              <p className="text-3xl font-semibold md:text-4xl" style={{ ...F.display, color: C.paper }}>
+              <p className="flex items-center gap-2 text-3xl font-semibold md:text-4xl" style={{ ...F.display, color: C.paper }}>
                 {s.value}
+                {s.globe && <Globe className="h-7 w-7 md:h-8 md:w-8" style={{ color: C.paper }} />}
               </p>
               <p className="mt-1 text-xs md:text-sm" style={{ ...F.body, color: C.muted }}>
                 {s.label}
