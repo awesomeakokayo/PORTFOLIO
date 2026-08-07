@@ -542,7 +542,7 @@ function ProjectCard({ p }) {
   const dot = STATUS_COLOR[p.status] || C.muted;
   return (
     <div className="surface surface-hover flex flex-col rounded-2xl p-8 transition-colors duration-300">
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h3 className="text-2xl font-semibold" style={{ ...F.display, color: C.paper }}>
             {p.name}
@@ -551,7 +551,7 @@ function ProjectCard({ p }) {
             {p.tagline}
           </p>
         </div>
-        <span className="chip flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-xs" style={F.mono}>
+        <span className="chip flex shrink-0 items-center gap-1.5 self-start rounded-full px-3 py-1.5 text-xs" style={F.mono}>
           <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: dot }} />
           {p.statusLabel}
         </span>
