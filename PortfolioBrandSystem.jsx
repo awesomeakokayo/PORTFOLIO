@@ -65,8 +65,7 @@ const STATS = [
 const CREDS = [
   "Software engineer & AI builder",
   "Founder — EmoHabit, TechSkillHub, NaviPro",
-  "Technology Lead — NSO Technologies",
-  "Final-year CS, Coal City University",
+  "CS Graduate, Coal City University",
   "Former VP II, NACOS",
   "Based in Nigeria. Remote-ready worldwide.",
 ];
@@ -467,8 +466,8 @@ function About() {
                 I studied Computer Science because I wanted to understand systems before I built
                 them. Since then I've founded a habit-intelligence app, launched a free
                 tech-education platform, and presented research at an international Springer
-                conference. I'm in my final year — and already building like it's day one of the
-                next thing.
+                conference. I graduated from Coal City University — and I'm building like it's
+                day one of the next thing.
               </p>
               <p style={{ color: C.muted }}>
                 I'm currently open to freelance projects, contract work, and conversations with
