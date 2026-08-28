@@ -1,8 +1,8 @@
 import React from 'react';
-import PortfolioSite from './PortfolioSite.jsx';
+import PortfolioSiteClean from './PortfolioSiteClean.jsx';
 
 function App() {
-  return <PortfolioSite />;
+  return <PortfolioSiteClean />;
 }
 
 export default App;
