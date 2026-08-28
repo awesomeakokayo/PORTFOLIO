@@ -6,34 +6,9 @@ const mono = { fontFamily: "'Space Mono', monospace" };
 const body = { fontFamily: "'Inter', sans-serif" };
 
 const projects = [
-  {
-    number: "01",
-    name: "TechSkillHub",
-    type: "EdTech · Live",
-    title: "Making quality technology education easier to access.",
-    description: "A free learning platform built around the realities of African learners — structured paths, practical content, and a product experience designed to keep people moving.",
-    tags: ["Next.js", "PostgreSQL", "Paystack", "Prisma"],
-    live: "https://techskillhub.cv",
-    visual: "learn",
-  },
-  {
-    number: "02",
-    name: "EmoHabit",
-    type: "Health · In development",
-    title: "Looking beyond the streak to understand the person.",
-    description: "A habit companion exploring how emotions affect consistency, so users can understand patterns instead of simply watching a counter go up or down.",
-    tags: ["React Native", "FastAPI", "AI"],
-    visual: "habit",
-  },
-  {
-    number: "03",
-    name: "NaviPro",
-    type: "Career · MVP built",
-    title: "Making useful career guidance more accessible.",
-    description: "An AI career mentorship product designed to help people make clearer decisions about their skills, direction, and next move.",
-    tags: ["React", "FastAPI", "AI"],
-    visual: "career",
-  },
+  { number: "01", name: "TechSkillHub", type: "EdTech · Live", title: "Making quality technology education easier to access.", description: "A free learning platform built around the realities of African learners — structured paths, practical content, and a product experience designed to keep people moving.", tags: ["Next.js", "PostgreSQL", "Paystack", "Prisma"], live: "https://techskillhub.cv", visual: "learn" },
+  { number: "02", name: "EmoHabit", type: "Health · In development", title: "Looking beyond the streak to understand the person.", description: "A habit companion exploring how emotions affect consistency, so users can understand patterns instead of simply watching a counter go up or down.", tags: ["React Native", "FastAPI", "AI"], visual: "habit" },
+  { number: "03", name: "NaviPro", type: "Career · MVP built", title: "Making useful career guidance more accessible.", description: "An AI career mentorship product designed to help people make clearer decisions about their skills, direction, and next move.", tags: ["React", "FastAPI", "AI"], visual: "career" },
 ];
 
 const moreWork = [
@@ -50,11 +25,7 @@ const services = [
 ];
 
 function Eyebrow({ number, children }) {
-  return (
-    <p className="flex items-center gap-3 text-[11px] uppercase tracking-[0.18em]" style={{ ...mono, color: "#ff5c00" }}>
-      <span>{number}</span><span className="text-white/20">/</span><span>{children}</span>
-    </p>
-  );
+  return <p className="flex items-center gap-3 text-[11px] uppercase tracking-[0.18em]" style={{ ...mono, color: "#ff5c00" }}><span>{number}</span><span className="text-white/20">/</span><span>{children}</span></p>;
 }
 
 function ProjectVisual({ type }) {
@@ -63,29 +34,10 @@ function ProjectVisual({ type }) {
       <div className="relative min-h-[260px] overflow-hidden rounded-[20px] bg-[#10100f] p-5 sm:min-h-[340px]">
         <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-[#ff5c00]/20 blur-3xl" />
         <div className="relative rounded-xl border border-white/10 bg-[#0a0a09] p-4 shadow-2xl">
-          <div className="flex items-center justify-between border-b border-white/10 pb-3">
-            <div className="text-xs" style={mono}>TECHSKILLHUB</div>
-            <div className="h-2 w-2 rounded-full bg-[#4ade80]" />
-          </div>
+          <div className="flex items-center justify-between border-b border-white/10 pb-3"><div className="text-xs" style={mono}>TECHSKILLHUB</div><div className="h-2 w-2 rounded-full bg-[#4ade80]" /></div>
           <div className="mt-5 grid grid-cols-[1.4fr_1fr] gap-3">
-            <div className="rounded-lg bg-[#171714] p-4">
-              <div className="h-2 w-16 rounded bg-[#ff5c00]" />
-              <div className="mt-3 h-6 w-4/5 rounded bg-white/10" />
-              <div className="mt-2 h-2 w-full rounded bg-white/5" />
-              <div className="mt-1.5 h-2 w-5/6 rounded bg-white/5" />
-              <div className="mt-6 h-9 w-28 rounded-full bg-[#ff5c00]" />
-            </div>
-            <div className="space-y-3">
-              <div className="rounded-lg border border-white/10 p-3">
-                <div className="text-[10px] text-[#9c9b94]" style={mono}>LEARNING PATH</div>
-                <div className="mt-2 h-2 w-4/5 rounded bg-white/10" />
-                <div className="mt-2 h-2 w-3/5 rounded bg-white/5" />
-              </div>
-              <div className="rounded-lg border border-white/10 p-3">
-                <div className="text-[10px] text-[#9c9b94]" style={mono}>PROGRESS</div>
-                <div className="mt-3 h-2 w-full rounded bg-white/5"><div className="h-2 w-2/3 rounded bg-[#4ade80]" /></div>
-              </div>
-            </div>
+            <div className="rounded-lg bg-[#171714] p-4"><div className="h-2 w-16 rounded bg-[#ff5c00]" /><div className="mt-3 h-6 w-4/5 rounded bg-white/10" /><div className="mt-2 h-2 w-full rounded bg-white/5" /><div className="mt-1.5 h-2 w-5/6 rounded bg-white/5" /><div className="mt-6 h-9 w-28 rounded-full bg-[#ff5c00]" /></div>
+            <div className="space-y-3"><div className="rounded-lg border border-white/10 p-3"><div className="text-[10px] text-[#9c9b94]" style={mono}>LEARNING PATH</div><div className="mt-2 h-2 w-4/5 rounded bg-white/10" /><div className="mt-2 h-2 w-3/5 rounded bg-white/5" /></div><div className="rounded-lg border border-white/10 p-3"><div className="text-[10px] text-[#9c9b94]" style={mono}>PROGRESS</div><div className="mt-3 h-2 w-full rounded bg-white/5"><div className="h-2 w-2/3 rounded bg-[#4ade80]" /></div></div></div>
           </div>
         </div>
         <div className="absolute bottom-5 left-5 rounded-full border border-white/10 bg-black/40 px-3 py-1.5 text-[10px] uppercase tracking-widest text-[#9c9b94]" style={mono}>Live product</div>
@@ -99,20 +51,9 @@ function ProjectVisual({ type }) {
       <div className="relative min-h-[260px] overflow-hidden rounded-[20px] bg-[#10100f] p-5 sm:min-h-[340px]">
         <div className="absolute left-10 top-0 h-44 w-44 rounded-full bg-[#4ade80]/10 blur-3xl" />
         <div className="relative mx-auto max-w-[250px] rounded-[28px] border-[6px] border-[#1d1d1a] bg-[#080808] p-3 shadow-2xl">
-          <div className="rounded-[20px] bg-[#11110f] p-4">
-            <div className="text-[10px] uppercase tracking-widest text-[#9c9b94]" style={mono}>TODAY</div>
-            <div className="mt-2 text-xl" style={display}>How are you feeling?</div>
-            <div className="mt-4 grid grid-cols-3 gap-2">
-              <div className="rounded-xl bg-white/5 p-3 text-center text-lg">◌</div>
-              <div className="rounded-xl border border-[#ff5c00]/40 bg-[#ff5c00]/10 p-3 text-center text-lg">◉</div>
-              <div className="rounded-xl bg-white/5 p-3 text-center text-lg">◌</div>
-            </div>
-            <div className="mt-5 rounded-xl border border-white/10 p-3">
-              <div className="flex justify-between text-[10px] text-[#9c9b94]" style={mono}><span>HABIT PATTERN</span><span>7 DAYS</span></div>
-              <div className="mt-4 flex h-16 items-end gap-2">
-                {bars.map((height, index) => <div key={index} className="flex-1 rounded-t bg-[#ff5c00]/70" style={{ height: `${height}%` }} />)}
-              </div>
-            </div>
+          <div className="rounded-[20px] bg-[#11110f] p-4"><div className="text-[10px] uppercase tracking-widest text-[#9c9b94]" style={mono}>TODAY</div><div className="mt-2 text-xl" style={display}>How are you feeling?</div>
+            <div className="mt-4 grid grid-cols-3 gap-2"><div className="rounded-xl bg-white/5 p-3 text-center text-lg">◌</div><div className="rounded-xl border border-[#ff5c00]/40 bg-[#ff5c00]/10 p-3 text-center text-lg">◉</div><div className="rounded-xl bg-white/5 p-3 text-center text-lg">◌</div></div>
+            <div className="mt-5 rounded-xl border border-white/10 p-3"><div className="flex justify-between text-[10px] text-[#9c9b94]" style={mono}><span>HABIT PATTERN</span><span>7 DAYS</span></div><div className="mt-4 flex h-16 items-end gap-2">{bars.map((height, index) => <div key={index} className="flex-1 rounded-t bg-[#ff5c00]/70" style={{ height: `${height}%` }} />)}</div></div>
           </div>
         </div>
         <div className="absolute bottom-5 right-5 rounded-full border border-white/10 bg-black/40 px-3 py-1.5 text-[10px] uppercase tracking-widest text-[#9c9b94]" style={mono}>Product in development</div>
@@ -123,14 +64,7 @@ function ProjectVisual({ type }) {
   return (
     <div className="relative min-h-[260px] overflow-hidden rounded-[20px] bg-[#10100f] p-5 sm:min-h-[340px]">
       <div className="absolute -bottom-20 right-0 h-52 w-52 rounded-full bg-[#ff5c00]/15 blur-3xl" />
-      <div className="relative rounded-xl border border-white/10 bg-[#0a0a09] p-4 shadow-2xl">
-        <div className="flex gap-2"><div className="h-8 w-8 rounded-full bg-[#ff5c00]/20" /><div><div className="h-2 w-24 rounded bg-white/10" /><div className="mt-1.5 h-2 w-16 rounded bg-white/5" /></div></div>
-        <div className="mt-5 rounded-lg bg-[#151513] p-4">
-          <div className="text-[10px] uppercase tracking-widest text-[#9c9b94]" style={mono}>YOUR NEXT MOVE</div>
-          <div className="mt-3 text-xl leading-tight" style={display}>Build evidence before changing direction.</div>
-          <div className="mt-5 h-9 w-32 rounded-full bg-[#ff5c00]" />
-        </div>
-      </div>
+      <div className="relative rounded-xl border border-white/10 bg-[#0a0a09] p-4 shadow-2xl"><div className="flex gap-2"><div className="h-8 w-8 rounded-full bg-[#ff5c00]/20" /><div><div className="h-2 w-24 rounded bg-white/10" /><div className="mt-1.5 h-2 w-16 rounded bg-white/5" /></div></div><div className="mt-5 rounded-lg bg-[#151513] p-4"><div className="text-[10px] uppercase tracking-widest text-[#9c9b94]" style={mono}>YOUR NEXT MOVE</div><div className="mt-3 text-xl leading-tight" style={display}>Build evidence before changing direction.</div><div className="mt-5 h-9 w-32 rounded-full bg-[#ff5c00]" /></div></div>
       <div className="absolute bottom-5 left-5 rounded-full border border-white/10 bg-black/40 px-3 py-1.5 text-[10px] uppercase tracking-widest text-[#9c9b94]" style={mono}>AI career product</div>
     </div>
   );
@@ -157,34 +91,14 @@ export default function PortfolioSite() {
     <div id="top" className="min-h-screen bg-[#080808] text-[#f4f3ef]" style={body}>
       <Nav open={open} setOpen={setOpen} />
       <main>
-        <section className="relative overflow-hidden border-b border-white/10">
-          <div className="absolute inset-0 bg-[radial-gradient(900px_500px_at_10%_0%,rgba(255,92,0,.12),transparent_65%)]" />
-          <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-16 sm:px-7 md:pb-28 md:pt-24 lg:px-10 xl:px-16">
-            <div className="grid items-end gap-12 lg:grid-cols-[1.25fr_.75fr] lg:gap-20">
-              <div>
-                <Eyebrow number="00">Software engineer · AI builder · Product thinker</Eyebrow>
-                <h1 className="mt-7 max-w-5xl text-[3.3rem] font-semibold leading-[0.94] tracking-[-0.04em] sm:text-6xl md:text-7xl lg:text-[6.7rem]" style={display}>I turn ideas into products people can <span className="text-[#ff5c00]">actually use.</span></h1>
-                <p className="mt-7 max-w-2xl text-base leading-7 text-[#9c9b94] md:text-lg md:leading-8">I design, build and ship web, mobile and AI-powered products — working from the first conversation through to deployment.</p>
-                <div className="mt-9 flex flex-wrap gap-3"><a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-[#ff5c00] px-6 py-3.5 text-sm font-bold text-[#080808]" style={mono}>Work with me <ArrowRight className="h-4 w-4" /></a><a href="#work" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm font-bold" style={mono}>See selected work <ArrowRight className="h-4 w-4" /></a></div>
-              </div>
-              <div className="lg:pb-2"><div className="border-l border-[#ff5c00]/50 pl-5 text-sm leading-7 text-[#b8b7b1]">You do not need to speak developer to work with me. Bring the problem, the idea, or even the rough sketch. I can help turn it into something concrete.</div><div className="mt-8 flex flex-wrap gap-2">{["Web", "Mobile", "AI", "Backend", "Product"].map((item) => <span key={item} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] text-[#9c9b94]" style={mono}>{item}</span>)}</div></div>
-            </div>
-          </div>
-        </section>
-
+        <section className="relative overflow-hidden border-b border-white/10"><div className="absolute inset-0 bg-[radial-gradient(900px_500px_at_10%_0%,rgba(255,92,0,.12),transparent_65%)]" /><div className="relative mx-auto max-w-7xl px-5 pb-20 pt-16 sm:px-7 md:pb-28 md:pt-24 lg:px-10 xl:px-16"><div className="grid items-end gap-12 lg:grid-cols-[1.25fr_.75fr] lg:gap-20"><div><Eyebrow number="00">Software engineer · AI builder · Product thinker</Eyebrow><h1 className="mt-7 max-w-5xl text-[3.3rem] font-semibold leading-[0.94] tracking-[-0.04em] sm:text-6xl md:text-7xl lg:text-[6.7rem]" style={display}>I turn ideas into products people can <span className="text-[#ff5c00]">actually use.</span></h1><p className="mt-7 max-w-2xl text-base leading-7 text-[#9c9b94] md:text-lg md:leading-8">I design, build and ship web, mobile and AI-powered products — working from the first conversation through to deployment.</p><div className="mt-9 flex flex-wrap gap-3"><a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-[#ff5c00] px-6 py-3.5 text-sm font-bold text-[#080808]" style={mono}>Work with me <ArrowRight className="h-4 w-4" /></a><a href="#work" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm font-bold" style={mono}>See selected work <ArrowRight className="h-4 w-4" /></a></div></div><div className="lg:pb-2"><div className="border-l border-[#ff5c00]/50 pl-5 text-sm leading-7 text-[#b8b7b1]">You do not need to speak developer to work with me. Bring the problem, the idea, or even the rough sketch. I can help turn it into something concrete.</div><div className="mt-8 flex flex-wrap gap-2">{["Web", "Mobile", "AI", "Backend", "Product"].map((item) => <span key={item} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] text-[#9c9b94]" style={mono}>{item}</span>)}</div></div></div></div></section>
         <section className="border-b border-white/10"><div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-y divide-white/10 sm:grid-cols-4 sm:divide-y-0 lg:px-10 xl:px-16">{[["5+", "products shipped"], ["18", "learning tracks built"], ["01", "Springer presentation"], ["NG →", "global / remote-ready"]].map(([value, label]) => <div key={label} className="px-5 py-7 sm:px-7 lg:py-9"><div className="text-3xl sm:text-4xl" style={display}>{value}</div><div className="mt-1 text-xs text-[#67665f]" style={mono}>{label}</div></div>)}</div></section>
-
         <section id="work" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="01">Selected work</Eyebrow><div className="mt-5 flex flex-col justify-between gap-4 md:flex-row md:items-end"><h2 className="max-w-3xl text-4xl leading-[0.96] sm:text-5xl md:text-6xl" style={display}>The work is the proof.</h2><p className="max-w-md text-sm leading-6 text-[#9c9b94]">A few products that show how I think, what I can build, and the kinds of problems I enjoy solving.</p></div><div className="mt-14 space-y-8">{projects.map((project) => <article key={project.name} className="overflow-hidden rounded-[24px] border border-white/10 bg-[#0e0e0d]"><div className="grid lg:grid-cols-[0.85fr_1.15fr]"><div className="order-2 flex flex-col p-6 sm:p-8 lg:order-1 lg:p-10"><div className="flex items-center justify-between"><span className="text-[11px] uppercase tracking-[0.16em] text-[#ff5c00]" style={mono}>{project.number} / {project.type}</span>{project.live && <span className="flex items-center gap-2 text-[10px] uppercase tracking-[0.16em] text-[#4ade80]" style={mono}><span className="h-1.5 w-1.5 rounded-full bg-[#4ade80]" />Live</span>}</div><h3 className="mt-9 text-3xl leading-none sm:text-4xl" style={display}>{project.name}</h3><div className="mt-4 text-xl leading-snug sm:text-2xl" style={display}>{project.title}</div><p className="mt-5 text-sm leading-6 text-[#9c9b94]">{project.description}</p><div className="mt-7 flex flex-wrap gap-2">{project.tags.map((tag) => <span key={tag} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[10px] text-[#9c9b94]" style={mono}>{tag}</span>)}</div><div className="mt-auto pt-9">{project.live ? <a href={project.live} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold" style={mono}>Open the product <ExternalLink className="h-4 w-4" /></a> : <span className="text-xs text-[#67665f]" style={mono}>Build in progress · case study to follow</span>}</div></div><div className="order-1 p-3 sm:p-4 lg:order-2"><ProjectVisual type={project.visual} /></div></div></article>)}</div></div></section>
-
         <section id="services" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="02">How I help</Eyebrow><h2 className="mt-5 max-w-4xl text-4xl leading-[0.96] sm:text-5xl md:text-6xl" style={display}>You bring the problem. I help figure out the product.</h2><div className="mt-12 grid gap-4 md:grid-cols-3">{services.map(({ icon: Icon, title, text }) => <div key={title} className="rounded-[20px] border border-white/10 bg-[#0e0e0d] p-7 transition hover:border-[#ff5c00]/40 hover:bg-[#121210]"><Icon className="h-6 w-6 text-[#ff5c00]" /><h3 className="mt-7 text-xl" style={display}>{title}</h3><p className="mt-4 text-sm leading-6 text-[#9c9b94]">{text}</p></div>)}</div></div></section>
-
         <section className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="03">The process</Eyebrow><div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20"><h2 className="text-4xl leading-[0.96] sm:text-5xl" style={display}>From conversation to launch.</h2><div className="divide-y divide-white/10">{[["01", "Understand", "We clarify the problem, users and desired outcome before jumping into implementation."], ["02", "Shape", "I turn the idea into a practical product direction, flows and a build plan."], ["03", "Build", "Design, frontend, backend, integrations and AI where it creates real value."], ["04", "Refine", "We test what is being built and improve the experience around real usage."], ["05", "Launch", "The goal is not a pretty demo. It is a product you can put in front of people."]].map(([number, title, text]) => <div key={number} className="grid gap-4 py-7 sm:grid-cols-[70px_180px_1fr]"><span className="text-xs text-[#ff5c00]" style={mono}>{number}</span><h3 className="text-xl" style={display}>{title}</h3><p className="text-sm leading-6 text-[#9c9b94]">{text}</p></div>)}</div></div></div></section>
-
         <section id="about" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-24"><div><Eyebrow number="04">About Awesome</Eyebrow><h2 className="mt-5 text-4xl leading-[0.96] sm:text-5xl md:text-6xl" style={display}>I care about what gets built — not just what gets coded.</h2></div><div className="text-base leading-8 text-[#b8b7b1]"><p>I'm Awesome, a software engineer and product builder from Nigeria. I enjoy taking ideas that are still messy, unclear or sitting in someone's head and turning them into products that people can actually use.</p><p className="mt-6">I work across product thinking, interface design, engineering, AI integration and deployment, so I can stay close to the problem from the first conversation through to the finished product.</p><div className="mt-8 space-y-3">{["Founder — EmoHabit, TechSkillHub, NaviPro", "Computer Science graduate — Coal City University", "Former NACOS Vice President II", "Presented original research at Springer ETMiS 2025"].map((item) => <div key={item} className="flex items-start gap-3 text-sm"><Check className="mt-1 h-4 w-4 shrink-0 text-[#ff5c00]" /><span>{item}</span></div>)}</div></div></div></div></section>
-
         <section className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="05">More work</Eyebrow><div className="mt-8 divide-y divide-white/10 border-y border-white/10">{moreWork.map(([name, type, text]) => <div key={name} className="grid gap-3 py-7 sm:grid-cols-[1.2fr_0.7fr_1.6fr] sm:items-center"><div className="text-xl sm:text-2xl" style={display}>{name}</div><div className="text-[10px] uppercase tracking-[0.16em] text-[#ff5c00]" style={mono}>{type}</div><div className="text-sm leading-6 text-[#9c9b94]">{text}</div></div>)}</div></div></section>
-
-        <section id="contact" className="relative overflow-hidden"><div className="absolute inset-0 bg-[radial-gradient(700px_400px_at_50%_20%,rgba(255,92,0,.14),transparent_65%)]" /><div className="relative mx-auto max-w-7xl px-5 py-24 text-center sm:px-7 md:py-32 lg:px-10 xl:px-16"><Eyebrow number="06">Let's build</Eyebrow><h2 className="mx-auto mt-5 max-w-4xl text-5xl leading-[0.92] sm:text-6xl md:text-7xl" style={display}>Have something you're trying to build?</h2><p className="mx-auto mt-6 max-w-xl text-base leading-7 text-[#9c9b94]">It does not need to be fully figured out. Start with the problem. We can work out the product from there.</p><a href="mailto:hello@awesomeakokayo.com" className="mt-9 inline-flex items-center gap-2 rounded-full bg-[#ff5c00] px-7 py-4 text-sm font-bold text-[#080808]" style={mono}>Start the conversation <ArrowUpRight className="h-4 w-4" /></a></div></section>
+        <section id="contact" className="relative overflow-hidden"><div className="absolute inset-0 bg-[radial-gradient(700px_400px_at_50%_20%,rgba(255,92,0,.14),transparent_65%)]" /><div className="relative mx-auto max-w-7xl px-5 py-24 text-center sm:px-7 md:py-32 lg:px-10 xl:px-16"><Eyebrow number="06">Let's build</Eyebrow><h2 className="mx-auto mt-5 max-w-4xl text-5xl leading-[0.92] sm:text-6xl md:text-7xl" style={display}>Have something you're trying to build?</h2><p className="mx-auto mt-6 max-w-xl text-base leading-7 text-[#9c9b94]">It does not need to be fully figured out. Start with the problem. We can work out the product from there.</p><a href="https://github.com/awesomeakokayo" target="_blank" rel="noreferrer" className="mt-9 inline-flex items-center gap-2 rounded-full bg-[#ff5c00] px-7 py-4 text-sm font-bold text-[#080808]" style={mono}>Start the conversation <ArrowUpRight className="h-4 w-4" /></a></div></section>
       </main>
       <footer className="border-t border-white/10"><div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-7 sm:flex-row sm:items-center sm:justify-between sm:px-7 lg:px-10 xl:px-16"><span className="text-sm" style={display}>Awesome Akokayo</span><span className="text-[10px] uppercase tracking-[0.16em] text-[#67665f]" style={mono}>Built in Nigeria · Shipping worldwide</span></div></footer>
     </div>
