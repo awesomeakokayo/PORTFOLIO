@@ -1,0 +1,1 @@
+This release reframes the portfolio around clients and collaborators: clearer value proposition, selected flagship work, human-readable services, a transparent build process, stronger credibility, and a direct call to action. The original brand direction is preserved.
