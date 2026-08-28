@@ -93,10 +93,7 @@
     animation: heroItem .8s cubic-bezier(.16,.84,.44,1) both;
     animation-delay: var(--motion-delay, 220ms);
   }
-
-  .motion-nav {
-    animation: navDrop .7s cubic-bezier(.16,.84,.44,1) both;
-  }
+  .motion-nav { animation: navDrop .7s cubic-bezier(.16,.84,.44,1) both; }
 
   .project-showcase-card {
     position: relative;
@@ -122,8 +119,48 @@
   .project-accent-1 { background: radial-gradient(circle at 85% 12%, rgba(134,239,172,.10), transparent 36%), #10100f; }
   .project-accent-2 { background: radial-gradient(circle at 85% 12%, rgba(167,139,250,.13), transparent 36%), #10100f; }
 
+  #services { position: relative; }
+  #services::before {
+    content: '';
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    top: 10%;
+    right: -140px;
+    border-radius: 999px;
+    background: rgba(103,232,249,.06);
+    filter: blur(70px);
+    pointer-events: none;
+  }
+  #about { position: relative; }
+  #about::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 30%;
+    left: -140px;
+    border-radius: 999px;
+    background: rgba(167,139,250,.07);
+    filter: blur(75px);
+    pointer-events: none;
+  }
+  #contact { position: relative; }
+  #contact::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    bottom: -130px;
+    right: 10%;
+    border-radius: 999px;
+    background: rgba(255,179,107,.06);
+    filter: blur(70px);
+    pointer-events: none;
+  }
+
   .color-orb { animation: floatOrb 7s ease-in-out infinite; }
-  .marquee-track { animation: marquee 22s linear infinite; }
+  .marquee-track { animation: marquee 22s linear infinite; will-change: transform; }
   .marquee-track:hover { animation-play-state: paused; }
 
   @media (prefers-reduced-motion: reduce) {
@@ -154,6 +191,6 @@
   50% { transform: translate3d(0,-16px,0) scale(1.04); }
 }
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from { transform: translateX(var(--pointer-shift, 0px)); }
+  to { transform: translateX(calc(-50% + var(--pointer-shift, 0px))); }
 }
