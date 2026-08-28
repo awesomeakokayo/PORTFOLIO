@@ -1,8 +1,8 @@
 import React from 'react';
-import PortfolioBrandSystem from '../PortfolioBrandSystem.jsx';
+import PortfolioSite from './PortfolioSite.jsx';
 
 function App() {
-  return <PortfolioBrandSystem />;
+  return <PortfolioSite />;
 }
 
 export default App;
