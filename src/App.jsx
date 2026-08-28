@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PortfolioSiteClean from './PortfolioSiteClean.jsx';
+import FramerMotionLayer from './FramerMotionLayer.jsx';
 
 const CONTACT_EMAIL = 'awesomeakokayo@gmail.com';
 
@@ -17,9 +18,14 @@ function App() {
     return () => {
       contactLinks.forEach((link) => link.removeEventListener('click', handleContact));
     };
-  });
+  }, []);
 
-  return <PortfolioSiteClean />;
+  return (
+    <>
+      <FramerMotionLayer />
+      <PortfolioSiteClean />
+    </>
+  );
 }
 
 export default App;
