@@ -21,7 +21,7 @@ const process = [
 ];
 
 function Eyebrow({ number, children }) {
-  return <p className="flex items-center gap-3 text-[11px] uppercase tracking-[0.18em] text-[#ff5c00]" style={mono}><span>{number}</span><span className="text-white/20">/</span><span>{children}</span></p>;
+  return <p className="flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.18em] text-[#ff5c00]" style={mono}><span>{number}</span><span className="text-white/20">/</span><span>{children}</span></p>;
 }
 
 function Nav({ open, setOpen }) {
@@ -46,21 +46,20 @@ export default function PortfolioSiteClean() {
       <Nav open={open} setOpen={setOpen} />
       <main>
         <section className="relative overflow-hidden border-b border-white/10">
-          <div className="absolute inset-0 bg-[radial-gradient(900px_500px_at_10%_0%,rgba(255,92,0,.12),transparent_65%)]" />
-          <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-16 sm:px-7 md:pb-28 md:pt-24 lg:px-10 xl:px-16">
-            <div className="grid items-end gap-12 lg:grid-cols-[1.25fr_.75fr] lg:gap-20">
-              <div>
-                <Eyebrow number="00">Software engineer · AI builder · Product thinker</Eyebrow>
-                <h1 className="mt-7 max-w-5xl text-[3.3rem] font-semibold leading-[0.94] tracking-[-0.04em] sm:text-6xl md:text-7xl lg:text-[6.7rem]" style={display}>I turn ideas into products people can <span className="text-[#ff5c00]">actually use.</span></h1>
-                <p className="mt-7 max-w-2xl text-base leading-7 text-[#b8b7b1] md:text-lg md:leading-8">I design, build and ship web, mobile and AI-powered products — from the first conversation through to deployment.</p>
-                <div className="mt-9 flex flex-wrap gap-3"><a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-[#ff5c00] px-6 py-3.5 text-sm font-bold text-[#080808]" style={mono}>Work with me <ArrowRight className="h-4 w-4" /></a><a href="#work" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm font-bold" style={mono}>See selected work <ArrowRight className="h-4 w-4" /></a></div>
-              </div>
-              <div className="lg:pb-2"><div className="border-l border-[#ff5c00]/60 pl-5 text-sm leading-7 text-[#f4f3ef]">You do not need to speak developer to work with me. Bring the problem, the idea, or the rough sketch. I can help turn it into something concrete.</div><div className="mt-8 flex flex-wrap gap-2">{["Web","Mobile","AI","Backend","Product"].map(item => <span key={item} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] text-[#b8b7b1]" style={mono}>{item}</span>)}</div></div>
+          <div className="absolute inset-0 bg-[radial-gradient(900px_500px_at_50%_5%,rgba(255,92,0,.16),transparent_68%)]" />
+          <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-[#a78bfa]/[0.05] blur-[90px]" />
+          <div className="relative mx-auto flex min-h-[78vh] max-w-7xl items-center justify-center px-5 py-24 text-center sm:px-7 md:min-h-[82vh] md:py-28 lg:px-10 xl:px-16">
+            <div className="mx-auto max-w-6xl">
+              <div className="hero-title-wrap"><Eyebrow number="00">Software engineer · AI builder · Product thinker</Eyebrow></div>
+              <h1 className="mx-auto mt-7 max-w-6xl text-[3.25rem] font-semibold leading-[0.91] tracking-[-0.045em] sm:text-6xl md:text-7xl lg:text-[7.2rem] xl:text-[8rem]" style={display}>I turn ideas into products people can <span className="text-[#ff5c00]">actually use.</span></h1>
+              <p className="mx-auto mt-8 max-w-2xl text-base leading-7 text-[#b8b7b1] md:text-lg md:leading-8">I design, build and ship web, mobile and AI-powered products — from the first conversation through to deployment.</p>
+              <div className="mt-9 flex flex-wrap justify-center gap-3"><a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-[#ff5c00] px-6 py-3.5 text-sm font-bold text-[#080808]" style={mono}>Work with me <ArrowRight className="h-4 w-4" /></a><a href="#work" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm font-bold" style={mono}>See selected work <ArrowRight className="h-4 w-4" /></a></div>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-2">{["Web", "Mobile", "AI", "Backend", "Product"].map(item => <span key={item} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] text-[#b8b7b1]" style={mono}>{item}</span>)}</div>
             </div>
           </div>
         </section>
 
-        <section className="border-b border-white/10"><div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-y divide-white/10 sm:grid-cols-4 sm:divide-y-0 lg:px-10 xl:px-16">{[["5+","products shipped"],["18","learning tracks built"],["01","Springer presentation"],["NG →","global / remote-ready"]].map(([value,label])=><div key={label} className="px-5 py-7 sm:px-7 lg:py-9"><div className="text-3xl sm:text-4xl" style={display}>{value}</div><div className="mt-1 text-xs text-[#9c9b94]" style={mono}>{label}</div></div>)}</div></section>
+        <section className="border-b border-white/10"><div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-y divide-white/10 sm:grid-cols-4 sm:divide-y-0 lg:px-10 xl:px-16">{[["5+","products shipped"],["18","learning tracks built"],["01","Springer presentation"],["NG →","global / remote-ready"]].map(([value,label])=><div key={label} className="px-5 py-7 text-center sm:px-7 lg:py-9"><div className="text-3xl sm:text-4xl" style={display}>{value}</div><div className="mt-1 text-xs text-[#9c9b94]" style={mono}>{label}</div></div>)}</div></section>
 
         <section id="work" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="01">Selected work</Eyebrow><div className="mt-5 flex flex-col justify-between gap-4 md:flex-row md:items-end"><h2 className="max-w-3xl text-4xl leading-[0.96] sm:text-5xl md:text-6xl" style={display}>The work is the proof.</h2><p className="max-w-md text-sm leading-6 text-[#b8b7b1]">A few products that show how I think, what I build, and the problems I enjoy solving.</p></div><div className="mt-12"><ProjectShowcase /></div></div></section>
 
