@@ -27,6 +27,22 @@ const showcases = [
     details: "A career mentorship product designed to make useful direction, planning, and decision support more accessible.",
     points: ["AI career guidance", "Goal and direction support", "Designed as a practical product, not a chatbot demo"],
   },
+  {
+    name: "Blancquake Foundation",
+    type: "Non-profit · Live",
+    summary: "A digital platform for a foundation focused on advocacy, awareness, and community impact.",
+    details: "A public-facing website designed to communicate the foundation's mission clearly, build trust, and give visitors a simple path to learn more and get involved.",
+    points: ["Mission-led information architecture", "Responsive public-facing experience", "Built to support awareness and engagement"],
+    live: "https://blancquake.org",
+  },
+  {
+    name: "Coal City University Journal",
+    type: "Academic · Live",
+    summary: "A digital publishing platform built for the Coal City University academic community.",
+    details: "A university journal experience that brings academic publishing online with a clear structure for discovering journal content and navigating published work.",
+    points: ["Academic journal publishing workflow", "Structured publication and article browsing", "University-focused digital experience"],
+    live: "https://journal-nine-ruby.vercel.app",
+  },
 ];
 
 const labels = ["PRODUCT THINKING", "WEB", "MOBILE", "AI", "BACKEND", "DEPLOYMENT", "PRODUCT THINKING", "WEB", "MOBILE", "AI", "BACKEND", "DEPLOYMENT"];
@@ -54,7 +70,7 @@ export default function ProjectShowcase() {
         {showcases.map((project, index) => (
           <article
             key={project.name}
-            className={`project-showcase-card project-accent-${index} rounded-[24px] border border-white/10 p-6 sm:p-8 lg:p-9`}
+            className={`project-showcase-card project-accent-${index % 3} rounded-[24px] border border-white/10 p-6 sm:p-8 lg:p-9`}
           >
             <div className="relative flex flex-col gap-8 lg:grid lg:grid-cols-[0.82fr_1.18fr] lg:gap-12">
               <div>
@@ -66,7 +82,7 @@ export default function ProjectShowcase() {
                 <p className="mt-5 max-w-xl text-lg leading-7 text-[#f4f3ef] sm:text-xl">{project.summary}</p>
                 {project.live && (
                   <a href={project.live} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[#f4f3ef] transition hover:text-[#ffb36b]" style={mono}>
-                    Open the product <ArrowUpRight className="h-4 w-4" />
+                    Open the project <ArrowUpRight className="h-4 w-4" />
                   </a>
                 )}
               </div>
