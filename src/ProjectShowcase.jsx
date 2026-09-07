@@ -7,10 +7,11 @@ const mono = { fontFamily: "'Space Mono', monospace" };
 const showcases = [
   {
     name: "OpenBooks NG",
-    type: "Fintech · Production",
-    summary: "A Nigeria-first digital cashbook for small businesses.",
-    details: "A multi-tenant full-stack system for managing business finances, invoices and payments with production-focused security and automation.",
-    points: ["Business workspaces, invoices, sales, expenses and customers", "Paystack payments, public invoice links and webhook verification", "Audit events, rate limiting, security headers, idempotency and overdue-invoice processing"],
+    type: "Business software · Production",
+    summary: "A Nigeria-first digital business notebook for small businesses and freelancers.",
+    details: "A production full-stack business management platform that helps owners record sales, manage customers, create invoices, track payments and expenses, and keep clear business records in one simple workspace.",
+    points: ["Business workspaces, customers, sales, invoices and expenses", "Flexible payment methods including bank transfer, cash, POS and Paystack", "Public invoices, payment records, receipts, audit events, rate limiting, security headers and webhook protection"],
+    live: "https://www.openbooks.click",
   },
   {
     name: "NaviPro",
