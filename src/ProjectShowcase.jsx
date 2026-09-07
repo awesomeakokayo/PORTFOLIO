@@ -6,46 +6,60 @@ const mono = { fontFamily: "'Space Mono', monospace" };
 
 const showcases = [
   {
-    name: "TechSkillHub",
-    type: "EdTech · Live",
-    summary: "A free technology learning platform built for African learners.",
-    details: "Structured learning paths, practical content, progress tracking, and a product experience designed to help people keep moving.",
-    points: ["18 structured learning tracks", "Practical, beginner-friendly learning", "Live product with payments and accounts"],
-    live: "https://techskillhub.cv",
-  },
-  {
-    name: "EmoHabit",
-    type: "Health · In development",
-    summary: "A habit companion that looks at the person behind the streak.",
-    details: "The product explores how emotions influence consistency, helping people notice patterns instead of simply counting completed days.",
-    points: ["Emotion-aware habit tracking", "Pattern-focused progress view", "Mobile-first product experience"],
+    name: "OpenBooks NG",
+    type: "Fintech · Production",
+    summary: "A Nigeria-first digital cashbook for small businesses.",
+    details: "A multi-tenant full-stack system for managing business finances, invoices and payments with production-focused security and automation.",
+    points: ["Business workspaces, invoices, sales, expenses and customers", "Paystack payments, public invoice links and webhook verification", "Audit events, rate limiting, security headers, idempotency and overdue-invoice processing"],
   },
   {
     name: "NaviPro",
-    type: "Career · MVP built",
-    summary: "AI-powered career guidance for people trying to figure out their next move.",
-    details: "A career mentorship product designed to make useful direction, planning, and decision support more accessible.",
-    points: ["AI career guidance", "Goal and direction support", "Designed as a practical product, not a chatbot demo"],
+    type: "AI product · Built",
+    summary: "An AI career mentor that turns career goals into practical learning roadmaps.",
+    details: "A career platform combining conversational guidance, structured roadmap generation and context-relevant learning resources rather than treating AI as a simple chatbot layer.",
+    points: ["Personalized learning roadmaps", "Conversational AI mentorship", "YouTube Data API-powered learning resources and retrieval workflows"],
   },
   {
-    name: "Blancquake Foundation",
-    type: "Non-profit · Live",
-    summary: "A digital platform for a foundation focused on advocacy, awareness, and community impact.",
-    details: "A public-facing website designed to communicate the foundation's mission clearly, build trust, and give visitors a simple path to learn more and get involved.",
-    points: ["Mission-led information architecture", "Responsive public-facing experience", "Built to support awareness and engagement"],
-    live: "https://blancquake.org",
+    name: "Tech Skills Hub",
+    type: "SaaS / EdTech · Live",
+    summary: "A structured technical learning platform focused on accessible education for African developers.",
+    details: "A full-stack learning product with onboarding, guided tracks, content delivery, authenticated progress, paid access and cross-device synchronization.",
+    points: ["Guided learning tracks and progress tracking", "Auth.js, Prisma and Neon PostgreSQL", "Paystack billing and production deployment on Vercel"],
+    live: "https://techskillhub.cv",
+  },
+  {
+    name: "Southwest Flood Monitor",
+    type: "Civic technology · Built",
+    summary: "A community flood-reporting mobile app using AI-assisted image analysis.",
+    details: "A cross-platform civic reporting product designed to help communities submit flood information while using AI to support report verification.",
+    points: ["React Native + Expo mobile experience", "FastAPI and PostgreSQL backend", "Gemini-assisted image analysis for community reports"],
+  },
+  {
+    name: "EmoHabit",
+    type: "Mobile · In development",
+    summary: "A habit companion that looks at the person behind the streak.",
+    details: "A mobile product exploring how emotions influence consistency, with a focus on patterns and sustainable progress rather than simply counting completed days.",
+    points: ["Emotion-aware habit tracking", "Firebase authentication", "Streak engine with grace days and freeze-token logic"],
   },
   {
     name: "Coal City University Journal",
     type: "Academic · Live",
-    summary: "A digital publishing platform built for the Coal City University academic community.",
-    details: "A university journal experience that brings academic publishing online with a clear structure for discovering journal content and navigating published work.",
-    points: ["Academic journal publishing workflow", "Structured publication and article browsing", "University-focused digital experience"],
+    summary: "A manuscript submission and academic publishing platform.",
+    details: "A full-stack publication system covering author submission, authentication, editorial review, verification, editing, approval and publication workflows.",
+    points: ["PostgreSQL schema and REST API design", "Responsive frontend and role-based publication workflow", "FastAPI backend deployed on Render"],
     live: "https://journal-nine-ruby.vercel.app",
+  },
+  {
+    name: "Blancquake Foundation",
+    type: "Non-profit · Live",
+    summary: "A public-facing digital platform for advocacy, awareness and community impact.",
+    details: "A mission-led website designed to communicate the foundation's work clearly, build trust and give visitors a simple path to learn more and get involved.",
+    points: ["Mission-led information architecture", "Responsive public-facing experience", "Built to support awareness and engagement"],
+    live: "https://blancquake.org",
   },
 ];
 
-const labels = ["PRODUCT THINKING", "WEB", "MOBILE", "AI", "BACKEND", "DEPLOYMENT", "PRODUCT THINKING", "WEB", "MOBILE", "AI", "BACKEND", "DEPLOYMENT"];
+const labels = ["PRODUCT THINKING", "WEB", "MOBILE", "AI", "BACKEND", "DEPLOYMENT", "SECURITY", "TESTING", "PRODUCT THINKING", "WEB", "MOBILE", "AI", "BACKEND", "DEPLOYMENT"];
 
 export default function ProjectShowcase() {
   const trackRef = useRef(null);
