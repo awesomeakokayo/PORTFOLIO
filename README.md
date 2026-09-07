@@ -1,44 +1,43 @@
 # Portfolio — Awesome Akokayo
 
-Personal portfolio site for Awesome Akokayo, a software engineer and AI builder from Nigeria.
+Personal portfolio site for Awesome Akokayo, an AI-native full-stack developer and product builder from Nigeria.
 
 ## Tech Stack
 
 - **React 18** — UI framework
 - **Vite** — Build tool
 - **Tailwind CSS** — Utility-first styling
-- **Lucide React** — Icons (with brand icon shim for Github, LinkedIn, YouTube, Twitter)
+- **Lucide React** — Icons
 
 ## Architecture
 
-The entire site renders from a single component file:
+The portfolio is a React/Vite site with the main page composition in `src/PortfolioSiteClean.jsx` and the selected-project experience in `src/ProjectShowcase.jsx`.
 
-```
+```text
 src/
-├── main.jsx              # Entry point
-├── App.jsx               # Renders PortfolioBrandSystem
-├── index.css             # Tailwind + CSS variables + component classes
-├── lib/
-│   ├── brandIcons.jsx    # SVG brand icons (Github, LinkedIn, YouTube, Twitter)
-│   └── lucide-react.js   # Vite alias shim — re-exports lucide-react + brand icons
-PortfolioBrandSystem.jsx  # Single-file site (all sections, tokens, content)
+├── main.jsx
+├── App.jsx
+├── PortfolioSiteClean.jsx   # Main portfolio sections and content
+├── ProjectShowcase.jsx      # Selected projects
+├── FramerMotionLayer.jsx
+├── index.css
+└── lib/
+    ├── brandIcons.jsx
+    └── lucide-react.js
 ```
-
-### Why the shim?
-
-`lucide-react@1.7.0` removed brand icons (Github, Linkedin, Youtube, Twitter). The `src/lib/lucide-react.js` shim re-exports everything from the real package and adds the 4 brand icons from `brandIcons.jsx`. A Vite alias in `vite.config.js` routes all `lucide-react` imports through the shim.
 
 ## Sections
 
 | # | Section | Description |
 |---|---------|-------------|
-| 00 | Hero | Name, tagline, CTA buttons, tech stack chips, stats |
-| 01 | About | Bio, credentials |
-| 02 | What I Build | Capabilities (Web/Mobile, AI, Zero-to-One) |
-| 03 | Ventures | Project cards with status indicators |
-| 04 | Why Now | Market context, what I bring, what I'm building toward |
-| 05 | Recognition | Springer, NACOS, products shipped |
-| 06 | Let's Build | Contact CTA |
+| 00 | Hero | AI-native positioning, core stack, CTA and headline |
+| 01 | Selected Work | OpenBooks NG, NaviPro, Tech Skills Hub, Southwest Flood Monitor, EmoHabit and other builds |
+| 02 | Engineering Experience | Full-stack engineering roles, ownership and delivery highlights |
+| 03 | How I Help | Web/mobile, AI-native products and idea-to-production capabilities |
+| 04 | Process | Understand → Shape → Build → Validate → Ship |
+| 05 | Technical Toolkit | Languages, frontend, backend/data, AI, cloud and integrations |
+| 06 | About | Engineering philosophy, education, certifications and leadership |
+| 07 | Contact | Direct project and collaboration CTA |
 
 ## Getting Started
 
@@ -57,7 +56,7 @@ Output goes to `dist/`.
 
 ## Brand Tokens
 
-Defined in `PortfolioBrandSystem.jsx` as `C` (colors) and `F` (fonts):
+Defined in `PortfolioSiteClean.jsx` and the site's CSS:
 
 | Token | Value | Usage |
 |-------|-------|-------|
