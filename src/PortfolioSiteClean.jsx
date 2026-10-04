@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ArrowRight, ArrowUpRight, Brain, Check, Code2, Menu, Rocket, Smartphone, X } from "lucide-react";
 import ProjectShowcase from "./ProjectShowcase.jsx";
 import { ContactBuildScene, HeroBuildScene } from "./BlockWorld.jsx";
+import PricingPlayground from "./PricingPlayground.jsx";
 
 const display = { fontFamily: "'Ojuju', sans-serif" };
 const mono = { fontFamily: "'Space Mono', monospace" };
@@ -203,41 +204,38 @@ export default function PortfolioSiteClean() {
 
         <section id="experience" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="02">Engineering experience</Eyebrow><div className="mt-5 flex flex-col justify-between gap-4 md:flex-row md:items-end"><h2 className="max-w-4xl text-4xl leading-[0.96] sm:text-5xl md:text-6xl" style={display}>I own the full product loop.</h2><p className="max-w-md text-sm leading-6 text-[#b8b7b1]">From architecture and interfaces to APIs, data, AI workflows, integrations and deployment.</p></div><div className="mt-12 divide-y divide-white/10">{experience.map((item) => <article key={`${item.role}-${item.company}`} className="grid gap-7 py-10 first:pt-0 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16"><div><p className="text-[11px] uppercase tracking-[0.16em] text-[#ff5c00]" style={mono}>{item.meta}</p><h3 className="mt-4 text-3xl leading-none sm:text-4xl" style={display}>{item.role}</h3><p className="mt-3 text-lg text-[#e3e1db]">{item.company}</p><p className="mt-5 text-xs leading-6 text-[#9c9b94]" style={mono}>{item.stack}</p></div><div className="space-y-4">{item.points.map(point => <div key={point} className="flex items-start gap-3 text-sm leading-7 text-[#b8b7b1]"><Check className="mt-1.5 h-4 w-4 shrink-0 text-[#ff5c00]"/><span>{point}</span></div>)}</div></article>)}</div></div></section>
 
-        <section id="services" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="03">How I help</Eyebrow><h2 className="mt-5 max-w-4xl text-4xl leading-[0.96] sm:text-5xl md:text-6xl" style={display}>You bring the problem. I help build the product.</h2><div className="mt-12 grid gap-4 md:grid-cols-3">{services.map(({icon:Icon,title,text})=><div key={title} className="rounded-[20px] border border-white/10 bg-[#10100f] p-7 transition hover:border-[#ff5c00]/40 hover:bg-[#121210]"><Icon className="h-6 w-6 text-[#ff5c00]"/><h3 className="mt-7 text-xl" style={display}>{title}</h3><p className="mt-4 text-sm leading-6 text-[#b8b7b1]">{text}</p></div>)}</div></div></section>
+        <section id="services" className="border-b-4 border-[#080808] bg-[#ff5c00] text-[#080808]"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="03">How I help</Eyebrow><h2 className="mt-5 max-w-4xl text-4xl leading-[0.96] sm:text-5xl md:text-6xl" style={display}>You bring the problem. I help build the product.</h2><div className="mt-12 grid gap-4 md:grid-cols-3">{services.map(({icon:Icon,title,text})=><div key={title} className="rounded-[20px] border border-white/10 bg-[#10100f] p-7 transition hover:border-[#ff5c00]/40 hover:bg-[#121210]"><Icon className="h-6 w-6 text-[#ff5c00]"/><h3 className="mt-7 text-xl" style={display}>{title}</h3><p className="mt-4 text-sm leading-6 text-[#b8b7b1]">{text}</p></div>)}</div></div></section>
 
-        <section id="pricing" className="border-b border-white/10 bg-[#0b0b0a]">
+        <section id="pricing" className="border-b-4 border-[#080808] bg-[#f4f3ef] text-[#080808]">
           <div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16">
-            <Eyebrow number="04">Typical project starting points</Eyebrow>
-            <div className="mt-5 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-              <h2 className="max-w-4xl text-4xl leading-[0.96] sm:text-5xl md:text-6xl" style={display}>Clear enough to qualify. Flexible enough to scope properly.</h2>
-              <p className="max-w-md text-sm leading-6 text-[#b8b7b1]">These are starting points, not mystery quotes. Final pricing depends on scope, integrations and the product decisions we make together.</p>
+            <div className="grid gap-8 lg:grid-cols-[0.52fr_1.48fr] lg:items-end">
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.18em] text-[#ff5c00]" style={mono}>04 / Pricing</p>
+                <h2 className="mt-5 max-w-xl text-5xl leading-[0.9] sm:text-6xl md:text-7xl" style={display}>Don’t read the menu. Build your order.</h2>
+              </div>
+              <p className="max-w-2xl text-sm leading-6 text-[#4e4c47]">A starting point should help you qualify the project, not make you feel like you’re buying a pre-packaged website.</p>
             </div>
-            <div className="mt-12 grid gap-4 lg:grid-cols-3">
-              {pricing.map((item) => (
-                <article key={item.label} className={`rounded-[24px] border p-7 sm:p-8 ${item.featured ? "border-[#ff5c00]/50 bg-[#15110d]" : "border-white/10 bg-[#10100f]"}`}>
-                  {item.featured && <span className="inline-flex rounded-full bg-[#ff5c00] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#080808]" style={mono}>Most common for product work</span>}
-                  <p className="mt-3 text-[11px] uppercase tracking-[0.16em] text-[#ff5c00]" style={mono}>{item.label}</p>
-                  <h3 className="mt-4 text-4xl leading-none sm:text-5xl" style={display}>{item.price}</h3>
-                  <p className="mt-3 text-xs uppercase tracking-[0.12em] text-[#73716a]" style={mono}>{item.international}</p>
-                  <p className="mt-6 text-sm leading-6 text-[#b8b7b1]">{item.text}</p>
-                  <div className="mt-7 space-y-3 border-t border-white/10 pt-6">
-                    {item.features.map(feature => <div key={feature} className="flex items-start gap-3 text-sm leading-6 text-[#f4f3ef]"><Check className="mt-1 h-4 w-4 shrink-0 text-[#ffb36b]"/><span>{feature}</span></div>)}
-                  </div>
-                </article>
+            <div className="mt-10"><PricingPlayground /></div>
+            <div className="mt-7 grid gap-3 sm:grid-cols-3">
+              {[
+                ["Flexible scope", "Starting points change with the actual product decisions."],
+                ["Nigeria + global", "Local pricing is clear. International work is scoped from the brief."],
+                ["No fake urgency", "The interaction is for clarity, not pressure."],
+              ].map(([title, copy]) => (
+                <div key={title} className="border-2 border-[#080808] bg-white p-5 shadow-[0_4px_0_#080808]">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#ff5c00]" style={mono}>{title}</p>
+                  <p className="mt-2 text-sm leading-6 text-[#4e4c47]">{copy}</p>
+                </div>
               ))}
-            </div>
-            <div className="mt-7 flex flex-col gap-2 rounded-[18px] border border-white/10 bg-white/[0.03] p-5 sm:flex-row sm:items-center sm:justify-between">
-              <span className="text-sm text-[#f4f3ef]">Ongoing product support & improvements</span>
-              <span className="text-xs uppercase tracking-[0.12em] text-[#9c9b94]" style={mono}>From ₦100,000 / month · scoped monthly</span>
             </div>
           </div>
         </section>
 
-        <section className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="05">The process</Eyebrow><div className="mt-7 grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20"><h2 className="text-4xl leading-[0.96] sm:text-5xl" style={display}>From conversation to launch.</h2><div className="divide-y divide-white/10">{process.map(([number,title,text])=><div key={number} className="grid gap-4 py-7 sm:grid-cols-[70px_170px_1fr]"><span className="text-xs text-[#ff5c00]" style={mono}>{number}</span><h3 className="text-xl" style={display}>{title}</h3><p className="text-sm leading-6 text-[#b8b7b1]">{text}</p></div>)}</div></div></div></section>
+        <section className="border-b-4 border-[#080808] bg-[#9FE0C1] text-[#080808]"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow light number="05">The process</Eyebrow><div className="mt-7 grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20"><h2 className="text-4xl leading-[0.96] sm:text-5xl" style={display}>From conversation to launch.</h2><div className="divide-y divide-white/10">{process.map(([number,title,text])=><div key={number} className="grid gap-4 py-7 sm:grid-cols-[70px_170px_1fr]"><span className="text-xs text-[#ff5c00]" style={mono}>{number}</span><h3 className="text-xl" style={display}>{title}</h3><p className="text-sm leading-6 text-[#b8b7b1]">{text}</p></div>)}</div></div></div></section>
 
-        <section id="skills" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="06">Technical toolkit</Eyebrow><div className="mt-8 grid gap-4 md:grid-cols-2">{skills.map(([title,text])=><div key={title} className="rounded-[20px] border border-white/10 p-6"><p className="text-xs uppercase tracking-[0.16em] text-[#ff5c00]" style={mono}>{title}</p><p className="mt-4 text-sm leading-7 text-[#b8b7b1]">{text}</p></div>)}</div></div></section>
+        <section id="skills" className="border-b-4 border-[#080808] bg-[#f4f3ef] text-[#080808]"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="06">Technical toolkit</Eyebrow><div className="mt-8 grid gap-4 md:grid-cols-2">{skills.map(([title,text])=><div key={title} className="rounded-[20px] border border-white/10 p-6"><p className="text-xs uppercase tracking-[0.16em] text-[#ff5c00]" style={mono}>{title}</p><p className="mt-4 text-sm leading-7 text-[#b8b7b1]">{text}</p></div>)}</div></div></section>
 
-        <section id="about" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="07">About</Eyebrow><div className="mt-7 grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20"><h2 className="text-4xl leading-[0.96] sm:text-5xl md:text-6xl" style={display}>Software engineering with product judgment.</h2><div className="space-y-5 text-sm leading-7 text-[#b8b7b1]"><p>I’m a software engineer who enjoys taking products from unclear requirements to working software. I care about the details between the screens: data models, API contracts, authentication, integrations, testing, deployment and the decisions that make a product reliable after launch.</p><p>I work comfortably across frontend and backend systems, collaborate closely with designers, and use AI tools as engineering leverage without outsourcing technical judgment.</p><p>B.Sc. Computer Science · Coal City University · Graduated July 2026.</p></div></div></div></section>
+        <section id="about" className="border-b border-white/10 bg-[#080808]"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="07">About</Eyebrow><div className="mt-7 grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20"><h2 className="text-4xl leading-[0.96] sm:text-5xl md:text-6xl" style={display}>Software engineering with product judgment.</h2><div className="space-y-5 text-sm leading-7 text-[#b8b7b1]"><p>I’m a software engineer who enjoys taking products from unclear requirements to working software. I care about the details between the screens: data models, API contracts, authentication, integrations, testing, deployment and the decisions that make a product reliable after launch.</p><p>I work comfortably across frontend and backend systems, collaborate closely with designers, and use AI tools as engineering leverage without outsourcing technical judgment.</p><p>B.Sc. Computer Science · Coal City University · Graduated July 2026.</p></div></div></div></section>
 
         <section id="contact" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-24 sm:px-7 md:py-32 lg:px-10 xl:px-16">
           <Eyebrow number="08">Start a project</Eyebrow>
