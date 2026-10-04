@@ -138,7 +138,8 @@ export default function PortfolioSiteClean() {
   const handleProjectSubmit = async (event) => {
     event.preventDefault();
     if (contactState === "sending" || contactState === "sent") return;
-    const form = new FormData(event.currentTarget);
+    const target = event.currentTarget;
+    const form = new FormData(target);
     const email = form.get("email")?.toString().trim();
     setContactState("sending");
     setContactError("");
@@ -165,7 +166,7 @@ export default function PortfolioSiteClean() {
       const result = await response.json().catch(() => null);
       if (!response.ok || result?.success === false) throw new Error("Submission failed");
       setContactState("sent");
-      event.currentTarget.reset();
+      target.reset();
     } catch (error) {
       setContactState("error");
       setContactError("The form could not send just now. Please use WhatsApp or email directly.");
@@ -262,6 +263,8 @@ export default function PortfolioSiteClean() {
               </div>
               <label className="mt-5 block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>What are you trying to build?</span><textarea required name="brief" rows="6" className="mt-2 w-full resize-y rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm leading-6 text-[#f4f3ef] outline-none placeholder:text-[#73716a]" placeholder="Give me the short version. What is the problem, who is it for, and what do you need the product to do?"></textarea></label>
               <button type="submit" disabled={contactState === "sending" || contactState === "sent"} className="mt-6 inline-flex items-center gap-2 border-2 border-[#080808] bg-[#ff5c00] px-6 py-3.5 text-sm font-bold text-[#080808] shadow-[0_5px_0_#080808] disabled:cursor-not-allowed disabled:opacity-70" style={mono}>{contactState === "sending" ? "Sending…" : contactState === "sent" ? "Enquiry sent" : "Send project enquiry"} <ArrowRight className="h-4 w-4"/></button>
+              {contactState === "sent" && <p className="mt-4 text-xs text-[#86efac]" style={mono}>Sent to my inbox. I’ll reply from email.</p>}
+              {contactState === "error" && <p className="mt-4 text-xs leading-5 text-[#ffb36b]" style={mono}>{contactError}</p>}
             </form>
           </div>
         </div></section>
