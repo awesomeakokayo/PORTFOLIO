@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, ExternalLink, Hand, Layers3 } from "lucide-react";
-import { FloodIllustration } from "./BlockWorld.jsx";
 
 const display = { fontFamily: "'Ojuju', sans-serif" };
 const mono = { fontFamily: "'Space Mono', monospace" };
@@ -14,11 +13,15 @@ const showcases = [
     details:
       "A real product built around the everyday mess of running business finances from Canva files, notebooks and memory.",
     visual: "image",
-    image:
-      "https://raw.githubusercontent.com/awesomeakokayo/OpenBooks/main/public/image.png",
+    image: "/projects/openbooks-cover.png",
     visualClass: "aspect-[16/9]",
     live: "https://www.openbooks.click",
     outcome: "Invoices, customer records and payment history in one workspace.",
+    bullets: [
+      "Invoices, customer records and payment history in one workspace.",
+      "Open source and Nigeria-first, built as a digital cashbook for small businesses.",
+      "Free to start, with a landing page built around one promise: know what you sold, who paid, and who still owes you.",
+    ],
     color: "#ff5c00",
     flow: [
       [
@@ -46,13 +49,13 @@ const showcases = [
     details:
       "A brand-led marketing experience with a clear path from positioning and services to proof and a strategy-call action.",
     visual: "image",
-    image:
-      "https://raw.githubusercontent.com/awesomeakokayo/ElroiHub/main/public/assets/hero-bg.png",
+    image: "/projects/elroi-hub.webp",
     visualClass: "aspect-[16/9]",
     visualLabel: "Project artwork",
     live: "https://elroihubllc.com",
     outcome:
       "A polished brand presence with a clear path from discovery to conversation.",
+    bullets: ["A polished brand presence with a clear path from discovery to conversation."],
     color: "#9FE0C1",
     flow: [
       [
@@ -80,11 +83,15 @@ const showcases = [
     details:
       "Onboarding, learning tracks, authenticated progress, content delivery and Paystack billing in one product.",
     visual: "image",
-    image:
-      "https://raw.githubusercontent.com/awesomeakokayo/Techhubs/main/app/opengraph-image.png",
+    image: "/projects/tech-skill-hub.webp",
     visualClass: "aspect-[16/9]",
     live: "https://techskillhub.cv",
     outcome: "Learning journeys that show people what to learn next and why.",
+    bullets: [
+      "Learning journeys that show people what to learn next and why.",
+      "Free learning tracks for African developers, with a paid Guided Path for structured support.",
+      "Next.js, Auth.js, Prisma and Neon PostgreSQL, with Paystack payments, deployed on Vercel.",
+    ],
     color: "#f4f3ef",
     flow: [
       [
@@ -111,9 +118,16 @@ const showcases = [
       "A community flood-reporting product that uses AI-assisted image analysis to support local reports.",
     details:
       "A field-first reporting flow that turns a photo, location and description into structured community data.",
-    visual: "flood",
+    visual: "image",
+    image: "/projects/flood-monitor.webp",
+    visualClass: "aspect-[4/5]",
     outcome:
       "A reporting flow that turns a photo and location into structured community data.",
+    bullets: [
+      "A reporting flow that turns a photo and location into structured community data.",
+      "AI image analysis with Google Gemini, served by a FastAPI backend.",
+      "React Native mobile app, tested in Expo Go and packaged as a downloadable Android APK.",
+    ],
     color: "#9FE0C1",
     flow: [
       [
@@ -140,13 +154,13 @@ const showcases = [
       "A journal management platform for submission, review, publishing and public access.",
     details:
       "The JOURNAL repository contains separate public and admin flows, including submissions, archives, authentication and editorial review.",
-    visual: "brand",
-    image:
-      "https://raw.githubusercontent.com/awesomeakokayo/JOURNAL/main/journal-platform/public/CCULOGO.png",
+    visual: "image",
+    image: "/projects/ccu-journal.webp",
     visualLabel: "Institution asset",
     live: "https://journal-nine-ruby.vercel.app",
     outcome:
       "A full editorial workflow from manuscript submission to published journal access.",
+    bullets: ["A full editorial workflow from manuscript submission to published journal access."],
     color: "#ff5c00",
     flow: [
       [
@@ -167,45 +181,12 @@ const showcases = [
     ],
   },
   {
-    name: "AE-FUNAI Journal",
-    type: "Academic publishing · Built",
-    summary:
-      "A publication platform covering author submission, editorial review and public journal access.",
-    details:
-      "The frontend and backend repositories form a full journal publication system with JWT authentication, submissions, admin publishing and public search/download.",
-    visual: "brand",
-    image:
-      "https://raw.githubusercontent.com/awesomeakokayo/AE-FUNAI-journal-frontend/main/aefunai_logo.png",
-    visualLabel: "Institution asset",
-    live: "https://aefunaijedu.com",
-    outcome:
-      "A structured publishing workflow with public discovery and administrative control.",
-    color: "#9FE0C1",
-    flow: [
-      [
-        "01",
-        "Author",
-        "Register, authenticate and submit a paper with title, authors, abstract and file.",
-      ],
-      [
-        "02",
-        "Editor",
-        "Review submissions and move them through approval and publication.",
-      ],
-      [
-        "03",
-        "Reader",
-        "Search and download published journals without needing an account.",
-      ],
-    ],
-  },
-  {
     name: "Blancquake Foundation",
     type: "Advocacy platform · Built",
     summary:
       "A public-facing foundation website built around mission, impact, people and community action.",
     details:
-      "The project repo includes real impact photography, mission imagery, team photography and a production hero experience.",
+      "Real photography of the foundation's work and team runs through the site, opening with a hero built around its mission.",
     visual: "image",
     image:
       "https://raw.githubusercontent.com/awesomeakokayo/Blancquake_site/main/app/public/images/hero-poster.jpg",
@@ -214,6 +195,11 @@ const showcases = [
     live: "https://blancquakefoundation.org",
     outcome:
       "A visual public presence that gives the organisation a stronger story to stand behind.",
+    bullets: [
+      "A visual public presence that gives the organisation a stronger story to stand behind.",
+      "Pages for mission, impact, team and community action, so visitors can see what the foundation does and how to get involved.",
+      "Photography-led design, so the organisation's real work is the first thing visitors see.",
+    ],
     color: "#f4f3ef",
     flow: [
       [
@@ -253,10 +239,22 @@ function BrandVisual({ project }) {
 }
 
 function Visual({ project }) {
-  if (project.visual === "flood") return <FloodIllustration />;
+  if (project.name === "Southwest Flood Monitor") {
+    return (
+      <div className="relative flex h-full w-full items-center justify-center overflow-hidden border-4 border-[#080808] bg-[#9FE0C1] p-3">
+        <img
+          src={project.image}
+          alt="Southwest Flood Monitor report screen"
+          className="h-full w-full object-contain object-center"
+          loading="lazy"
+          draggable="false"
+        />
+      </div>
+    );
+  }
   if (project.visual === "brand") return <BrandVisual project={project} />;
   return (
-    <div className={`relative w-full overflow-hidden border-4 border-[#080808] bg-[#f4f3ef] ${project.visualClass}`}>
+    <div className="relative h-full min-h-0 w-full overflow-hidden border-4 border-[#080808] bg-[#f4f3ef]">
       <img
         src={project.image}
         alt={`${project.name} project screen`}
@@ -304,6 +302,7 @@ function FanPanel({ project, index, active, onClick, style }) {
 export default function ProjectShowcase() {
   const featured = useMemo(() => showcases, []);
   const [active, setActive] = useState(0);
+  const [activeStep, setActiveStep] = useState(0);
   const [dragging, setDragging] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const pointerStart = useRef(null);
@@ -311,12 +310,23 @@ export default function ProjectShowcase() {
 
   const next = () => {
     setActive((current) => (current + 1) % featured.length);
+    setActiveStep(0);
     setHasInteracted(true);
   };
   const previous = () => {
     setActive((current) => (current - 1 + featured.length) % featured.length);
+    setActiveStep(0);
     setHasInteracted(true);
   };
+
+  const selectProject = (index) => {
+    setActive(index);
+    setActiveStep(0);
+    setHasInteracted(true);
+  };
+
+  const nextStep = () => setActiveStep((current) => (current + 1) % project.flow.length);
+  const previousStep = () => setActiveStep((current) => (current - 1 + project.flow.length) % project.flow.length);
 
   const onPointerDown = (event) => {
     pointerStart.current = event.clientX;
@@ -363,16 +373,16 @@ export default function ProjectShowcase() {
   };
 
   const project = featured[active];
-  const step = project.flow[0];
+  const step = project.flow[activeStep];
 
   return (
-    <div className="border-4 border-[#080808] bg-[#f4f3ef] shadow-[0_14px_0_#080808]">
-      <div className="grid gap-0 lg:grid-cols-[1.2fr_.8fr]">
-        <div className="border-b-4 border-[#080808] p-5 sm:p-7 lg:border-b-0 lg:border-r-4 lg:p-8">
-          <div className="flex flex-wrap items-center justify-between gap-3">
+    <div className="mx-auto w-full max-w-full border-4 border-[#080808] bg-[#f4f3ef] shadow-[0_14px_0_#080808]">
+      <div className="grid min-w-0 gap-0 lg:grid-cols-[1.2fr_.8fr]">
+        <div className="min-w-0 border-b-4 border-[#080808] p-5 sm:p-7 lg:border-b-0 lg:border-r-4 lg:p-8">
+          <div className="flex flex-wrap items-center justify-center gap-3 text-center lg:justify-between lg:text-left">
             <div>
               <p className="text-[10px] font-bold uppercase tracking-[0.17em] text-[#080808]" style={mono}>01 / Fold-out project wall</p>
-              <h2 className="mt-3 max-w-xl text-3xl leading-[0.9] text-[#080808] sm:text-5xl" style={display}>Pull the next build into view.</h2>
+              <h2 className="mx-auto mt-3 max-w-xl text-3xl leading-[0.9] text-[#080808] sm:text-5xl lg:mx-0" style={display}>Pull the next build into view.</h2>
             </div>
             <div className="border-2 border-[#080808] bg-[#9FE0C1] px-3 py-2 text-[9px] font-bold uppercase text-[#080808]" style={mono}>{String(active + 1).padStart(2, "0")} / {String(featured.length).padStart(2, "0")}</div>
           </div>
@@ -390,7 +400,7 @@ export default function ProjectShowcase() {
                 project={item}
                 index={index}
                 active={index === active}
-                onClick={() => { if (suppressClick.current) return; setActive(index); setHasInteracted(true); }}
+                onClick={() => { if (suppressClick.current) return; selectProject(index); }}
                 style={getPanelStyle(index)}
               />
             ))}
@@ -405,7 +415,7 @@ export default function ProjectShowcase() {
           </div>
         </div>
 
-        <div className="bg-[#080808] p-6 text-[#f4f3ef] sm:p-8">
+        <div className="min-w-0 bg-[#080808] p-5 text-[#f4f3ef] sm:p-8">
           <div className="flex items-start justify-between gap-4">
             <div>
               <p className="text-[10px] uppercase tracking-[0.16em] text-[#ffb36b]" style={mono}>You opened</p>
@@ -416,21 +426,42 @@ export default function ProjectShowcase() {
 
           <p className="mt-7 text-sm leading-7 text-[#b8b7b1]">{project.details}</p>
 
-          <div className="mt-8 border-2 border-white/15 bg-[#101010] p-5">
+          <div
+            className="mt-8 border-2 border-white/15 bg-[#101010] p-4 sm:p-5"
+            onTouchStart={(event) => { pointerStart.current = event.touches[0].clientX; }}
+            onTouchEnd={(event) => {
+              if (pointerStart.current === null) return;
+              const distance = event.changedTouches[0].clientX - pointerStart.current;
+              pointerStart.current = null;
+              if (Math.abs(distance) > 40) distance < 0 ? nextStep() : previousStep();
+            }}
+          >
             <div className="flex items-center justify-between gap-4">
               <p className="text-[10px] uppercase tracking-[0.15em] text-[#9c9b94]" style={mono}>One useful thing inside</p>
-              <span className="text-[10px] text-[#ffb36b]" style={mono}>{step[0]} / {project.flow.length}</span>
+              <span aria-live="polite" className="text-[10px] text-[#ffb36b]" style={mono}>{step[0]} / {project.flow.length}</span>
             </div>
             <h4 className="mt-3 text-3xl leading-none" style={display}>{step[1]}</h4>
             <p className="mt-3 text-sm leading-6 text-[#b8b7b1]">{step[2]}</p>
+            <div className="mt-5 flex items-center justify-between gap-3">
+              <button type="button" onClick={previousStep} aria-label="Previous project detail" className="flex h-10 w-10 shrink-0 items-center justify-center border border-white/20 text-[#f4f3ef] transition hover:border-[#ff5c00] hover:text-[#ffb36b]"><ArrowLeft className="h-4 w-4" /></button>
+              <div className="flex items-center gap-2" role="group" aria-label="Project detail slides">
+                {project.flow.map((flowStep, index) => (
+                  <button
+                    key={flowStep[0]}
+                    type="button"
+                    onClick={() => setActiveStep(index)}
+                    aria-label={`Show detail ${index + 1}: ${flowStep[1]}`}
+                    aria-current={index === activeStep ? "step" : undefined}
+                    className={`h-2.5 w-2.5 rounded-full transition ${index === activeStep ? "bg-[#ff5c00]" : "bg-white/30 hover:bg-white/60"}`}
+                  />
+                ))}
+              </div>
+              <button type="button" onClick={nextStep} aria-label="Next project detail" className="flex h-10 w-10 shrink-0 items-center justify-center border border-white/20 text-[#f4f3ef] transition hover:border-[#ff5c00] hover:text-[#ffb36b]"><ArrowRight className="h-4 w-4" /></button>
+            </div>
           </div>
 
           <div className="mt-8 space-y-3 border-t border-white/10 pt-6">
-            {[
-              project.outcome,
-              "Built across the product loop, not just the visible screen.",
-              "Interaction reveals the thinking behind the build."
-            ].map((item) => (
+            {project.bullets.map((item) => (
               <div key={item} className="flex items-start gap-3 text-sm leading-6 text-[#f4f3ef]">
                 <Check className="mt-1 h-4 w-4 shrink-0 text-[#9FE0C1]"/><span>{item}</span>
               </div>
@@ -446,7 +477,7 @@ export default function ProjectShowcase() {
 
       <div className="border-t-4 border-[#080808] bg-[#ff5c00] px-5 py-4 sm:px-7">
         <div className="flex flex-col gap-2 text-[10px] font-bold uppercase tracking-[0.13em] text-[#080808] sm:flex-row sm:items-center sm:justify-between" style={mono}>
-          <span>04 builds · 04 different problems · one full-stack loop</span>
+          <span>{String(featured.length).padStart(2, "0")} builds · {String(featured.length).padStart(2, "0")} different problems · one full-stack loop</span>
           <span>Swipe → inspect → open → move on</span>
         </div>
       </div>

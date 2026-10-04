@@ -112,7 +112,7 @@ const skills = [
 ];
 
 function Eyebrow({ number, children, light = false }) {
-  return <p className="flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.18em] text-[#ff5c00]" style={mono}><span>{number}</span><span className={light ? "text-black/20" : "text-white/20"}>/</span><span>{children}</span></p>;
+  return <p className="flex flex-wrap items-center justify-center gap-3 text-[11px] uppercase tracking-[0.18em] text-[#ff5c00] lg:flex-nowrap lg:whitespace-nowrap" style={mono}><span>{number}</span><span className={light ? "text-black/20" : "text-white/20"}>/</span><span>{children}</span></p>;
 }
 
 function Nav({ open, setOpen }) {
@@ -178,11 +178,11 @@ export default function PortfolioSiteClean() {
       <Nav open={open} setOpen={setOpen} />
       <main>
         <section className="border-b-4 border-[#080808] bg-[#f4f3ef] text-[#080808]">
-          <div className="mx-auto grid min-h-[82vh] max-w-7xl items-center gap-12 px-5 py-16 sm:px-7 md:py-20 lg:grid-cols-[0.92fr_1.08fr] lg:px-10 xl:px-16">
+          <div className="mx-auto grid min-h-[72vh] max-w-7xl items-center gap-12 px-5 py-10 sm:px-7 md:py-12 lg:grid-cols-[1.2fr_0.8fr] lg:px-10 xl:px-16">
             <div className="text-left">
               <div className="text-left"><Eyebrow light number="00">Software engineer · Full-stack developer · Product builder</Eyebrow></div>
               <div className="mt-6 inline-flex items-center gap-2 border-2 border-[#080808] bg-[#ff5c00] px-3 py-2 text-[9px] font-bold uppercase tracking-[0.15em] text-[#080808]" style={mono}><span className="h-2 w-2 rounded-full border border-[#080808] bg-[#9FE0C1]" /> Building in public</div>
-              <h1 className="mt-6 max-w-3xl text-5xl font-semibold leading-[0.88] tracking-[-0.045em] sm:text-6xl md:text-7xl lg:text-[6.8rem]" style={display}>I build software products from <span className="text-[#ff5c00]">idea to production.</span></h1>
+              <h1 className="mt-6 max-w-[44rem] font-semibold tracking-[-0.045em]" style={{ ...display, fontSize: "clamp(2.5rem, 5vw, 4.75rem)", lineHeight: "1.02", textWrap: "balance" }}>I build software products from <span className="text-[#ff5c00]">idea to&nbsp;production.</span></h1>
               <p className="mt-7 max-w-2xl text-base leading-7 text-[#262626] md:text-lg md:leading-8">Software engineer building and shipping web, mobile and AI-integrated products across frontend, backend, data, integrations, testing and deployment.</p>
               <div className="mt-8 flex flex-wrap justify-start gap-3">
                 <a href="#contact" className="inline-flex items-center gap-2 border-2 border-[#080808] bg-[#080808] px-6 py-3.5 text-sm font-bold text-[#f4f3ef] shadow-[0_6px_0_#ff5c00]" style={mono}>Work with me <ArrowRight className="h-4 w-4" /></a>
@@ -198,7 +198,7 @@ export default function PortfolioSiteClean() {
           </div>
         </section>
 
-        <section className="border-b border-white/10"><div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-y divide-white/10 sm:grid-cols-4 sm:divide-y-0 lg:px-10 xl:px-16">{[["5+","products shipped"],["4","core product areas"],["01","Springer presentation"],["2026","Computer Science graduate"]].map(([value,label])=><div key={label} className="px-5 py-7 text-center sm:px-7 lg:py-9"><div className="text-3xl sm:text-4xl" style={display}>{value}</div><div className="mt-1 text-xs text-[#9c9b94]" style={mono}>{label}</div></div>)}</div></section>
+        <section className="border-b border-white/10"><div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-y divide-white/10 sm:grid-cols-4 sm:divide-y-0 lg:px-10 xl:px-16">{[["5+","products shipped"],["5","sectors built for"],["5","person team led"],["ETMIS","2025 Springer research presentation"]].map(([value,label], index)=><div key={label} className="px-5 py-7 text-center sm:px-7 lg:py-9"><div className={index === 3 ? "text-2xl sm:text-3xl" : "text-3xl sm:text-4xl"} style={display}>{value}</div><div className="mt-1 text-xs text-[#9c9b94]" style={mono}>{label}</div></div>)}</div></section>
 
         <section id="work" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="01">Selected work</Eyebrow><div className="mt-5 flex flex-col justify-between gap-4 md:flex-row md:items-end"><h2 className="max-w-3xl text-4xl leading-[0.96] sm:text-5xl md:text-6xl" style={display}>The work is the proof.</h2><p className="max-w-md text-sm leading-6 text-[#b8b7b1]">Production products, AI systems and full-stack builds that show how I think and what I can ship.</p></div><div className="mt-12"><ProjectShowcase /></div></div></section>
 

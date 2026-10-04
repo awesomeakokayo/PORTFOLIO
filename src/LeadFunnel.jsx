@@ -74,15 +74,6 @@ export default function LeadFunnel() {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className="fixed bottom-5 right-5 z-[70] inline-flex items-center gap-2 rounded-full bg-[#ff5c00] px-5 py-3.5 text-xs font-bold text-[#080808] shadow-[0_16px_50px_rgba(255,92,0,.28)] transition hover:-translate-y-1 hover:bg-[#ff7324] md:bottom-7 md:right-7"
-        style={{ fontFamily: "'Space Mono', monospace" }}
-      >
-        Start a project <ArrowRight className="h-4 w-4" />
-      </button>
-
       {open && (
         <div className="fixed inset-0 z-[80] overflow-y-auto bg-[#050505]/90 p-4 backdrop-blur-md sm:p-6" role="dialog" aria-modal="true" aria-label="Start a project">
           <div className="mx-auto my-4 max-w-2xl overflow-hidden rounded-[28px] border border-white/10 bg-[#10100f] shadow-2xl sm:my-10">
