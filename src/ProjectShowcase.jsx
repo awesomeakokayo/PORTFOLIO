@@ -13,7 +13,7 @@ const showcases = [
     details:
       "A real product built around the everyday mess of running business finances from Canva files, notebooks and memory.",
     visual: "image",
-    image: "/projects/openbooks-cover.png",
+    image: "/projects/openbooks-cover.webp",
     visualClass: "aspect-[16/9]",
     live: "https://www.openbooks.click",
     outcome: "Invoices, customer records and payment history in one workspace.",
@@ -258,7 +258,7 @@ function Visual({ project }) {
       <img
         src={project.image}
         alt={`${project.name} project screen`}
-        className="absolute inset-0 h-full w-full object-cover object-center"
+        className={`absolute inset-0 h-full w-full object-cover ${project.name === "OpenBooks" ? "object-top" : "object-center"}`}
         loading="lazy"
         draggable="false"
       />
