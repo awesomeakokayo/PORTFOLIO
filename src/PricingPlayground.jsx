@@ -80,7 +80,7 @@ export default function PricingPlayground() {
             <span className="flex items-center gap-2 border-2 border-[#080808] bg-[#f4f3ef] px-2.5 py-1.5 text-[9px] font-bold uppercase" style={{fontFamily:"'Space Mono', monospace"}}><Sparkles className="h-3.5 w-3.5"/> Your turn</span>
           </div>
 
-          <div className="mt-5 min-h-[310px] border-4 border-[#080808] bg-[#080808] p-5 text-[#f4f3ef] shadow-[0_7px_0_#f4f3ef] sm:p-7">
+          <div className="mt-5 min-h-[220px] sm:min-h-[310px] border-4 border-[#080808] bg-[#080808] p-5 text-[#f4f3ef] shadow-[0_7px_0_#f4f3ef] sm:p-7">
             {!active ? (
               <div className="flex min-h-[260px] flex-col items-center justify-center text-center">
                 <LockKeyhole className="h-10 w-10 text-[#ff5c00]" />
