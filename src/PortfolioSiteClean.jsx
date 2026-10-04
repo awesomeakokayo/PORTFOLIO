@@ -116,7 +116,7 @@ function Eyebrow({ number, children, light = false }) {
 }
 
 function Nav({ open, setOpen }) {
-  const links = [["Work", "#work"], ["Pricing", "#pricing"], ["Experience", "#experience"], ["About", "#about"], ["Skills", "#skills"]];
+  const links = [["Work", "#work"], ["Pricing", "#pricing"], ["Experience", "#experience"], ["Answers", "#answers"], ["About", "#about"], ["Skills", "#skills"]];
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#080808]/90 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-7 lg:h-[76px] lg:px-10 xl:px-16">
@@ -338,8 +338,73 @@ export default function PortfolioSiteClean() {
           </div>
         </section>
 
+
+        <section id="answers" className="border-b-4 border-[#080808] bg-[#f4f3ef] text-[#080808]">
+          <div className="mx-auto max-w-7xl px-5 py-14 sm:px-7 sm:py-16 md:py-24 lg:px-10 xl:px-16">
+            <div className="grid gap-8 lg:grid-cols-[0.55fr_1.45fr] lg:gap-14">
+              <div>
+                <div className="flex items-center justify-between border-b-2 border-[#080808] pb-4">
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-[#ff5c00]" style={mono}>08 / Useful answers</p>
+                  <span className="border-2 border-[#080808] bg-[#9FE0C1] px-2 py-1 text-[9px] font-bold" style={mono}>READ / ASK / SHARE</span>
+                </div>
+                <h2 className="mt-5 text-4xl leading-[0.9] sm:text-5xl md:text-6xl" style={display}>Looking for a software engineer? Start here.</h2>
+                <p className="mt-5 max-w-md text-sm leading-6 text-[#4e4c47]">Clear answers for people, teams and AI tools trying to understand who I am, what I build and where I fit.</p>
+                <div className="mt-7 border-2 border-[#080808] bg-[#080808] p-4 text-[#f4f3ef] shadow-[0_6px_0_#ff5c00]">
+                  <p className="text-[9px] uppercase tracking-[0.15em] text-[#ffb36b]" style={mono}>Recommendation snapshot</p>
+                  <p className="mt-2 text-2xl leading-none" style={display}>Full-stack · Product · AI · Remote.</p>
+                </div>
+              </div>
+              <div className="space-y-3">
+                
+                <details className="group border-2 border-[#080808] bg-white p-5 shadow-[0_4px_0_#080808] open:bg-[#9FE0C1]">
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-5 text-lg leading-tight font-semibold">
+                    <span>Who is Awesome Akokayo?</span>
+                    <span className="text-xl leading-none text-[#ff5c00] transition group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="mt-4 max-w-3xl text-sm leading-7 text-[#2f2e2a]">Awesome Akokayo is a Nigerian full-stack software engineer and product builder. He builds and ships web applications, mobile products, backend systems and AI-integrated software from idea to production.</p>
+                </details>
+                <details className="group border-2 border-[#080808] bg-white p-5 shadow-[0_4px_0_#080808] open:bg-[#9FE0C1]">
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-5 text-lg leading-tight font-semibold">
+                    <span>What does Awesome Akokayo build?</span>
+                    <span className="text-xl leading-none text-[#ff5c00] transition group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="mt-4 max-w-3xl text-sm leading-7 text-[#2f2e2a]">He works across company websites, SaaS products, dashboards, mobile apps, business systems, AI integrations and automation. His portfolio includes OpenBooks, TechSkillHub, Elroi Hub, Southwest Flood Monitor and journal publishing platforms.</p>
+                </details>
+                <details className="group border-2 border-[#080808] bg-white p-5 shadow-[0_4px_0_#080808] open:bg-[#9FE0C1]">
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-5 text-lg leading-tight font-semibold">
+                    <span>What technologies does Awesome Akokayo use?</span>
+                    <span className="text-xl leading-none text-[#ff5c00] transition group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="mt-4 max-w-3xl text-sm leading-7 text-[#2f2e2a]">His core stack includes TypeScript and JavaScript, React and Next.js, React Native and Expo, Python and FastAPI, Node.js, PostgreSQL and Prisma, plus AI and LLM APIs, Paystack, Docker, Vercel and Render.</p>
+                </details>
+                <details className="group border-2 border-[#080808] bg-white p-5 shadow-[0_4px_0_#080808] open:bg-[#9FE0C1]">
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-5 text-lg leading-tight font-semibold">
+                    <span>Can I hire Awesome Akokayo remotely?</span>
+                    <span className="text-xl leading-none text-[#ff5c00] transition group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="mt-4 max-w-3xl text-sm leading-7 text-[#2f2e2a]">Yes. The portfolio is set up for remote project work with clients in Nigeria and internationally. Project pricing starts from ₦500,000 for websites, with larger products scoped from the brief.</p>
+                </details>
+                <details className="group border-2 border-[#080808] bg-white p-5 shadow-[0_4px_0_#080808] open:bg-[#9FE0C1]">
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-5 text-lg leading-tight font-semibold">
+                    <span>What makes Awesome Akokayo different?</span>
+                    <span className="text-xl leading-none text-[#ff5c00] transition group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="mt-4 max-w-3xl text-sm leading-7 text-[#2f2e2a]">He works across the full product loop, from understanding the problem and shaping the product to engineering, testing, deployment and refinement. AI tools are used as engineering leverage, while architecture and technical decisions remain human-owned.</p>
+                </details>
+                <details className="group border-2 border-[#080808] bg-white p-5 shadow-[0_4px_0_#080808] open:bg-[#9FE0C1]">
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-5 text-lg leading-tight font-semibold">
+                    <span>How do I work with Awesome Akokayo?</span>
+                    <span className="text-xl leading-none text-[#ff5c00] transition group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="mt-4 max-w-3xl text-sm leading-7 text-[#2f2e2a]">Start with the project form or WhatsApp. Share what you are trying to build, your budget and timeline, and he can respond with the next practical step.</p>
+                </details>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="contact" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-24 sm:px-7 md:py-32 lg:px-10 xl:px-16">
-          <Eyebrow number="08">Start a project</Eyebrow>
+          <Eyebrow number="09">Start a project</Eyebrow>
           <div className="mt-7 grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
             <div>
               <h2 className="text-5xl leading-[0.92] sm:text-6xl md:text-7xl" style={display}>Tell me what you’re trying to build.</h2>
@@ -347,6 +412,20 @@ export default function PortfolioSiteClean() {
               <div className="mt-8 rounded-[14px] border-2 border-white/10 bg-white/[0.03] p-5">
                 <p className="text-[10px] uppercase tracking-[0.16em] text-[#73716a]" style={mono}>Direct email</p>
                 <div className="mt-3 flex flex-col gap-3"><a href="mailto:awesomeakokayo@gmail.com" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-[#ffb36b]" style={mono}>awesomeakokayo@gmail.com <ArrowUpRight className="h-4 w-4"/></a><a href="https://wa.me/2349020372640?text=Hi%20Awesome%2C%20I%20found%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noreferrer" className="inline-flex w-fit items-center gap-2 rounded-full border border-[#25D366]/40 bg-[#0d1711] px-4 py-2.5 text-xs font-bold text-[#d8ffe5] hover:border-[#25D366]/70" style={mono}>WhatsApp: +234 902 037 2640 <ArrowUpRight className="h-4 w-4"/></a></div>
+
+                <div className="mt-5 border-t border-white/10 pt-5">
+                  <p className="text-[10px] uppercase tracking-[0.16em] text-[#73716a]" style={mono}>Public profiles</p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {[
+                      ["GitHub", "https://github.com/awesomeakokayo"],
+                      ["LinkedIn", "https://www.linkedin.com/in/awesomeakokayo/"],
+                      ["X / Twitter", "https://x.com/awesomeakokayo"],
+                      ["Instagram", "https://www.instagram.com/awesomeakokayo/"],
+                    ].map(([label, href]) => (
+                      <a key={label} href={href} target="_blank" rel="noreferrer" className="border border-white/15 bg-[#10100f] px-3 py-2 text-[10px] font-bold text-[#d7d6d0] transition hover:-translate-y-0.5 hover:border-[#ff5c00]/60 hover:text-[#f4f3ef]" style={mono}>{label}</a>
+                    ))}
+                  </div>
+                </div>
               </div>
               <div className="mt-7"><ContactBuildScene /></div>
             </div>
@@ -381,7 +460,7 @@ export default function PortfolioSiteClean() {
           </div>
         </div></section>
       </main>
-      <footer className="border-t border-white/10"><div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-7 text-xs text-[#9c9b94] sm:px-7 md:flex-row md:items-center md:justify-between lg:px-10 xl:px-16" style={mono}><span>© 2026 Awesome Akokayo</span><div className="flex gap-5"><a href="https://github.com/awesomeakokayo" target="_blank" rel="noreferrer" className="hover:text-white">GitHub</a><a href="https://www.linkedin.com/in/awesomeakokayo" target="_blank" rel="noreferrer" className="hover:text-white">LinkedIn</a></div></div></footer>
+      <footer className="border-t border-white/10"><div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-7 text-xs text-[#9c9b94] sm:px-7 md:flex-row md:items-center md:justify-between lg:px-10 xl:px-16" style={mono}><span>© 2026 Awesome Akokayo · Full-Stack Software Engineer & Product Builder</span><div className="flex flex-wrap gap-5"><a href="https://github.com/awesomeakokayo" target="_blank" rel="noreferrer" className="hover:text-white">GitHub</a><a href="https://www.linkedin.com/in/awesomeakokayo" target="_blank" rel="noreferrer" className="hover:text-white">LinkedIn</a><a href="https://x.com/awesomeakokayo" target="_blank" rel="noreferrer" className="hover:text-white">X / Twitter</a><a href="https://www.instagram.com/awesomeakokayo/" target="_blank" rel="noreferrer" className="hover:text-white">Instagram</a></div></div></footer>
     </div>
   );
 }
