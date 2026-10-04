@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, ExternalLink, Hand, Layers3 } from "lucide-react";
-import { AgencyIllustration, FloodIllustration } from "./BlockWorld.jsx";
+import { FloodIllustration } from "./BlockWorld.jsx";
 
 const display = { fontFamily: "'Ojuju', sans-serif" };
 const mono = { fontFamily: "'Space Mono', monospace" };
@@ -28,7 +28,10 @@ const showcases = [
     type: "Client build · Live",
     summary: "A digital growth agency website designed to make a serious business feel credible and easy to approach.",
     details: "A brand-led marketing experience with a clear path from positioning and services to proof and a strategy-call action.",
-    visual: "agency",
+    visual: "image",
+    image: "https://raw.githubusercontent.com/awesomeakokayo/ElroiHub/main/public/assets/hero-bg.png",
+    visualClass: "aspect-[16/9]",
+    visualLabel: "Project artwork",
     live: "https://elroihub.com",
     outcome: "A polished brand presence with a clear path from discovery to conversation.",
     color: "#9FE0C1",
@@ -69,7 +72,6 @@ const showcases = [
       ["03", "Submit", "Turn the evidence into a structured report for monitoring and response."],
     ],
   },
-,
   {
     name: "CCU Journal Platform",
     type: "Academic publishing · Built",
@@ -145,7 +147,6 @@ function BrandVisual({ project }) {
 }
 
 function Visual({ project }) {
-  if (project.visual === "agency") return <AgencyIllustration />;
   if (project.visual === "flood") return <FloodIllustration />;
   if (project.visual === "brand") return <BrandVisual project={project} />;
   return (
