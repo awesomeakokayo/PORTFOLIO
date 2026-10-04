@@ -55,7 +55,11 @@ const showcases = [
     live: "https://elroihubllc.com",
     outcome:
       "A polished brand presence with a clear path from discovery to conversation.",
-    bullets: ["A polished brand presence with a clear path from discovery to conversation."],
+    bullets: [
+      "A polished brand presence with a clear path from discovery to conversation.",
+      "Visitors can compare service packages and pricing, including AI tiers from $100 to $1,000+.",
+      "Built with TypeScript, CSS and JavaScript for companies needing internet marketing and brand presentation support.",
+    ],
     color: "#9FE0C1",
     flow: [
       [
@@ -160,7 +164,11 @@ const showcases = [
     live: "https://journal-nine-ruby.vercel.app",
     outcome:
       "A full editorial workflow from manuscript submission to published journal access.",
-    bullets: ["A full editorial workflow from manuscript submission to published journal access."],
+    bullets: [
+      "A full editorial workflow from manuscript submission to published journal access.",
+      "Visitors can read and download published research or submit manuscripts, using Next.js, TypeScript and CSS.",
+      "Built for students, scholars and individuals interested in academic research.",
+    ],
     color: "#ff5c00",
     flow: [
       [
