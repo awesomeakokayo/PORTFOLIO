@@ -31,7 +31,7 @@ const options = [
   },
 ];
 
-export default function PricingPlayground() {
+export default function PricingPlayground({ onStartProject }) {
   const [selected, setSelected] = useState(null);
   const [complete, setComplete] = useState(false);
   const active = options.find((item) => item.id === selected);
@@ -106,7 +106,7 @@ export default function PricingPlayground() {
                     </div>
                   ))}
                 </div>
-                <a href="#contact" className="mt-7 inline-flex items-center gap-2 border-2 border-[#080808] bg-[#ff5c00] px-5 py-3 text-xs font-bold text-[#080808] shadow-[0_5px_0_#f4f3ef]" style={{fontFamily:"'Space Mono', monospace"}}>Start with this <ArrowRight className="h-4 w-4"/></a>
+                <button type="button" onClick={() => onStartProject?.(active)} className="mt-7 inline-flex items-center gap-2 border-2 border-[#080808] bg-[#ff5c00] px-5 py-3 text-xs font-bold text-[#080808] shadow-[0_5px_0_#f4f3ef]" style={{fontFamily:"'Space Mono', monospace"}}>Continue with this <ArrowRight className="h-4 w-4"/></button>
               </div>
             )}
           </div>
