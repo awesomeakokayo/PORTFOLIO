@@ -9,121 +9,227 @@ const showcases = [
   {
     name: "OpenBooks",
     type: "Business software · Live",
-    summary: "A Nigeria-first business workspace for invoices, payments, expenses and records.",
-    details: "A real product built around the everyday mess of running business finances from Canva files, notebooks and memory.",
+    summary:
+      "A Nigeria-first business workspace for invoices, payments, expenses and records.",
+    details:
+      "A real product built around the everyday mess of running business finances from Canva files, notebooks and memory.",
     visual: "image",
-    image: "https://raw.githubusercontent.com/awesomeakokayo/OpenBooks/main/public/image.png",
+    image:
+      "https://raw.githubusercontent.com/awesomeakokayo/OpenBooks/main/public/image.png",
     visualClass: "aspect-[16/9]",
     live: "https://www.openbooks.click",
     outcome: "Invoices, customer records and payment history in one workspace.",
     color: "#ff5c00",
     flow: [
-      ["01", "Invoice", "Create a clean invoice with the customer, amount and payment details."],
-      ["02", "Payment", "Record bank transfer, cash, POS or online payment against the transaction."],
-      ["03", "Track", "Keep revenue, invoices, payments and expenses in one place."],
+      [
+        "01",
+        "Invoice",
+        "Create a clean invoice with the customer, amount and payment details.",
+      ],
+      [
+        "02",
+        "Payment",
+        "Record bank transfer, cash, POS or online payment against the transaction.",
+      ],
+      [
+        "03",
+        "Track",
+        "Keep revenue, invoices, payments and expenses in one place.",
+      ],
     ],
   },
   {
     name: "Elroi Hub",
     type: "Client build · Live",
-    summary: "A digital growth agency website designed to make a serious business feel credible and easy to approach.",
-    details: "A brand-led marketing experience with a clear path from positioning and services to proof and a strategy-call action.",
+    summary:
+      "A digital growth agency website designed to make a serious business feel credible and easy to approach.",
+    details:
+      "A brand-led marketing experience with a clear path from positioning and services to proof and a strategy-call action.",
     visual: "image",
-    image: "https://raw.githubusercontent.com/awesomeakokayo/ElroiHub/main/public/assets/hero-bg.png",
+    image:
+      "https://raw.githubusercontent.com/awesomeakokayo/ElroiHub/main/public/assets/hero-bg.png",
     visualClass: "aspect-[16/9]",
     visualLabel: "Project artwork",
-    live: "https://elroihub.com",
-    outcome: "A polished brand presence with a clear path from discovery to conversation.",
+    live: "https://elroihubllc.com",
+    outcome:
+      "A polished brand presence with a clear path from discovery to conversation.",
     color: "#9FE0C1",
     flow: [
-      ["01", "Position", "The opening message makes the company and its promise immediately understandable."],
-      ["02", "Services", "The experience turns abstract capabilities into concrete service areas."],
-      ["03", "Convert", "The visitor reaches a clear strategy-call path instead of a dead end."],
+      [
+        "01",
+        "Position",
+        "The opening message makes the company and its promise immediately understandable.",
+      ],
+      [
+        "02",
+        "Services",
+        "The experience turns abstract capabilities into concrete service areas.",
+      ],
+      [
+        "03",
+        "Convert",
+        "The visitor reaches a clear strategy-call path instead of a dead end.",
+      ],
     ],
   },
   {
     name: "TechSkillHub",
     type: "EdTech · Live",
-    summary: "A structured learning platform for developers who want a roadmap instead of a pile of links.",
-    details: "Onboarding, learning tracks, authenticated progress, content delivery and Paystack billing in one product.",
+    summary:
+      "A structured learning platform for developers who want a roadmap instead of a pile of links.",
+    details:
+      "Onboarding, learning tracks, authenticated progress, content delivery and Paystack billing in one product.",
     visual: "image",
-    image: "https://raw.githubusercontent.com/awesomeakokayo/Techhubs/main/app/opengraph-image.png",
+    image:
+      "https://raw.githubusercontent.com/awesomeakokayo/Techhubs/main/app/opengraph-image.png",
     visualClass: "aspect-[16/9]",
     live: "https://techskillhub.cv",
     outcome: "Learning journeys that show people what to learn next and why.",
     color: "#f4f3ef",
     flow: [
-      ["01", "Roadmap", "Start with an ordered learning path instead of a pile of disconnected resources."],
-      ["02", "Lesson", "Move through the next useful piece of work inside a focused track."],
-      ["03", "Progress", "Come back later and continue with your progress saved across devices."],
+      [
+        "01",
+        "Roadmap",
+        "Start with an ordered learning path instead of a pile of disconnected resources.",
+      ],
+      [
+        "02",
+        "Lesson",
+        "Move through the next useful piece of work inside a focused track.",
+      ],
+      [
+        "03",
+        "Progress",
+        "Come back later and continue with your progress saved across devices.",
+      ],
     ],
   },
   {
     name: "Southwest Flood Monitor",
     type: "Civic technology · Built",
-    summary: "A community flood-reporting product that uses AI-assisted image analysis to support local reports.",
-    details: "A field-first reporting flow that turns a photo, location and description into structured community data.",
+    summary:
+      "A community flood-reporting product that uses AI-assisted image analysis to support local reports.",
+    details:
+      "A field-first reporting flow that turns a photo, location and description into structured community data.",
     visual: "flood",
-    outcome: "A reporting flow that turns a photo and location into structured community data.",
+    outcome:
+      "A reporting flow that turns a photo and location into structured community data.",
     color: "#9FE0C1",
     flow: [
-      ["01", "Report", "Start with a photo, location and short description from the field."],
-      ["02", "Analyse", "AI assists image interpretation without replacing the person making the report."],
-      ["03", "Submit", "Turn the evidence into a structured report for monitoring and response."],
+      [
+        "01",
+        "Report",
+        "Start with a photo, location and short description from the field.",
+      ],
+      [
+        "02",
+        "Analyse",
+        "AI assists image interpretation without replacing the person making the report.",
+      ],
+      [
+        "03",
+        "Submit",
+        "Turn the evidence into a structured report for monitoring and response.",
+      ],
     ],
   },
   {
     name: "CCU Journal Platform",
     type: "Academic publishing · Built",
-    summary: "A journal management platform for submission, review, publishing and public access.",
-    details: "The JOURNAL repository contains separate public and admin flows, including submissions, archives, authentication and editorial review.",
+    summary:
+      "A journal management platform for submission, review, publishing and public access.",
+    details:
+      "The JOURNAL repository contains separate public and admin flows, including submissions, archives, authentication and editorial review.",
     visual: "brand",
-    image: "https://raw.githubusercontent.com/awesomeakokayo/JOURNAL/main/journal-platform/public/CCULOGO.png",
+    image:
+      "https://raw.githubusercontent.com/awesomeakokayo/JOURNAL/main/journal-platform/public/CCULOGO.png",
     visualLabel: "Institution asset",
-    live: "https://github.com/awesomeakokayo/JOURNAL",
-    outcome: "A full editorial workflow from manuscript submission to published journal access.",
+    live: "https://journal-nine-ruby.vercel.app",
+    outcome:
+      "A full editorial workflow from manuscript submission to published journal access.",
     color: "#ff5c00",
     flow: [
-      ["01", "Submit", "Authors create accounts and submit manuscripts through the public platform."],
-      ["02", "Review", "Admins can review, edit, approve or reject submissions."],
-      ["03", "Publish", "Published work is available through archives and public download flows."]
-    ]
+      [
+        "01",
+        "Submit",
+        "Authors create accounts and submit manuscripts through the public platform.",
+      ],
+      [
+        "02",
+        "Review",
+        "Admins can review, edit, approve or reject submissions.",
+      ],
+      [
+        "03",
+        "Publish",
+        "Published work is available through archives and public download flows.",
+      ],
+    ],
   },
   {
     name: "AE-FUNAI Journal",
     type: "Academic publishing · Built",
-    summary: "A publication platform covering author submission, editorial review and public journal access.",
-    details: "The frontend and backend repositories form a full journal publication system with JWT authentication, submissions, admin publishing and public search/download.",
+    summary:
+      "A publication platform covering author submission, editorial review and public journal access.",
+    details:
+      "The frontend and backend repositories form a full journal publication system with JWT authentication, submissions, admin publishing and public search/download.",
     visual: "brand",
-    image: "https://raw.githubusercontent.com/awesomeakokayo/AE-FUNAI-journal-frontend/main/aefunai_logo.png",
+    image:
+      "https://raw.githubusercontent.com/awesomeakokayo/AE-FUNAI-journal-frontend/main/aefunai_logo.png",
     visualLabel: "Institution asset",
-    live: "https://github.com/awesomeakokayo/AE-FUNAI-journal-frontend",
-    outcome: "A structured publishing workflow with public discovery and administrative control.",
+    live: "https://aefunaijedu.com",
+    outcome:
+      "A structured publishing workflow with public discovery and administrative control.",
     color: "#9FE0C1",
     flow: [
-      ["01", "Author", "Register, authenticate and submit a paper with title, authors, abstract and file."],
-      ["02", "Editor", "Review submissions and move them through approval and publication."],
-      ["03", "Reader", "Search and download published journals without needing an account."]
-    ]
+      [
+        "01",
+        "Author",
+        "Register, authenticate and submit a paper with title, authors, abstract and file.",
+      ],
+      [
+        "02",
+        "Editor",
+        "Review submissions and move them through approval and publication.",
+      ],
+      [
+        "03",
+        "Reader",
+        "Search and download published journals without needing an account.",
+      ],
+    ],
   },
   {
     name: "Blancquake Foundation",
     type: "Advocacy platform · Built",
-    summary: "A public-facing foundation website built around mission, impact, people and community action.",
-    details: "The project repo includes real impact photography, mission imagery, team photography and a production hero experience.",
+    summary:
+      "A public-facing foundation website built around mission, impact, people and community action.",
+    details:
+      "The project repo includes real impact photography, mission imagery, team photography and a production hero experience.",
     visual: "image",
-    image: "https://raw.githubusercontent.com/awesomeakokayo/Blancquake_site/main/app/public/images/hero-poster.jpg",
+    image:
+      "https://raw.githubusercontent.com/awesomeakokayo/Blancquake_site/main/app/public/images/hero-poster.jpg",
     visualClass: "aspect-[16/9]",
     visualLabel: "Project photography",
-    live: "https://github.com/awesomeakokayo/Blancquake_site",
-    outcome: "A visual public presence that gives the organisation a stronger story to stand behind.",
+    live: "https://blancquakefoundation.org",
+    outcome:
+      "A visual public presence that gives the organisation a stronger story to stand behind.",
     color: "#f4f3ef",
     flow: [
-      ["01", "Mission", "Lead with the organisation's purpose and the people it serves."],
+      [
+        "01",
+        "Mission",
+        "Lead with the organisation's purpose and the people it serves.",
+      ],
       ["02", "Impact", "Use real project imagery to make the work tangible."],
-      ["03", "Action", "Guide visitors from understanding the mission toward engagement."]
-    ]
-  },];
+      [
+        "03",
+        "Action",
+        "Guide visitors from understanding the mission toward engagement.",
+      ],
+    ],
+  },
+];
 
 function BrandVisual({ project }) {
   return (
