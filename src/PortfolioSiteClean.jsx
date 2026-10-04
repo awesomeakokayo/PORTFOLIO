@@ -231,11 +231,99 @@ export default function PortfolioSiteClean() {
           </div>
         </section>
 
-        <section className="border-b-4 border-[#080808] bg-[#9FE0C1] text-[#080808]"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow light number="05">The process</Eyebrow><div className="mt-7 grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20"><h2 className="text-4xl leading-[0.96] sm:text-5xl" style={display}>From conversation to launch.</h2><div className="divide-y divide-white/10">{process.map(([number,title,text])=><div key={number} className="grid gap-4 py-7 sm:grid-cols-[70px_170px_1fr]"><span className="text-xs text-[#ff5c00]" style={mono}>{number}</span><h3 className="text-xl" style={display}>{title}</h3><p className="text-sm leading-6 text-[#b8b7b1]">{text}</p></div>)}</div></div></div></section>
+        <section className="border-b-4 border-[#080808] bg-[#9FE0C1] text-[#080808]">
+          <div className="mx-auto max-w-7xl px-5 py-14 sm:px-7 sm:py-18 md:py-24 lg:px-10 xl:px-16">
+            <div className="grid gap-8 lg:grid-cols-[0.62fr_1.38fr] lg:gap-14 lg:items-start">
+              <div>
+                <div className="flex items-center justify-between border-b-2 border-[#080808] pb-4">
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-[#ff5c00]" style={mono}>05 / The process</p>
+                  <span className="border-2 border-[#080808] bg-[#f4f3ef] px-2 py-1 text-[9px] font-bold text-[#080808]" style={mono}>01→05</span>
+                </div>
+                <h2 className="mt-5 text-4xl leading-[0.9] sm:text-5xl md:text-6xl" style={display}>From conversation to launch.</h2>
+                <p className="mt-5 max-w-md text-sm leading-6 text-[#292a28]">Five practical moves. No mysterious hand-off between “design” and “development.”</p>
+                <div className="mt-7 grid grid-cols-5 gap-1.5 lg:grid-cols-1 lg:gap-2">
+                  {process.map(([number,title], index) => (
+                    <div key={number} className="border-2 border-[#080808] bg-[#f4f3ef] p-2.5 lg:flex lg:items-center lg:gap-3">
+                      <span className="text-[10px] font-bold text-[#ff5c00]" style={mono}>{number}</span>
+                      <span className="mt-1 block text-[9px] font-bold uppercase tracking-[0.09em] text-[#080808] lg:mt-0" style={mono}>{title}</span>
+                      {index < 4 && <span className="hidden text-[#666] lg:block">↓</span>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="border-2 border-[#080808] bg-[#080808] p-4 shadow-[0_7px_0_#080808] sm:p-5">
+                <div className="divide-y divide-white/15">
+                  {process.map(([number,title,text])=>(
+                    <article key={number} className="grid gap-3 py-5 first:pt-1 sm:grid-cols-[56px_150px_1fr] sm:gap-4">
+                      <span className="text-xs font-bold text-[#ffb36b]" style={mono}>{number}</span>
+                      <h3 className="text-2xl leading-none text-[#f4f3ef]" style={display}>{title}</h3>
+                      <p className="text-sm leading-6 text-[#d7d6d0]">{text}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        <section id="skills" className="border-b-4 border-[#080808] bg-[#f4f3ef] text-[#080808]"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="06">Technical toolkit</Eyebrow><div className="mt-8 grid gap-4 md:grid-cols-2">{skills.map(([title,text])=><div key={title} className="rounded-[20px] border border-white/10 p-6"><p className="text-xs uppercase tracking-[0.16em] text-[#ff5c00]" style={mono}>{title}</p><p className="mt-4 text-sm leading-7 text-[#b8b7b1]">{text}</p></div>)}</div></div></section>
+        <section id="skills" className="border-b-4 border-[#080808] bg-[#f4f3ef] text-[#080808]">
+          <div className="mx-auto max-w-7xl px-5 py-14 sm:px-7 sm:py-18 md:py-24 lg:px-10 xl:px-16">
+            <div className="grid gap-8 lg:grid-cols-[0.5fr_1.5fr] lg:gap-14 lg:items-start">
+              <div>
+                <div className="flex items-center justify-between border-b-2 border-[#080808] pb-4">
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-[#ff5c00]" style={mono}>06 / Technical toolkit</p>
+                  <span className="h-5 w-5 border-2 border-[#080808] bg-[#ff5c00]" />
+                </div>
+                <h2 className="mt-5 text-4xl leading-[0.9] sm:text-5xl md:text-6xl" style={display}>The tools behind the screen.</h2>
+                <p className="mt-5 max-w-md text-sm leading-6 text-[#4e4c47]">The visible interface is only one layer. These are the systems I work across to get the product running.</p>
+                <div className="mt-7 border-2 border-[#080808] bg-[#080808] p-4 text-[#f4f3ef] shadow-[0_6px_0_#ff5c00]">
+                  <p className="text-[9px] uppercase tracking-[0.15em] text-[#ffb36b]" style={mono}>Stack signal</p>
+                  <p className="mt-2 text-2xl leading-none" style={display}>Frontend + backend + data + AI.</p>
+                </div>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {skills.map(([title,text], index)=>(
+                  <article key={title} className="border-2 border-[#080808] bg-white p-5 shadow-[0_4px_0_#080808] transition hover:-translate-y-1">
+                    <div className="flex items-start justify-between gap-3">
+                      <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#ff5c00]" style={mono}>{title}</p>
+                      <span className="flex h-7 w-7 items-center justify-center border-2 border-[#080808] bg-[#9FE0C1] text-[9px] font-bold text-[#080808]" style={mono}>{String(index+1).padStart(2,"0")}</span>
+                    </div>
+                    <p className="mt-4 text-sm leading-6 text-[#2f2e2a]">{text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
 
-        <section id="about" className="border-b border-white/10 bg-[#080808]"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="07">About</Eyebrow><div className="mt-7 grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20"><h2 className="text-4xl leading-[0.96] sm:text-5xl md:text-6xl" style={display}>Software engineering with product judgment.</h2><div className="space-y-5 text-sm leading-7 text-[#b8b7b1]"><p>I’m a software engineer who enjoys taking products from unclear requirements to working software. I care about the details between the screens: data models, API contracts, authentication, integrations, testing, deployment and the decisions that make a product reliable after launch.</p><p>I work comfortably across frontend and backend systems, collaborate closely with designers, and use AI tools as engineering leverage without outsourcing technical judgment.</p><p>B.Sc. Computer Science · Coal City University · Graduated July 2026.</p></div></div></div></section>
+        <section id="about" className="border-b border-white/10 bg-[#080808]">
+          <div className="mx-auto max-w-7xl px-5 py-14 sm:px-7 sm:py-18 md:py-24 lg:px-10 xl:px-16">
+            <div className="grid gap-9 lg:grid-cols-[0.65fr_1.35fr] lg:gap-14">
+              <div>
+                <Eyebrow number="07">About</Eyebrow>
+                <div className="mt-6 border-2 border-[#f4f3ef]/20 bg-[#10100f] p-4 shadow-[0_7px_0_#ff5c00]">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="border-2 border-[#080808] bg-[#f4f3ef] p-3 text-[#080808]"><p className="text-[9px] uppercase text-[#666]" style={mono}>Based</p><p className="mt-1 text-sm font-bold" style={mono}>Nigeria</p></div>
+                    <div className="border-2 border-[#080808] bg-[#9FE0C1] p-3 text-[#080808]"><p className="text-[9px] uppercase text-[#666]" style={mono}>Mode</p><p className="mt-1 text-sm font-bold" style={mono}>Remote</p></div>
+                    <div className="border-2 border-[#080808] bg-[#ff5c00] p-3 text-[#080808]"><p className="text-[9px] uppercase text-[#666]" style={mono}>Degree</p><p className="mt-1 text-sm font-bold" style={mono}>B.Sc. CS</p></div>
+                    <div className="border-2 border-[#080808] bg-[#f4f3ef] p-3 text-[#080808]"><p className="text-[9px] uppercase text-[#666]" style={mono}>Graduated</p><p className="mt-1 text-sm font-bold" style={mono}>2026</p></div>
+                  </div>
+                  <p className="mt-4 text-[9px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Product builder / full-stack / AI-native</p>
+                </div>
+              </div>
+              <div>
+                <h2 className="max-w-4xl text-4xl leading-[0.92] sm:text-5xl md:text-6xl" style={display}>Software engineering with product judgment.</h2>
+                <div className="mt-7 grid gap-5 border-t border-white/10 pt-6 text-sm leading-7 text-[#b8b7b1] md:grid-cols-2">
+                  <p>I’m a software engineer who enjoys taking products from unclear requirements to working software. I care about the details between the screens: data models, API contracts, authentication, integrations, testing, deployment and the decisions that make a product reliable after launch.</p>
+                  <div className="space-y-5">
+                    <p>I work comfortably across frontend and backend systems, collaborate closely with designers, and use AI tools as engineering leverage without outsourcing technical judgment.</p>
+                    <p className="border-l-2 border-[#ff5c00] pl-4 text-[#f4f3ef]">B.Sc. Computer Science · Coal City University · Graduated July 2026.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section id="contact" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-24 sm:px-7 md:py-32 lg:px-10 xl:px-16">
           <Eyebrow number="08">Start a project</Eyebrow>
