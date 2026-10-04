@@ -12,6 +12,38 @@ const services = [
   { icon: Rocket, title: "Idea → production", text: "I take ambiguous ideas through product thinking, interface design, engineering, testing, deployment and post-build refinement." },
 ];
 
+const pricing = [
+  {
+    label: "Websites",
+    price: "From ₦500,000",
+    international: "International projects from $1,500",
+    text: "For landing pages, company websites, service businesses and polished marketing sites that need to earn trust and enquiries.",
+    features: ["Custom interface and responsive build", "Contact / enquiry flow", "SEO foundations and deployment"],
+  },
+  {
+    label: "Web products",
+    price: "From ₦1,500,000",
+    international: "International projects quoted from scope",
+    text: "For SaaS products, dashboards, portals and business systems where the website needs to actually do something.",
+    features: ["Frontend + backend engineering", "Authentication, data and APIs", "Testing, deployment and handover"],
+    featured: true,
+  },
+  {
+    label: "Mobile + AI",
+    price: "From ₦2,000,000",
+    international: "International projects quoted from scope",
+    text: "For cross-platform mobile apps, AI workflows, automations and products with more moving parts.",
+    features: ["Product architecture and build", "AI / API integrations where needed", "Production launch and refinement"],
+  },
+];
+
+const contactBudgetOptions = [
+  "Below ₦500k",
+  "₦500k – ₦1m",
+  "₦1m – ₦2m",
+  "₦2m+",
+];
+
 const process = [
   ["01", "Understand", "Clarify the problem, users and desired outcome before jumping into implementation."],
   ["02", "Shape", "Turn the idea into practical product flows, architecture and a clear build plan."],
@@ -82,7 +114,7 @@ function Eyebrow({ number, children }) {
 }
 
 function Nav({ open, setOpen }) {
-  const links = [["Work", "#work"], ["Experience", "#experience"], ["About", "#about"], ["Skills", "#skills"]];
+  const links = [["Work", "#work"], ["Pricing", "#pricing"], ["Experience", "#experience"], ["About", "#about"], ["Skills", "#skills"]];
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#080808]/90 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-7 lg:h-[76px] lg:px-10 xl:px-16">
@@ -98,6 +130,34 @@ function Nav({ open, setOpen }) {
 
 export default function PortfolioSiteClean() {
   const [open, setOpen] = useState(false);
+
+  const handleProjectSubmit = (event) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const name = form.get("name")?.toString().trim();
+    const email = form.get("email")?.toString().trim();
+    const company = form.get("company")?.toString().trim();
+    const projectType = form.get("projectType")?.toString().trim();
+    const budget = form.get("budget")?.toString().trim();
+    const timeline = form.get("timeline")?.toString().trim();
+    const brief = form.get("brief")?.toString().trim();
+
+    const body = [
+      `Name: ${name || "Not provided"}`,
+      `Email: ${email || "Not provided"}`,
+      `Company / organisation: ${company || "Not provided"}`,
+      `Project type: ${projectType || "Not provided"}`,
+      `Budget: ${budget || "Not provided"}`,
+      `Timeline: ${timeline || "Not provided"}`,
+      "",
+      "Project brief:",
+      brief || "Not provided",
+    ].join("\n");
+
+    window.location.href =
+      `mailto:awesomeakokayo@gmail.com?subject=${encodeURIComponent("New project enquiry")}\u0026body=${encodeURIComponent(body)}`;
+  };
+
   return (
     <div id="top" className="min-h-screen bg-[#080808] text-[#f4f3ef]" style={body}>
       <Nav open={open} setOpen={setOpen} />
@@ -111,7 +171,10 @@ export default function PortfolioSiteClean() {
               <h1 className="mx-auto mt-7 max-w-6xl text-[3.25rem] font-semibold leading-[0.91] tracking-[-0.045em] sm:text-6xl md:text-7xl lg:text-[7.2rem] xl:text-[8rem]" style={display}>I build software products from <span className="text-[#ff5c00]">idea to production.</span></h1>
               <p className="mx-auto mt-8 max-w-2xl text-base leading-7 text-[#b8b7b1] md:text-lg md:leading-8">Software engineer building and shipping web, mobile and AI-integrated products across frontend, backend, data, integrations, testing and deployment.</p>
               <div className="mt-9 flex flex-wrap justify-center gap-3"><a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-[#ff5c00] px-6 py-3.5 text-sm font-bold text-[#080808]" style={mono}>Work with me <ArrowRight className="h-4 w-4" /></a><a href="#work" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm font-bold" style={mono}>See selected work <ArrowRight className="h-4 w-4" /></a></div>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-2">{["TypeScript", "React", "Next.js", "Python", "FastAPI", "AI", "PostgreSQL"].map(item => <span key={item} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] text-[#b8b7b1]" style={mono}>{item}</span>)}</div>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+                <span className="rounded-full border border-[#ff5c00]/30 bg-[#ff5c00]/10 px-3 py-1.5 text-[11px] text-[#ffb36b]" style={mono}>Client projects from ₦500k</span>
+                {["TypeScript", "React", "Next.js", "Python", "FastAPI", "AI", "PostgreSQL"].map(item => <span key={item} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] text-[#b8b7b1]" style={mono}>{item}</span>)}
+              </div>
             </div>
           </div>
         </section>
@@ -124,13 +187,66 @@ export default function PortfolioSiteClean() {
 
         <section id="services" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="03">How I help</Eyebrow><h2 className="mt-5 max-w-4xl text-4xl leading-[0.96] sm:text-5xl md:text-6xl" style={display}>You bring the problem. I help build the product.</h2><div className="mt-12 grid gap-4 md:grid-cols-3">{services.map(({icon:Icon,title,text})=><div key={title} className="rounded-[20px] border border-white/10 bg-[#10100f] p-7 transition hover:border-[#ff5c00]/40 hover:bg-[#121210]"><Icon className="h-6 w-6 text-[#ff5c00]"/><h3 className="mt-7 text-xl" style={display}>{title}</h3><p className="mt-4 text-sm leading-6 text-[#b8b7b1]">{text}</p></div>)}</div></div></section>
 
-        <section className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="04">The process</Eyebrow><div className="mt-7 grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20"><h2 className="text-4xl leading-[0.96] sm:text-5xl" style={display}>From conversation to launch.</h2><div className="divide-y divide-white/10">{process.map(([number,title,text])=><div key={number} className="grid gap-4 py-7 sm:grid-cols-[70px_170px_1fr]"><span className="text-xs text-[#ff5c00]" style={mono}>{number}</span><h3 className="text-xl" style={display}>{title}</h3><p className="text-sm leading-6 text-[#b8b7b1]">{text}</p></div>)}</div></div></div></section>
+        <section id="pricing" className="border-b border-white/10 bg-[#0b0b0a]">
+          <div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16">
+            <Eyebrow number="04">Typical project starting points</Eyebrow>
+            <div className="mt-5 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+              <h2 className="max-w-4xl text-4xl leading-[0.96] sm:text-5xl md:text-6xl" style={display}>Clear enough to qualify. Flexible enough to scope properly.</h2>
+              <p className="max-w-md text-sm leading-6 text-[#b8b7b1]">These are starting points, not mystery quotes. Final pricing depends on scope, integrations and the product decisions we make together.</p>
+            </div>
+            <div className="mt-12 grid gap-4 lg:grid-cols-3">
+              {pricing.map((item) => (
+                <article key={item.label} className={`rounded-[24px] border p-7 sm:p-8 ${item.featured ? "border-[#ff5c00]/50 bg-[#15110d]" : "border-white/10 bg-[#10100f]"}`}>
+                  {item.featured && <span className="inline-flex rounded-full bg-[#ff5c00] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#080808]" style={mono}>Most common for product work</span>}
+                  <p className="mt-3 text-[11px] uppercase tracking-[0.16em] text-[#ff5c00]" style={mono}>{item.label}</p>
+                  <h3 className="mt-4 text-4xl leading-none sm:text-5xl" style={display}>{item.price}</h3>
+                  <p className="mt-3 text-xs uppercase tracking-[0.12em] text-[#73716a]" style={mono}>{item.international}</p>
+                  <p className="mt-6 text-sm leading-6 text-[#b8b7b1]">{item.text}</p>
+                  <div className="mt-7 space-y-3 border-t border-white/10 pt-6">
+                    {item.features.map(feature => <div key={feature} className="flex items-start gap-3 text-sm leading-6 text-[#f4f3ef]"><Check className="mt-1 h-4 w-4 shrink-0 text-[#ffb36b]"/><span>{feature}</span></div>)}
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div className="mt-7 flex flex-col gap-2 rounded-[18px] border border-white/10 bg-white/[0.03] p-5 sm:flex-row sm:items-center sm:justify-between">
+              <span className="text-sm text-[#f4f3ef]">Ongoing product support & improvements</span>
+              <span className="text-xs uppercase tracking-[0.12em] text-[#9c9b94]" style={mono}>From ₦100,000 / month · scoped monthly</span>
+            </div>
+          </div>
+        </section>
 
-        <section id="skills" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="05">Technical toolkit</Eyebrow><div className="mt-8 grid gap-4 md:grid-cols-2">{skills.map(([title,text])=><div key={title} className="rounded-[20px] border border-white/10 p-6"><p className="text-xs uppercase tracking-[0.16em] text-[#ff5c00]" style={mono}>{title}</p><p className="mt-4 text-sm leading-7 text-[#b8b7b1]">{text}</p></div>)}</div></div></section>
+        <section className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="05">The process</Eyebrow><div className="mt-7 grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20"><h2 className="text-4xl leading-[0.96] sm:text-5xl" style={display}>From conversation to launch.</h2><div className="divide-y divide-white/10">{process.map(([number,title,text])=><div key={number} className="grid gap-4 py-7 sm:grid-cols-[70px_170px_1fr]"><span className="text-xs text-[#ff5c00]" style={mono}>{number}</span><h3 className="text-xl" style={display}>{title}</h3><p className="text-sm leading-6 text-[#b8b7b1]">{text}</p></div>)}</div></div></div></section>
 
-        <section id="about" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="06">About</Eyebrow><div className="mt-7 grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20"><h2 className="text-4xl leading-[0.96] sm:text-5xl md:text-6xl" style={display}>Software engineering with product judgment.</h2><div className="space-y-5 text-sm leading-7 text-[#b8b7b1]"><p>I’m a software engineer who enjoys taking products from unclear requirements to working software. I care about the details between the screens: data models, API contracts, authentication, integrations, testing, deployment and the decisions that make a product reliable after launch.</p><p>I work comfortably across frontend and backend systems, collaborate closely with designers, and use AI tools as engineering leverage without outsourcing technical judgment.</p><p>B.Sc. Computer Science · Coal City University · Graduated July 2026.</p></div></div></div></section>
+        <section id="skills" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="06">Technical toolkit</Eyebrow><div className="mt-8 grid gap-4 md:grid-cols-2">{skills.map(([title,text])=><div key={title} className="rounded-[20px] border border-white/10 p-6"><p className="text-xs uppercase tracking-[0.16em] text-[#ff5c00]" style={mono}>{title}</p><p className="mt-4 text-sm leading-7 text-[#b8b7b1]">{text}</p></div>)}</div></div></section>
 
-        <section id="contact"><div className="mx-auto max-w-7xl px-5 py-24 sm:px-7 md:py-32 lg:px-10 xl:px-16"><Eyebrow number="07">Contact</Eyebrow><div className="mx-auto mt-7 max-w-5xl text-center"><h2 className="text-5xl leading-[0.92] sm:text-6xl md:text-7xl lg:text-8xl" style={display}>Have a product to build?</h2><p className="mx-auto mt-7 max-w-xl text-base leading-7 text-[#b8b7b1]">Let’s talk about the problem, the product and what it will take to ship it well.</p><a href="mailto:awesomeakokayo@gmail.com" className="mt-9 inline-flex items-center gap-2 rounded-full bg-[#ff5c00] px-7 py-4 text-sm font-bold text-[#080808]" style={mono}>awesomeakokayo@gmail.com <ArrowUpRight className="h-4 w-4" /></a></div></div></section>
+        <section id="about" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-7 md:py-28 lg:px-10 xl:px-16"><Eyebrow number="07">About</Eyebrow><div className="mt-7 grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20"><h2 className="text-4xl leading-[0.96] sm:text-5xl md:text-6xl" style={display}>Software engineering with product judgment.</h2><div className="space-y-5 text-sm leading-7 text-[#b8b7b1]"><p>I’m a software engineer who enjoys taking products from unclear requirements to working software. I care about the details between the screens: data models, API contracts, authentication, integrations, testing, deployment and the decisions that make a product reliable after launch.</p><p>I work comfortably across frontend and backend systems, collaborate closely with designers, and use AI tools as engineering leverage without outsourcing technical judgment.</p><p>B.Sc. Computer Science · Coal City University · Graduated July 2026.</p></div></div></div></section>
+
+        <section id="contact" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-24 sm:px-7 md:py-32 lg:px-10 xl:px-16">
+          <Eyebrow number="08">Start a project</Eyebrow>
+          <div className="mt-7 grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+            <div>
+              <h2 className="text-5xl leading-[0.92] sm:text-6xl md:text-7xl" style={display}>Tell me what you’re trying to build.</h2>
+              <p className="mt-7 max-w-xl text-base leading-7 text-[#b8b7b1]">Email is the fastest way to reach me. This form simply turns the details into a ready-to-send project brief.</p>
+              <div className="mt-8 rounded-[20px] border border-white/10 bg-white/[0.03] p-5">
+                <p className="text-[10px] uppercase tracking-[0.16em] text-[#73716a]" style={mono}>Direct email</p>
+                <a href="mailto:awesomeakokayo@gmail.com" className="mt-2 inline-flex items-center gap-2 text-sm font-semibold hover:text-[#ffb36b]" style={mono}>awesomeakokayo@gmail.com <ArrowUpRight className="h-4 w-4"/></a>
+              </div>
+            </div>
+
+            <form onSubmit={handleProjectSubmit} className="rounded-[24px] border border-white/10 bg-[#10100f] p-6 sm:p-8">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Name</span><input required name="name" className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none placeholder:text-[#73716a]" placeholder="Your name" /></label>
+                <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Email</span><input required type="email" name="email" className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none placeholder:text-[#73716a]" placeholder="you@company.com" /></label>
+                <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Company / organisation</span><input name="company" className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none placeholder:text-[#73716a]" placeholder="Company name" /></label>
+                <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Project type</span><select required name="projectType" className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none"><option value="">Select one</option><option>Website</option><option>Web application / SaaS</option><option>Mobile app</option><option>AI integration / automation</option><option>Something else</option></select></label>
+                <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Budget</span><select required name="budget" className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none"><option value="">Choose a range</option>{contactBudgetOptions.map(option => <option key={option}>{option}</option>)}</select></label>
+                <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Timeline</span><select required name="timeline" className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none"><option value="">Choose one</option><option>ASAP</option><option>2–4 weeks</option><option>1–2 months</option><option>2–3 months</option><option>Flexible</option></select></label>
+              </div>
+              <label className="mt-5 block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>What are you trying to build?</span><textarea required name="brief" rows="6" className="mt-2 w-full resize-y rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm leading-6 text-[#f4f3ef] outline-none placeholder:text-[#73716a]" placeholder="Give me the short version. What is the problem, who is it for, and what do you need the product to do?"></textarea></label>
+              <button type="submit" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#ff5c00] px-6 py-3.5 text-sm font-bold text-[#080808]" style={mono}>Prepare the email <ArrowRight className="h-4 w-4"/></button>
+            </form>
+          </div>
+        </div></section>
       </main>
       <footer className="border-t border-white/10"><div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-7 text-xs text-[#9c9b94] sm:px-7 md:flex-row md:items-center md:justify-between lg:px-10 xl:px-16" style={mono}><span>© 2026 Awesome Akokayo</span><div className="flex gap-5"><a href="https://github.com/awesomeakokayo" target="_blank" rel="noreferrer" className="hover:text-white">GitHub</a><a href="https://www.linkedin.com/in/awesomeakokayo" target="_blank" rel="noreferrer" className="hover:text-white">LinkedIn</a></div></div></footer>
     </div>
