@@ -4,7 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        base:      'var(--bg-base)',
+        // NB: a color literally named "base" makes Tailwind emit
+        // `.text-base { color: var(--bg-base) }`, which collides with the
+        // built-in `text-base` font-size utility and silently turns every
+        // `text-base` element black. Keep this token non-colliding.
+        canvas:    'var(--bg-base)',
         surface:   'var(--bg-surface)',
         elevated:  'var(--bg-elevated)',
         accent:    'var(--accent)',
