@@ -3,6 +3,7 @@ import PortfolioSiteClean from './PortfolioSiteClean.jsx';
 import FramerMotionLayer from './FramerMotionLayer.jsx';
 import LeadFunnel from './LeadFunnel.jsx';
 import WhatsAppCTA from './WhatsAppCTA.jsx';
+import BackToTop from './BackToTop.jsx';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <PortfolioSiteClean />
       <LeadFunnel />
       <WhatsAppCTA />
+      <BackToTop />
     </>
   );
 }

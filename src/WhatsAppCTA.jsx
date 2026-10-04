@@ -12,7 +12,7 @@ export default function WhatsAppCTA() {
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="fixed bottom-[5.75rem] right-5 z-[69] inline-flex items-center gap-2 rounded-full border border-[#25D366]/40 bg-[#0d1711] px-4 py-3 text-xs font-bold text-[#d8ffe5] shadow-[0_14px_45px_rgba(0,0,0,.3)] transition hover:-translate-y-1 hover:border-[#25D366]/70 md:bottom-7 md:right-[175px]"
+      className="fixed bottom-[5.75rem] right-5 z-[69] inline-flex items-center gap-2 rounded-full border border-[#25D366]/40 bg-[#0d1711] px-4 py-3 text-xs font-bold text-[#d8ffe5] shadow-[0_14px_45px_rgba(0,0,0,.3)] transition hover:-translate-y-1 hover:border-[#25D366]/70 md:bottom-7 md:right-[205px]"
       aria-label="Chat with Awesome Akokayo on WhatsApp"
       style={{ fontFamily: "'Space Mono', monospace" }}
     >
