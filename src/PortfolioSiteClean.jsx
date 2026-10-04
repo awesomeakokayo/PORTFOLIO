@@ -227,10 +227,10 @@ export default function PortfolioSiteClean() {
           <div className="mt-7 grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
             <div>
               <h2 className="text-5xl leading-[0.92] sm:text-6xl md:text-7xl" style={display}>Tell me what you’re trying to build.</h2>
-              <p className="mt-7 max-w-xl text-base leading-7 text-[#b8b7b1]">Email is the fastest way to reach me. This form simply turns the details into a ready-to-send project brief.</p>
+              <p className="mt-7 max-w-xl text-base leading-7 text-[#b8b7b1]">Prefer WhatsApp? Message me directly and I’ll get back to you there. For detailed projects, the form gives me enough context to make the first reply useful.</p>
               <div className="mt-8 rounded-[20px] border border-white/10 bg-white/[0.03] p-5">
                 <p className="text-[10px] uppercase tracking-[0.16em] text-[#73716a]" style={mono}>Direct email</p>
-                <a href="mailto:awesomeakokayo@gmail.com" className="mt-2 inline-flex items-center gap-2 text-sm font-semibold hover:text-[#ffb36b]" style={mono}>awesomeakokayo@gmail.com <ArrowUpRight className="h-4 w-4"/></a>
+                <div className="mt-3 flex flex-col gap-3"><a href="mailto:awesomeakokayo@gmail.com" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-[#ffb36b]" style={mono}>awesomeakokayo@gmail.com <ArrowUpRight className="h-4 w-4"/></a><a href="https://wa.me/2349020372640?text=Hi%20Awesome%2C%20I%20found%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noreferrer" className="inline-flex w-fit items-center gap-2 rounded-full border border-[#25D366]/40 bg-[#0d1711] px-4 py-2.5 text-xs font-bold text-[#d8ffe5] hover:border-[#25D366]/70" style={mono}>WhatsApp: +234 902 037 2640 <ArrowUpRight className="h-4 w-4"/></a></div>
               </div>
             </div>
 
