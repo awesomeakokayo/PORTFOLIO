@@ -232,7 +232,7 @@ export default function PortfolioSiteClean() {
         </section>
 
         <section className="border-b-4 border-[#080808] bg-[#9FE0C1] text-[#080808]">
-          <div className="mx-auto max-w-7xl px-5 py-14 sm:px-7 sm:py-18 md:py-24 lg:px-10 xl:px-16">
+          <div className="mx-auto max-w-7xl px-5 py-14 sm:px-7 sm:py-16 md:py-24 lg:px-10 xl:px-16">
             <div className="grid gap-8 lg:grid-cols-[0.62fr_1.38fr] lg:gap-14 lg:items-start">
               <div>
                 <div className="flex items-center justify-between border-b-2 border-[#080808] pb-4">
