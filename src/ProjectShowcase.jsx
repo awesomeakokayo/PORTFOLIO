@@ -13,7 +13,7 @@ const showcases = [
     details: "A real product built around the everyday mess of running business finances from Canva files, notebooks and memory.",
     visual: "image",
     image: "https://raw.githubusercontent.com/awesomeakokayo/OpenBooks/main/public/image.png",
-    visualClass: "aspect-[1.88/1]",
+    visualClass: "aspect-[16/9]",
     live: "https://www.openbooks.click",
     outcome: "Invoices, customer records and payment history in one workspace.",
     color: "#ff5c00",
@@ -45,7 +45,7 @@ const showcases = [
     details: "Onboarding, learning tracks, authenticated progress, content delivery and Paystack billing in one product.",
     visual: "image",
     image: "https://raw.githubusercontent.com/awesomeakokayo/Techhubs/main/app/opengraph-image.png",
-    visualClass: "aspect-[1.78/1]",
+    visualClass: "aspect-[16/9]",
     live: "https://techskillhub.cv",
     outcome: "Learning journeys that show people what to learn next and why.",
     color: "#f4f3ef",
@@ -93,7 +93,7 @@ function FanPanel({ project, index, active, onClick, style }) {
       type="button"
       aria-label={`View ${project.name}`}
       onClick={onClick}
-      className={`fan-panel absolute left-1/2 top-0 h-full w-[86%] -translate-x-1/2 text-left sm:w-[70%] lg:w-[58%] ${active ? "z-30 cursor-grab active:cursor-grabbing" : "z-10 cursor-pointer"}`}
+      className={`fan-panel absolute left-1/2 top-0 h-full w-[92%] -translate-x-1/2 text-left sm:w-[72%] lg:w-[60%] ${active ? "z-30 cursor-grab active:cursor-grabbing" : "z-10 cursor-pointer"}`}
       style={style}
     >
       <div className={`h-full overflow-hidden border-4 border-[#080808] bg-[#f4f3ef] shadow-[0_12px_0_#080808] ${active ? "ring-4 ring-[#ff5c00] ring-offset-4 ring-offset-[#f4f3ef]" : ""}`}>
@@ -102,7 +102,7 @@ function FanPanel({ project, index, active, onClick, style }) {
           <span className="text-[9px] uppercase tracking-[0.16em] text-[#ffb36b]" style={mono}>{project.type.split(" · ")[0]}</span>
         </div>
         <div className="flex h-[calc(100%-49px)] flex-col p-4 sm:p-5">
-          <div className="min-h-0 flex-1">
+          <div className="min-h-0 flex-1 overflow-hidden">
             <Visual project={project} />
           </div>
           <div className="mt-4 border-t-2 border-[#080808] pt-4">
@@ -190,14 +190,14 @@ export default function ProjectShowcase() {
         <div className="border-b-4 border-[#080808] p-5 sm:p-7 lg:border-b-0 lg:border-r-4 lg:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.17em] text-[#080808]" style={mono}>05 / Fold-out project wall</p>
-              <h2 className="mt-3 text-4xl leading-[0.9] text-[#080808] sm:text-5xl" style={display}>Pull the next build into view.</h2>
+              <p className="text-[10px] font-bold uppercase tracking-[0.17em] text-[#080808]" style={mono}>01 / Fold-out project wall</p>
+              <h2 className="mt-3 max-w-xl text-3xl leading-[0.9] text-[#080808] sm:text-5xl" style={display}>Pull the next build into view.</h2>
             </div>
             <div className="border-2 border-[#080808] bg-[#9FE0C1] px-3 py-2 text-[9px] font-bold uppercase text-[#080808]" style={mono}>{String(active + 1).padStart(2, "0")} / {String(featured.length).padStart(2, "0")}</div>
           </div>
 
           <div
-            className={`relative mt-7 h-[520px] touch-pan-y select-none sm:h-[610px] lg:h-[640px] ${dragging ? "cursor-grabbing" : "cursor-grab"}`}
+            className={`relative mt-6 h-[430px] touch-pan-y select-none sm:mt-7 sm:h-[540px] lg:h-[590px] ${dragging ? "cursor-grabbing" : "cursor-grab"}`}
             onPointerDown={onPointerDown}
             onPointerUp={onPointerUp}
             onPointerCancel={() => { pointerStart.current = null; setDragging(false); suppressClick.current = false; }}
