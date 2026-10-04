@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from "react";
-import { ArrowRight, Check, ExternalLink, Layers3, RotateCcw } from "lucide-react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, Check, ExternalLink, Hand, Layers3 } from "lucide-react";
 import { AgencyIllustration, FloodIllustration } from "./BlockWorld.jsx";
 
 const display = { fontFamily: "'Ojuju', sans-serif" };
@@ -10,172 +10,260 @@ const showcases = [
     name: "OpenBooks",
     type: "Business software · Live",
     summary: "A Nigeria-first business workspace for invoices, payments, expenses and records.",
-    details: "I built the product around a simple problem: small businesses should not have to run their finances from Canva files, notebooks and memory.",
+    details: "A real product built around the everyday mess of running business finances from Canva files, notebooks and memory.",
     visual: "image",
     image: "https://raw.githubusercontent.com/awesomeakokayo/OpenBooks/main/public/image.png",
+    visualClass: "aspect-[1.88/1]",
     live: "https://www.openbooks.click",
     outcome: "Invoices, customer records and payment history in one workspace.",
+    color: "#ff5c00",
     flow: [
-      { label: "Overview", title: "See the business at a glance", body: "Revenue, invoices, payments and expenses sit together so an owner can understand the month before making the next decision." },
-      { label: "Invoice", title: "Create an invoice", body: "Add the customer, amount and payment details, then generate a clean invoice without leaving the workspace." },
-      { label: "Payment", title: "Record what actually happened", body: "Mark bank transfers, cash, POS or online payments and keep the record attached to the transaction." },
+      ["01", "Invoice", "Create a clean invoice with the customer, amount and payment details."],
+      ["02", "Payment", "Record bank transfer, cash, POS or online payment against the transaction."],
+      ["03", "Track", "Keep revenue, invoices, payments and expenses in one place."],
     ],
-    points: ["Customers, invoices, payments and expenses", "Public invoices and payment records", "Security controls, rate limits and webhook protection"],
   },
   {
     name: "Elroi Hub",
     type: "Client build · Live",
-    summary: "A digital growth agency website designed to make a serious business feel credible, ambitious and easy to approach.",
-    details: "A client-facing marketing experience combining brand storytelling, services, process, team credibility, FAQ and a direct strategy-call journey.",
+    summary: "A digital growth agency website designed to make a serious business feel credible and easy to approach.",
+    details: "A brand-led marketing experience with a clear path from positioning and services to proof and a strategy-call action.",
     visual: "agency",
     live: "https://elroihub.com",
     outcome: "A polished brand presence with a clear path from discovery to conversation.",
+    color: "#9FE0C1",
     flow: [
-      { label: "Position", title: "Understand the promise", body: "The opening message tells a visitor what kind of company this is and why its work is different." },
-      { label: "Services", title: "Make the offer tangible", body: "Visitors can move from the big promise into concrete service areas and understand what the company actually does." },
-      { label: "CTA", title: "Make the next step obvious", body: "The experience ends with a strategy-call path instead of leaving the visitor to guess how to start." },
+      ["01", "Position", "The opening message makes the company and its promise immediately understandable."],
+      ["02", "Services", "The experience turns abstract capabilities into concrete service areas."],
+      ["03", "Convert", "The visitor reaches a clear strategy-call path instead of a dead end."],
     ],
-    points: ["Brand-led information architecture", "Responsive, motion-aware visual system", "Clear conversion path into a strategy call"],
   },
   {
     name: "TechSkillHub",
     type: "EdTech · Live",
     summary: "A structured learning platform for developers who want a roadmap instead of a pile of links.",
-    details: "I built onboarding, guided learning tracks, authenticated progress, content delivery and paid access into one learning product.",
+    details: "Onboarding, learning tracks, authenticated progress, content delivery and Paystack billing in one product.",
     visual: "image",
     image: "https://raw.githubusercontent.com/awesomeakokayo/Techhubs/main/app/opengraph-image.png",
+    visualClass: "aspect-[1.78/1]",
     live: "https://techskillhub.cv",
     outcome: "Learning journeys that show people what to learn next and why.",
+    color: "#f4f3ef",
     flow: [
-      { label: "Roadmap", title: "Start with a path", body: "The product turns a broad goal into an ordered learning journey instead of asking the learner to figure everything out alone." },
-      { label: "Lesson", title: "Work through the next step", body: "Each lesson sits inside a guided track, keeping the learner focused on the next useful piece of work." },
-      { label: "Progress", title: "Know what is moving", body: "Authenticated progress lets the learner come back and continue across devices without losing the journey." },
+      ["01", "Roadmap", "Start with an ordered learning path instead of a pile of disconnected resources."],
+      ["02", "Lesson", "Move through the next useful piece of work inside a focused track."],
+      ["03", "Progress", "Come back later and continue with your progress saved across devices."],
     ],
-    points: ["Guided learning tracks and progress", "Auth, Prisma and Neon PostgreSQL", "Paystack billing and production deployment"],
   },
   {
     name: "Southwest Flood Monitor",
     type: "Civic technology · Built",
     summary: "A community flood-reporting product that uses AI-assisted image analysis to support local reports.",
-    details: "The product brings community reporting, location context and AI-assisted evidence analysis into one workflow.",
+    details: "A field-first reporting flow that turns a photo, location and description into structured community data.",
     visual: "flood",
     outcome: "A reporting flow that turns a photo and location into structured community data.",
+    color: "#9FE0C1",
     flow: [
-      { label: "Report", title: "Start from the field", body: "A resident can begin with a photo, location and a short description of what is happening." },
-      { label: "Analyse", title: "Use AI where it helps", body: "Image analysis supports the report workflow rather than replacing the person making the report." },
-      { label: "Submit", title: "Turn the report into data", body: "The backend captures a structured report that can be stored and used for response and monitoring." },
+      ["01", "Report", "Start with a photo, location and short description from the field."],
+      ["02", "Analyse", "AI assists image interpretation without replacing the person making the report."],
+      ["03", "Submit", "Turn the evidence into a structured report for monitoring and response."],
     ],
-    points: ["React Native + Expo mobile experience", "FastAPI + PostgreSQL backend", "Gemini-assisted image analysis"],
   },
 ];
 
-const moreWork = [
-  ["NaviPro", "AI career mentor and personalized learning roadmap platform"],
-  ["EmoHabit", "Emotion-aware habit companion with a custom streak engine"],
-  ["Coal City University Journal", "Manuscript submission and academic publishing workflow"],
-  ["Blancquake Foundation", "Public-facing advocacy and community impact platform"],
-];
-
-function DemoPanel({ project }) {
-  const [step, setStep] = useState(0);
-  const active = project.flow[step];
-  const progress = ((step + 1) / project.flow.length) * 100;
-
+function Visual({ project }) {
+  if (project.visual === "agency") return <AgencyIllustration />;
+  if (project.visual === "flood") return <FloodIllustration />;
   return (
-    <div className="mt-8 grid gap-5 lg:grid-cols-[1.15fr_.85fr]">
-      <div className="overflow-hidden rounded-[20px] border border-white/10 bg-[#080808]">
-        <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
-          <span className="text-[10px] uppercase tracking-[0.16em] text-[#73716a]" style={mono}>Project visual</span>
-          <span className="text-[10px] uppercase tracking-[0.14em] text-[#ffb36b]" style={mono}>{project.visual === "image" ? "Actual project" : "Illustrated flow"}</span>
-        </div>
-        <div className="w-full bg-[#111] p-3 sm:p-4">
-          {project.visual === "image" && <div className="overflow-hidden border-2 border-[#080808] bg-[#f4f3ef]"><img src={project.image} alt={`${project.name} project screen`} className="block h-auto w-full object-cover" loading="lazy" /></div>}
-          {project.visual === "agency" && <AgencyIllustration />}
-          {project.visual === "flood" && <FloodIllustration />}
-        </div>
-      </div>
-
-      <div className="rounded-[12px] border-2 border-white/10 bg-[#0d0d0c] p-5 shadow-[0_5px_0_#050505] sm:p-6">
-        <div className="flex items-center justify-between gap-4">
-          <span className="text-[10px] uppercase tracking-[0.16em] text-[#73716a]" style={mono}>Walk the flow</span>
-          <span className="text-[10px] text-[#ffb36b]" style={mono}>{step + 1} / {project.flow.length}</span>
-        </div>
-        <div className="mt-4 h-1 overflow-hidden rounded-full bg-white/10"><div className="h-full bg-[#ff5c00] transition-all duration-500" style={{ width: `${progress}%` }}/></div>
-        <div className="mt-5 flex flex-wrap gap-2">
-          {project.flow.map((item, index) => (
-            <button key={item.label} type="button" onClick={() => setStep(index)} className={`rounded-full border px-3 py-1.5 text-[10px] uppercase tracking-[0.12em] transition ${index === step ? "border-[#ff5c00]/60 bg-[#ff5c00]/10 text-[#ffb36b]" : "border-white/10 text-[#73716a] hover:text-[#f4f3ef]"}`} style={mono}>{item.label}</button>
-          ))}
-        </div>
-        <h4 className="mt-7 text-3xl leading-none" style={display}>{active.title}</h4>
-        <p className="mt-4 text-sm leading-6 text-[#b8b7b1]">{active.body}</p>
-        <div className="mt-6 flex items-center justify-between gap-3 border-t border-white/10 pt-5">
-          <button type="button" onClick={() => setStep((step - 1 + project.flow.length) % project.flow.length)} className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.12em] text-[#9c9b94] hover:text-white" style={mono}><RotateCcw className="h-3.5 w-3.5"/> Previous</button>
-          <button type="button" onClick={() => setStep((step + 1) % project.flow.length)} className="inline-flex items-center gap-2 rounded-full bg-[#ff5c00] px-4 py-2.5 text-xs font-bold text-[#080808]" style={mono}>Next step <ArrowRight className="h-3.5 w-3.5"/></button>
-        </div>
-      </div>
+    <div className={`relative w-full overflow-hidden border-4 border-[#080808] bg-[#f4f3ef] ${project.visualClass}`}>
+      <img
+        src={project.image}
+        alt={`${project.name} project screen`}
+        className="absolute inset-0 h-full w-full object-cover object-center"
+        loading="lazy"
+        draggable="false"
+      />
     </div>
   );
 }
 
+function FanPanel({ project, index, active, onClick, style }) {
+  return (
+    <button
+      type="button"
+      aria-label={`View ${project.name}`}
+      onClick={onClick}
+      className={`fan-panel absolute left-1/2 top-0 h-full w-[86%] -translate-x-1/2 text-left sm:w-[70%] lg:w-[58%] ${active ? "z-30 cursor-grab active:cursor-grabbing" : "z-10 cursor-pointer"}`}
+      style={style}
+    >
+      <div className={`h-full overflow-hidden border-4 border-[#080808] bg-[#f4f3ef] shadow-[0_12px_0_#080808] ${active ? "ring-4 ring-[#ff5c00] ring-offset-4 ring-offset-[#f4f3ef]" : ""}`}>
+        <div className="flex items-center justify-between border-b-4 border-[#080808] bg-[#080808] px-4 py-3 text-[#f4f3ef]">
+          <span className="text-[9px] uppercase tracking-[0.16em]" style={mono}>Build {String(index + 1).padStart(2, "0")}</span>
+          <span className="text-[9px] uppercase tracking-[0.16em] text-[#ffb36b]" style={mono}>{project.type.split(" · ")[0]}</span>
+        </div>
+        <div className="flex h-[calc(100%-49px)] flex-col p-4 sm:p-5">
+          <div className="min-h-0 flex-1">
+            <Visual project={project} />
+          </div>
+          <div className="mt-4 border-t-2 border-[#080808] pt-4">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <h3 className="text-3xl leading-none text-[#080808] sm:text-4xl" style={display}>{project.name}</h3>
+                <p className="mt-2 text-xs leading-5 text-[#55524d]">{project.summary}</p>
+              </div>
+              <span className="mt-1 h-4 w-4 shrink-0 border-2 border-[#080808]" style={{ background: project.color }} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </button>
+  );
+}
+
 export default function ProjectShowcase() {
-  const featured = useMemo(() => showcases.slice(0, 4), []);
+  const featured = useMemo(() => showcases, []);
+  const [active, setActive] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const pointerStart = useRef(null);
+
+  const next = () => {
+    setActive((current) => (current + 1) % featured.length);
+    setHasInteracted(true);
+  };
+  const previous = () => {
+    setActive((current) => (current - 1 + featured.length) % featured.length);
+    setHasInteracted(true);
+  };
+
+  const onPointerDown = (event) => {
+    pointerStart.current = event.clientX;
+    setDragging(true);
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+  };
+
+  const onPointerUp = (event) => {
+    if (pointerStart.current === null) return;
+    const distance = event.clientX - pointerStart.current;
+    pointerStart.current = null;
+    setDragging(false);
+    if (Math.abs(distance) > 55) distance < 0 ? next() : previous();
+  };
+
+  useEffect(() => {
+    const handler = (event) => {
+      if (event.key === "ArrowRight") next();
+      if (event.key === "ArrowLeft") previous();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
+
+  const getPanelStyle = (index) => {
+    let delta = index - active;
+    if (delta > featured.length / 2) delta -= featured.length;
+    if (delta < -featured.length / 2) delta += featured.length;
+
+    if (delta === 0) {
+      return { transform: "translateX(-50%) translateY(0) rotate(0deg) scale(1)", opacity: 1 };
+    }
+    if (delta === -1) {
+      return { transform: "translateX(-76%) translateY(20px) rotate(-7deg) scale(.9)", opacity: .88 };
+    }
+    if (delta === 1) {
+      return { transform: "translateX(-24%) translateY(20px) rotate(7deg) scale(.9)", opacity: .88 };
+    }
+    return { transform: `translateX(-50%) translateY(55px) rotate(${delta * 12}deg) scale(.78)`, opacity: .16 };
+  };
+
+  const project = featured[active];
+  const step = project.flow[active % project.flow.length];
 
   return (
-    <>
-      <div className="space-y-6">
-        {featured.map((project, index) => (
-          <article key={project.name} className="project-showcase-card rounded-[12px] border-white/10 bg-[#10100f] p-6 shadow-[0_6px_0_#050505] sm:p-8 lg:p-9">
-            <div className="relative grid gap-7 lg:grid-cols-[0.72fr_1.28fr] lg:gap-14">
-              <div>
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="text-[11px] uppercase tracking-[0.16em] text-[#ff5c00]" style={mono}>{String(index + 1).padStart(2, "0")} / {project.type}</span>
-                  {project.live && <span className="rounded-full border border-[#4ade80]/25 bg-[#4ade80]/10 px-3 py-1 text-[10px] uppercase tracking-[0.14em] text-[#4ade80]" style={mono}>Live</span>}
-                </div>
-                <h3 className="mt-6 text-5xl leading-[0.9] sm:text-6xl" style={display}>{project.name}</h3>
-                <p className="mt-5 text-lg leading-7 text-[#f4f3ef] sm:text-xl">{project.summary}</p>
-                <p className="mt-5 text-sm leading-6 text-[#b8b7b1]">{project.details}</p>
-                <div className="mt-6 flex items-start gap-3 text-sm leading-6 text-[#f4f3ef]"><Layers3 className="mt-1 h-4 w-4 shrink-0 text-[#ffb36b]"/><span>{project.outcome}</span></div>
-                {project.live && (
-                  <a href={project.live} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[#f4f3ef] hover:text-[#ffb36b]" style={mono}>Open live project <ExternalLink className="h-4 w-4"/></a>
-                )}
-                <div className="mt-7 space-y-3 border-t border-white/10 pt-6">
-                  {project.points.map(point => <div key={point} className="flex items-start gap-3 text-sm leading-6 text-[#b8b7b1]"><Check className="mt-1 h-4 w-4 shrink-0 text-[#ffb36b]"/><span>{point}</span></div>)}
-                </div>
-              </div>
-              <DemoPanel project={project}/>
+    <div className="border-4 border-[#080808] bg-[#f4f3ef] shadow-[0_14px_0_#080808]">
+      <div className="grid gap-0 lg:grid-cols-[1.2fr_.8fr]">
+        <div className="border-b-4 border-[#080808] p-5 sm:p-7 lg:border-b-0 lg:border-r-4 lg:p-8">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.17em] text-[#080808]" style={mono}>05 / Fold-out project wall</p>
+              <h2 className="mt-3 text-4xl leading-[0.9] text-[#080808] sm:text-5xl" style={display}>Pull the next build into view.</h2>
             </div>
-          </article>
-        ))}
-      </div>
-
-      <section className="mt-10 rounded-[24px] border border-white/10 bg-[#0b0b0b] p-6 sm:p-8">
-        <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.16em] text-[#ff5c00]" style={mono}>More selected work</p>
-            <h3 className="mt-3 text-4xl leading-none" style={display}>More proof, less scrolling.</h3>
+            <div className="border-2 border-[#080808] bg-[#9FE0C1] px-3 py-2 text-[9px] font-bold uppercase text-[#080808]" style={mono}>{String(active + 1).padStart(2, "0")} / {String(featured.length).padStart(2, "0")}</div>
           </div>
-          <p className="max-w-md text-sm leading-6 text-[#73716a]">The featured builds get the interactive treatment. The rest stay concise so visitors can scan your range without drowning in cards.</p>
-        </div>
-        <div className="mt-7 grid gap-3 sm:grid-cols-2">
-          {moreWork.map(([name,copy]) => (
-            <div key={name} className="rounded-[10px] border-2 border-white/10 bg-[#10100f] p-5 shadow-[0_4px_0_#050505]">
-              <p className="text-sm font-semibold text-[#f4f3ef]">{name}</p>
-              <p className="mt-2 text-sm leading-6 text-[#73716a]">{copy}</p>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      <div className="mt-10 overflow-hidden rounded-full border border-white/10 bg-[#0b0b0b] py-3">
-        <div className="marquee-track flex w-max items-center gap-7 whitespace-nowrap px-5">
-          {["PRODUCT THINKING", "WEB", "MOBILE", "AI", "BACKEND", "DEPLOYMENT", "SECURITY", "TESTING", "PRODUCT THINKING", "WEB", "MOBILE", "AI", "BACKEND", "DEPLOYMENT"].map((label, index) => (
-            <React.Fragment key={`${label}-${index}`}>
-              <span className="text-[10px] tracking-[0.18em] text-[#73716a]" style={mono}>{label}</span>
-              <span className="h-1.5 w-1.5 rounded-full bg-[#ffb36b]/60" />
-            </React.Fragment>
-          ))}
+          <div
+            className={`relative mt-7 h-[520px] touch-pan-y select-none sm:h-[610px] lg:h-[640px] ${dragging ? "cursor-grabbing" : "cursor-grab"}`}
+            onPointerDown={onPointerDown}
+            onPointerUp={onPointerUp}
+            onPointerCancel={() => { pointerStart.current = null; setDragging(false); }}
+          >
+            <div className="absolute inset-x-0 bottom-0 mx-auto h-7 w-[70%] border-2 border-[#080808] bg-[#ff5c00]" />
+            {featured.map((item, index) => (
+              <FanPanel
+                key={item.name}
+                project={item}
+                index={index}
+                active={index === active}
+                onClick={() => { setActive(index); setHasInteracted(true); }}
+                style={getPanelStyle(index)}
+              />
+            ))}
+          </div>
+
+          <div className="mt-6 grid grid-cols-[auto_1fr_auto] items-center gap-3">
+            <button type="button" onClick={previous} aria-label="Previous project" className="flex h-11 w-11 items-center justify-center border-2 border-[#080808] bg-[#f4f3ef] text-[#080808] shadow-[0_4px_0_#080808] transition hover:-translate-y-0.5"><ArrowLeft className="h-4 w-4"/></button>
+            <div className="border-2 border-[#080808] bg-[#080808] px-4 py-3 text-center text-[9px] uppercase tracking-[0.14em] text-[#f4f3ef]" style={mono}>
+              <span className="inline-flex items-center gap-2"><Hand className="h-3.5 w-3.5 text-[#ffb36b]"/>{hasInteracted ? "Keep unfolding" : "Swipe / drag to unfold"}</span>
+            </div>
+            <button type="button" onClick={next} aria-label="Next project" className="flex h-11 w-11 items-center justify-center border-2 border-[#080808] bg-[#ff5c00] text-[#080808] shadow-[0_4px_0_#080808] transition hover:-translate-y-0.5"><ArrowRight className="h-4 w-4"/></button>
+          </div>
+        </div>
+
+        <div className="bg-[#080808] p-6 text-[#f4f3ef] sm:p-8">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.16em] text-[#ffb36b]" style={mono}>You opened</p>
+              <h3 className="mt-3 text-5xl leading-[0.88] sm:text-6xl" style={display}>{project.name}</h3>
+            </div>
+            {project.live && <a href={project.live} target="_blank" rel="noreferrer" className="border-2 border-[#f4f3ef] px-3 py-2 text-[9px] font-bold uppercase text-[#f4f3ef] hover:bg-[#f4f3ef] hover:text-[#080808]" style={mono}>Live <ExternalLink className="ml-1 inline h-3 w-3"/></a>}
+          </div>
+
+          <p className="mt-7 text-sm leading-7 text-[#b8b7b1]">{project.details}</p>
+
+          <div className="mt-8 border-2 border-white/15 bg-[#101010] p-5">
+            <div className="flex items-center justify-between gap-4">
+              <p className="text-[10px] uppercase tracking-[0.15em] text-[#9c9b94]" style={mono}>One useful thing inside</p>
+              <span className="text-[10px] text-[#ffb36b]" style={mono}>{step[0]} / {project.flow.length}</span>
+            </div>
+            <h4 className="mt-3 text-3xl leading-none" style={display}>{step[1]}</h4>
+            <p className="mt-3 text-sm leading-6 text-[#b8b7b1]">{step[2]}</p>
+          </div>
+
+          <div className="mt-8 space-y-3 border-t border-white/10 pt-6">
+            {[
+              project.outcome,
+              "Built across the product loop, not just the visible screen.",
+              "Interaction reveals the thinking behind the build."
+            ].map((item) => (
+              <div key={item} className="flex items-start gap-3 text-sm leading-6 text-[#f4f3ef]">
+                <Check className="mt-1 h-4 w-4 shrink-0 text-[#9FE0C1]"/><span>{item}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 border-t border-white/10 pt-6">
+            <p className="flex items-center gap-2 text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}><Layers3 className="h-3.5 w-3.5"/> The wall is the navigation</p>
+            <p className="mt-3 text-xs leading-5 text-[#73716a]">Drag left or right, click a panel, or use the arrows. The next build is always waiting behind the current one.</p>
+          </div>
         </div>
       </div>
-    </>
+
+      <div className="border-t-4 border-[#080808] bg-[#ff5c00] px-5 py-4 sm:px-7">
+        <div className="flex flex-col gap-2 text-[10px] font-bold uppercase tracking-[0.13em] text-[#080808] sm:flex-row sm:items-center sm:justify-between" style={mono}>
+          <span>04 builds · 04 different problems · one full-stack loop</span>
+          <span>Swipe → inspect → open → move on</span>
+        </div>
+      </div>
+    </div>
   );
 }
