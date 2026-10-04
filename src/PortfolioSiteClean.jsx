@@ -132,7 +132,7 @@ function Nav({ open, setOpen }) {
 
 export default function PortfolioSiteClean() {
   const [open, setOpen] = useState(false);
-
+  const [projectPrefill, setProjectPrefill] = useState(null);
   const [contactState, setContactState] = useState("idle");
   const [contactError, setContactError] = useState("");
 
@@ -215,7 +215,20 @@ export default function PortfolioSiteClean() {
               </div>
               <p className="max-w-2xl text-sm leading-6 text-[#4e4c47]">A starting point should help you qualify the project, not make you feel like you’re buying a pre-packaged website.</p>
             </div>
-            <div className="mt-10"><PricingPlayground /></div>
+            <div className="mt-10">
+              <PricingPlayground
+                onStartProject={(choice) => {
+                  setProjectPrefill({
+                    nonce: Date.now(),
+                    projectType: choice.id === "mobile" ? "Mobile app" : choice.id === "product" ? "Web application / SaaS" : "Website",
+                    budget: choice.id === "mobile" ? "₦2m+" : choice.id === "product" ? "₦1m – ₦2m" : "₦500k – ₦1m",
+                    label: choice.label,
+                    price: choice.price,
+                  });
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+              />
+            </div>
             <div className="mt-7 grid gap-3 sm:grid-cols-3">
               {[
                 ["Flexible scope", "Starting points change with the actual product decisions."],
@@ -338,14 +351,27 @@ export default function PortfolioSiteClean() {
               <div className="mt-7"><ContactBuildScene /></div>
             </div>
 
-            <form onSubmit={handleProjectSubmit} className="rounded-[14px] border-2 border-white/10 bg-[#10100f] p-6 shadow-[0_10px_0_#050505] sm:p-8">
-              <div className="grid gap-5 sm:grid-cols-2">
+            <form key={projectPrefill?.nonce || "default-contact"} onSubmit={handleProjectSubmit} className="rounded-[14px] border-2 border-white/10 bg-[#10100f] p-6 shadow-[0_10px_0_#050505] sm:p-8">
+                            {projectPrefill && (
+                <div className="mb-6 border-2 border-[#ff5c00]/50 bg-[#15110d] p-4 shadow-[0_4px_0_#ff5c00]">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <p className="text-[9px] uppercase tracking-[0.16em] text-[#ffb36b]" style={mono}>Carried from your project choice</p>
+                      <p className="mt-2 text-lg text-[#f4f3ef]" style={display}>{projectPrefill.label} · {projectPrefill.price}</p>
+                    </div>
+                    <span className="border-2 border-[#ff5c00] bg-[#ff5c00] px-2 py-1 text-[9px] font-bold uppercase text-[#080808]" style={mono}>Pre-filled</span>
+                  </div>
+                  <p className="mt-2 text-xs leading-5 text-[#b8b7b1]">I’ve already selected the project type and budget below. You only need to add your details and brief.</p>
+                </div>
+              )}
+
+<div className="grid gap-5 sm:grid-cols-2">
                 <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Name</span><input required name="name" className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none placeholder:text-[#73716a]" placeholder="Your name" /></label>
                 <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Email</span><input required type="email" name="email" className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none placeholder:text-[#73716a]" placeholder="you@company.com" /></label>
                 <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Company / organisation</span><input name="company" className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none placeholder:text-[#73716a]" placeholder="Company name" /></label>
-                <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Project type</span><select required name="projectType" className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none"><option value="">Select one</option><option>Website</option><option>Web application / SaaS</option><option>Mobile app</option><option>AI integration / automation</option><option>Something else</option></select></label>
-                <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Budget</span><select required name="budget" className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none"><option value="">Choose a range</option>{contactBudgetOptions.map(option => <option key={option}>{option}</option>)}</select></label>
-                <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Timeline</span><select required name="timeline" className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none"><option value="">Choose one</option><option>ASAP</option><option>2–4 weeks</option><option>1–2 months</option><option>2–3 months</option><option>Flexible</option></select></label>
+                <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Project type</span><select required name="projectType" defaultValue={projectPrefill?.projectType || ""} className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none"><option value="">Select one</option><option>Website</option><option>Web application / SaaS</option><option>Mobile app</option><option>AI integration / automation</option><option>Something else</option></select></label>
+                <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Budget</span><select required name="budget" defaultValue={projectPrefill?.budget || ""} className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none"><option value="">Choose a range</option>{contactBudgetOptions.map(option => <option key={option}>{option}</option>)}</select></label>
+                <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Timeline</span><select required name="timeline" defaultValue="" className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none"><option value="">Choose one</option><option>ASAP</option><option>2–4 weeks</option><option>1–2 months</option><option>2–3 months</option><option>Flexible</option></select></label>
               </div>
               <label className="mt-5 block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>What are you trying to build?</span><textarea required name="brief" rows="6" className="mt-2 w-full resize-y rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm leading-6 text-[#f4f3ef] outline-none placeholder:text-[#73716a]" placeholder="Give me the short version. What is the problem, who is it for, and what do you need the product to do?"></textarea></label>
               <button type="submit" disabled={contactState === "sending" || contactState === "sent"} className="mt-6 inline-flex items-center gap-2 border-2 border-[#080808] bg-[#ff5c00] px-6 py-3.5 text-sm font-bold text-[#080808] shadow-[0_5px_0_#080808] disabled:cursor-not-allowed disabled:opacity-70" style={mono}>{contactState === "sending" ? "Sending…" : contactState === "sent" ? "Enquiry sent" : "Send project enquiry"} <ArrowRight className="h-4 w-4"/></button>

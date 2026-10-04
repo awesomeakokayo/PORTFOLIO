@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, ExternalLink, Hand, Layers3 } from "lucide-react";
-import { AgencyIllustration, FloodIllustration } from "./BlockWorld.jsx";
+import { FloodIllustration } from "./BlockWorld.jsx";
 
 const display = { fontFamily: "'Ojuju', sans-serif" };
 const mono = { fontFamily: "'Space Mono', monospace" };
@@ -28,7 +28,10 @@ const showcases = [
     type: "Client build · Live",
     summary: "A digital growth agency website designed to make a serious business feel credible and easy to approach.",
     details: "A brand-led marketing experience with a clear path from positioning and services to proof and a strategy-call action.",
-    visual: "agency",
+    visual: "image",
+    image: "https://raw.githubusercontent.com/awesomeakokayo/ElroiHub/main/public/assets/hero-bg.png",
+    visualClass: "aspect-[16/9]",
+    visualLabel: "Project artwork",
     live: "https://elroihub.com",
     outcome: "A polished brand presence with a clear path from discovery to conversation.",
     color: "#9FE0C1",
@@ -69,11 +72,83 @@ const showcases = [
       ["03", "Submit", "Turn the evidence into a structured report for monitoring and response."],
     ],
   },
-];
+  {
+    name: "CCU Journal Platform",
+    type: "Academic publishing · Built",
+    summary: "A journal management platform for submission, review, publishing and public access.",
+    details: "The JOURNAL repository contains separate public and admin flows, including submissions, archives, authentication and editorial review.",
+    visual: "brand",
+    image: "https://raw.githubusercontent.com/awesomeakokayo/JOURNAL/main/journal-platform/public/CCULOGO.png",
+    visualLabel: "Institution asset",
+    live: "https://github.com/awesomeakokayo/JOURNAL",
+    outcome: "A full editorial workflow from manuscript submission to published journal access.",
+    color: "#ff5c00",
+    flow: [
+      ["01", "Submit", "Authors create accounts and submit manuscripts through the public platform."],
+      ["02", "Review", "Admins can review, edit, approve or reject submissions."],
+      ["03", "Publish", "Published work is available through archives and public download flows."]
+    ]
+  },
+  {
+    name: "AE-FUNAI Journal",
+    type: "Academic publishing · Built",
+    summary: "A publication platform covering author submission, editorial review and public journal access.",
+    details: "The frontend and backend repositories form a full journal publication system with JWT authentication, submissions, admin publishing and public search/download.",
+    visual: "brand",
+    image: "https://raw.githubusercontent.com/awesomeakokayo/AE-FUNAI-journal-frontend/main/aefunai_logo.png",
+    visualLabel: "Institution asset",
+    live: "https://github.com/awesomeakokayo/AE-FUNAI-journal-frontend",
+    outcome: "A structured publishing workflow with public discovery and administrative control.",
+    color: "#9FE0C1",
+    flow: [
+      ["01", "Author", "Register, authenticate and submit a paper with title, authors, abstract and file."],
+      ["02", "Editor", "Review submissions and move them through approval and publication."],
+      ["03", "Reader", "Search and download published journals without needing an account."]
+    ]
+  },
+  {
+    name: "Blancquake Foundation",
+    type: "Advocacy platform · Built",
+    summary: "A public-facing foundation website built around mission, impact, people and community action.",
+    details: "The project repo includes real impact photography, mission imagery, team photography and a production hero experience.",
+    visual: "image",
+    image: "https://raw.githubusercontent.com/awesomeakokayo/Blancquake_site/main/app/public/images/hero-poster.jpg",
+    visualClass: "aspect-[16/9]",
+    visualLabel: "Project photography",
+    live: "https://github.com/awesomeakokayo/Blancquake_site",
+    outcome: "A visual public presence that gives the organisation a stronger story to stand behind.",
+    color: "#f4f3ef",
+    flow: [
+      ["01", "Mission", "Lead with the organisation's purpose and the people it serves."],
+      ["02", "Impact", "Use real project imagery to make the work tangible."],
+      ["03", "Action", "Guide visitors from understanding the mission toward engagement."]
+    ]
+  },];
+
+function BrandVisual({ project }) {
+  return (
+    <div className="relative flex aspect-[16/9] w-full flex-col justify-between overflow-hidden border-4 border-[#080808] bg-[#f4f3ef] p-5 text-[#080808] sm:p-6">
+      <div className="flex items-center justify-between border-b-2 border-[#080808] pb-3">
+        <span className="text-[9px] font-bold uppercase tracking-[0.15em]" style={mono}>Real project asset</span>
+        <span className="border-2 border-[#080808] bg-[#ff5c00] px-2 py-1 text-[8px] font-bold uppercase" style={mono}>Journal</span>
+      </div>
+      <div className="grid flex-1 place-items-center py-5">
+        <div className="flex h-28 w-28 items-center justify-center overflow-hidden border-4 border-[#080808] bg-white p-3 shadow-[0_6px_0_#080808] sm:h-32 sm:w-32">
+          <img src={project.image} alt={project.name + " institutional logo"} className="max-h-full max-w-full object-contain" loading="lazy" />
+        </div>
+      </div>
+      <div className="grid grid-cols-3 gap-2">
+        {["SUBMIT", "REVIEW", "PUBLISH"].map((label) => (
+          <span key={label} className="border-2 border-[#080808] bg-[#9FE0C1] px-2 py-2 text-center text-[8px] font-bold tracking-[0.08em]" style={mono}>{label}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function Visual({ project }) {
-  if (project.visual === "agency") return <AgencyIllustration />;
   if (project.visual === "flood") return <FloodIllustration />;
+  if (project.visual === "brand") return <BrandVisual project={project} />;
   return (
     <div className={`relative w-full overflow-hidden border-4 border-[#080808] bg-[#f4f3ef] ${project.visualClass}`}>
       <img
@@ -182,7 +257,7 @@ export default function ProjectShowcase() {
   };
 
   const project = featured[active];
-  const step = project.flow[active % project.flow.length];
+  const step = project.flow[0];
 
   return (
     <div className="border-4 border-[#080808] bg-[#f4f3ef] shadow-[0_14px_0_#080808]">
