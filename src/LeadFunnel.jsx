@@ -35,20 +35,37 @@ export default function LeadFunnel() {
     setStep((current) => current + 1);
   };
 
-  const submit = (event) => {
+  const [sending, setSending] = useState(false);
+
+  const submit = async (event) => {
     event.preventDefault();
-    const endpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
-    if (endpoint) {
-      fetch(endpoint, {
+    if (sending) return;
+    setSending(true);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/awesomeakokayo@gmail.com", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ ...data, source: "awesomeakokayo.cv", leadType: "qualified-project" }),
-      }).then(() => setSent(true)).catch(() => { window.location.href = buildMailto(data); });
-    } else {
+        body: JSON.stringify({
+          ...data,
+          source: "awesomeakokayo.cv",
+          leadType: "qualified-project",
+          _subject: "New qualified project enquiry from awesomeakokayo.cv",
+          _replyto: data.email,
+          _template: "table",
+          _honey: "",
+          _url: window.location.href,
+        }),
+      });
+      const result = await response.json().catch(() => null);
+      if (!response.ok || result?.success === false) throw new Error("Submission failed");
+      setSent(true);
+    } catch (error) {
       window.location.href = buildMailto(data);
+    } finally {
+      setSending(false);
     }
   };
-
   const reset = () => {
     setStep(0);
     setSent(false);
@@ -128,7 +145,7 @@ export default function LeadFunnel() {
                       <span><strong className="text-[#f4f3ef]">Start:</strong> {data.timeline}</span>
                     </div>
                   </div>
-                  <button type="submit" className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#ff5c00] px-6 py-4 text-sm font-bold text-[#080808]" style={{fontFamily:"'Space Mono', monospace"}}>Send project enquiry <ArrowRight className="h-4 w-4" /></button>
+                  <button type="submit" disabled={sending} className="mt-5 inline-flex w-full items-center justify-center gap-2 border-2 border-[#080808] bg-[#ff5c00] px-6 py-4 text-sm font-bold text-[#080808] shadow-[0_5px_0_#080808] disabled:cursor-not-allowed disabled:opacity-70" style={{fontFamily:"'Space Mono', monospace"}}>{sending ? "Sending…" : "Send project enquiry"} <ArrowRight className="h-4 w-4" /></button>
                   <div className="mt-4 flex items-center gap-2 text-[11px] leading-5 text-[#73716a]"><ShieldCheck className="h-4 w-4 shrink-0" /> Your details are used only to respond to this project enquiry.</div>
                 </form>
               )}

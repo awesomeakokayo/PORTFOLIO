@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
-import { ArrowRight, ArrowUpRight, Check, ExternalLink, Layers3, Play, RotateCcw } from "lucide-react";
+import { ArrowRight, Check, ExternalLink, Layers3, RotateCcw } from "lucide-react";
+import { AgencyIllustration, FloodIllustration } from "./BlockWorld.jsx";
 
 const display = { fontFamily: "'Ojuju', sans-serif" };
 const mono = { fontFamily: "'Space Mono', monospace" };
@@ -10,7 +11,8 @@ const showcases = [
     type: "Business software · Live",
     summary: "A Nigeria-first business workspace for invoices, payments, expenses and records.",
     details: "I built the product around a simple problem: small businesses should not have to run their finances from Canva files, notebooks and memory.",
-    image: "/work/openbooks-preview.svg",
+    visual: "image",
+    image: "https://raw.githubusercontent.com/awesomeakokayo/OpenBooks/main/public/image.png",
     live: "https://www.openbooks.click",
     outcome: "Invoices, customer records and payment history in one workspace.",
     flow: [
@@ -25,7 +27,7 @@ const showcases = [
     type: "Client build · Live",
     summary: "A digital growth agency website designed to make a serious business feel credible, ambitious and easy to approach.",
     details: "A client-facing marketing experience combining brand storytelling, services, process, team credibility, FAQ and a direct strategy-call journey.",
-    image: "/work/elroi-hub-preview.svg",
+    visual: "agency",
     live: "https://elroihub.com",
     outcome: "A polished brand presence with a clear path from discovery to conversation.",
     flow: [
@@ -40,7 +42,8 @@ const showcases = [
     type: "EdTech · Live",
     summary: "A structured learning platform for developers who want a roadmap instead of a pile of links.",
     details: "I built onboarding, guided learning tracks, authenticated progress, content delivery and paid access into one learning product.",
-    image: "/work/techskillhub-preview.svg",
+    visual: "image",
+    image: "https://raw.githubusercontent.com/awesomeakokayo/Techhubs/main/app/opengraph-image.png",
     live: "https://techskillhub.cv",
     outcome: "Learning journeys that show people what to learn next and why.",
     flow: [
@@ -55,7 +58,7 @@ const showcases = [
     type: "Civic technology · Built",
     summary: "A community flood-reporting product that uses AI-assisted image analysis to support local reports.",
     details: "The product brings community reporting, location context and AI-assisted evidence analysis into one workflow.",
-    image: "/work/flood-monitor-preview.svg",
+    visual: "flood",
     outcome: "A reporting flow that turns a photo and location into structured community data.",
     flow: [
       { label: "Report", title: "Start from the field", body: "A resident can begin with a photo, location and a short description of what is happening." },
@@ -82,15 +85,17 @@ function DemoPanel({ project }) {
     <div className="mt-8 grid gap-5 lg:grid-cols-[1.15fr_.85fr]">
       <div className="overflow-hidden rounded-[20px] border border-white/10 bg-[#080808]">
         <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
-          <span className="text-[10px] uppercase tracking-[0.16em] text-[#73716a]" style={mono}>Interactive preview</span>
-          <span className="flex items-center gap-2 text-[10px] uppercase tracking-[0.14em] text-[#4ade80]" style={mono}><span className="h-1.5 w-1.5 rounded-full bg-[#4ade80]"/>Try it</span>
+          <span className="text-[10px] uppercase tracking-[0.16em] text-[#73716a]" style={mono}>Project visual</span>
+          <span className="text-[10px] uppercase tracking-[0.14em] text-[#ffb36b]" style={mono}>{project.visual === "image" ? "Actual project" : "Illustrated flow"}</span>
         </div>
-        <div className="aspect-[12/7] w-full bg-[#111]">
-          <img src={project.image} alt={`${project.name} interface preview`} className="h-full w-full object-cover" loading="lazy" />
+        <div className="w-full bg-[#111] p-3 sm:p-4">
+          {project.visual === "image" && <div className="overflow-hidden border-2 border-[#080808] bg-[#f4f3ef]"><img src={project.image} alt={`${project.name} project screen`} className="block h-auto w-full object-cover" loading="lazy" /></div>}
+          {project.visual === "agency" && <AgencyIllustration />}
+          {project.visual === "flood" && <FloodIllustration />}
         </div>
       </div>
 
-      <div className="rounded-[20px] border border-white/10 bg-[#0d0d0c] p-5 sm:p-6">
+      <div className="rounded-[12px] border-2 border-white/10 bg-[#0d0d0c] p-5 shadow-[0_5px_0_#050505] sm:p-6">
         <div className="flex items-center justify-between gap-4">
           <span className="text-[10px] uppercase tracking-[0.16em] text-[#73716a]" style={mono}>Walk the flow</span>
           <span className="text-[10px] text-[#ffb36b]" style={mono}>{step + 1} / {project.flow.length}</span>
@@ -119,7 +124,7 @@ export default function ProjectShowcase() {
     <>
       <div className="space-y-6">
         {featured.map((project, index) => (
-          <article key={project.name} className="project-showcase-card rounded-[26px] border border-white/10 bg-[#10100f] p-6 sm:p-8 lg:p-9">
+          <article key={project.name} className="project-showcase-card rounded-[12px] border-white/10 bg-[#10100f] p-6 shadow-[0_6px_0_#050505] sm:p-8 lg:p-9">
             <div className="relative grid gap-7 lg:grid-cols-[0.72fr_1.28fr] lg:gap-14">
               <div>
                 <div className="flex flex-wrap items-center gap-3">
@@ -153,7 +158,7 @@ export default function ProjectShowcase() {
         </div>
         <div className="mt-7 grid gap-3 sm:grid-cols-2">
           {moreWork.map(([name,copy]) => (
-            <div key={name} className="rounded-[18px] border border-white/10 bg-[#10100f] p-5">
+            <div key={name} className="rounded-[10px] border-2 border-white/10 bg-[#10100f] p-5 shadow-[0_4px_0_#050505]">
               <p className="text-sm font-semibold text-[#f4f3ef]">{name}</p>
               <p className="mt-2 text-sm leading-6 text-[#73716a]">{copy}</p>
             </div>
