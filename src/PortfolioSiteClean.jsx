@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ArrowRight, ArrowUpRight, Brain, Check, Code2, Menu, Rocket, Smartphone, X } from "lucide-react";
 import ProjectShowcase from "./ProjectShowcase.jsx";
+import { ContactBuildScene, HeroBuildScene } from "./BlockWorld.jsx";
 
 const display = { fontFamily: "'Ojuju', sans-serif" };
 const mono = { fontFamily: "'Space Mono', monospace" };
@@ -109,8 +110,8 @@ const skills = [
   ["Integrations", "Paystack, Resend, OAuth, YouTube Data API, payment APIs"],
 ];
 
-function Eyebrow({ number, children }) {
-  return <p className="flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.18em] text-[#ff5c00]" style={mono}><span>{number}</span><span className="text-white/20">/</span><span>{children}</span></p>;
+function Eyebrow({ number, children, light = false }) {
+  return <p className="flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.18em] text-[#ff5c00]" style={mono}><span>{number}</span><span className={light ? "text-black/20" : "text-white/20"}>/</span><span>{children}</span></p>;
 }
 
 function Nav({ open, setOpen }) {
@@ -131,52 +132,67 @@ function Nav({ open, setOpen }) {
 export default function PortfolioSiteClean() {
   const [open, setOpen] = useState(false);
 
-  const handleProjectSubmit = (event) => {
+  const [contactState, setContactState] = useState("idle");
+  const [contactError, setContactError] = useState("");
+
+  const handleProjectSubmit = async (event) => {
     event.preventDefault();
+    if (contactState === "sending" || contactState === "sent") return;
     const form = new FormData(event.currentTarget);
-    const name = form.get("name")?.toString().trim();
     const email = form.get("email")?.toString().trim();
-    const company = form.get("company")?.toString().trim();
-    const projectType = form.get("projectType")?.toString().trim();
-    const budget = form.get("budget")?.toString().trim();
-    const timeline = form.get("timeline")?.toString().trim();
-    const brief = form.get("brief")?.toString().trim();
+    setContactState("sending");
+    setContactError("");
 
-    const body = [
-      `Name: ${name || "Not provided"}`,
-      `Email: ${email || "Not provided"}`,
-      `Company / organisation: ${company || "Not provided"}`,
-      `Project type: ${projectType || "Not provided"}`,
-      `Budget: ${budget || "Not provided"}`,
-      `Timeline: ${timeline || "Not provided"}`,
-      "",
-      "Project brief:",
-      brief || "Not provided",
-    ].join("\n");
-
-    window.location.href =
-      `mailto:awesomeakokayo@gmail.com?subject=${encodeURIComponent("New project enquiry")}\u0026body=${encodeURIComponent(body)}`;
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/awesomeakokayo@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: form.get("name"),
+          email,
+          company: form.get("company"),
+          projectType: form.get("projectType"),
+          budget: form.get("budget"),
+          timeline: form.get("timeline"),
+          brief: form.get("brief"),
+          _subject: "New project enquiry from awesomeakokayo.cv",
+          _replyto: email,
+          _template: "table",
+          _honey: "",
+          _url: window.location.href,
+        }),
+      });
+      const result = await response.json().catch(() => null);
+      if (!response.ok || result?.success === false) throw new Error("Submission failed");
+      setContactState("sent");
+      event.currentTarget.reset();
+    } catch (error) {
+      setContactState("error");
+      setContactError("The form could not send just now. Please use WhatsApp or email directly.");
+    }
   };
-
   return (
     <div id="top" className="min-h-screen bg-[#080808] text-[#f4f3ef]" style={body}>
       <Nav open={open} setOpen={setOpen} />
       <main>
-        <section className="relative overflow-hidden border-b border-white/10">
-          <div className="absolute inset-0 bg-[radial-gradient(900px_500px_at_50%_5%,rgba(255,92,0,.16),transparent_68%)]" />
-          <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-[#a78bfa]/[0.05] blur-[90px]" />
-          <div className="relative mx-auto flex min-h-[78vh] max-w-7xl items-center justify-center px-5 py-24 text-center sm:px-7 md:min-h-[82vh] md:py-28 lg:px-10 xl:px-16">
-            <div className="mx-auto max-w-6xl">
-              <div className="hero-title-wrap"><Eyebrow number="00">Software engineer · Full-stack developer · Product builder</Eyebrow></div>
-              <h1 className="mx-auto mt-7 max-w-6xl text-[3.25rem] font-semibold leading-[0.91] tracking-[-0.045em] sm:text-6xl md:text-7xl lg:text-[7.2rem] xl:text-[8rem]" style={display}>I build software products from <span className="text-[#ff5c00]">idea to production.</span></h1>
-              <p className="mx-auto mt-8 max-w-2xl text-base leading-7 text-[#b8b7b1] md:text-lg md:leading-8">Software engineer building and shipping web, mobile and AI-integrated products across frontend, backend, data, integrations, testing and deployment.</p>
-              <div className="mt-9 flex flex-wrap justify-center gap-3"><a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-[#ff5c00] px-6 py-3.5 text-sm font-bold text-[#080808]" style={mono}>Work with me <ArrowRight className="h-4 w-4" /></a><a href="#work" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm font-bold" style={mono}>See selected work <ArrowRight className="h-4 w-4" /></a></div>
-              <p className="mt-4 text-xs text-[#73716a]" style={mono}>Email is the fastest way to reach me · awesomeakokayo@gmail.com</p>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-                <span className="rounded-full border border-[#ff5c00]/30 bg-[#ff5c00]/10 px-3 py-1.5 text-[11px] text-[#ffb36b]" style={mono}>Client projects from ₦500k</span>
-                {["TypeScript", "React", "Next.js", "Python", "FastAPI", "AI", "PostgreSQL"].map(item => <span key={item} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] text-[#b8b7b1]" style={mono}>{item}</span>)}
+        <section className="border-b-4 border-[#080808] bg-[#f4f3ef] text-[#080808]">
+          <div className="mx-auto grid min-h-[82vh] max-w-7xl items-center gap-12 px-5 py-16 sm:px-7 md:py-20 lg:grid-cols-[0.92fr_1.08fr] lg:px-10 xl:px-16">
+            <div className="text-left">
+              <div className="text-left"><Eyebrow light number="00">Software engineer · Full-stack developer · Product builder</Eyebrow></div>
+              <div className="mt-6 inline-flex items-center gap-2 border-2 border-[#080808] bg-[#ff5c00] px-3 py-2 text-[9px] font-bold uppercase tracking-[0.15em] text-[#080808]" style={mono}><span className="h-2 w-2 rounded-full border border-[#080808] bg-[#9FE0C1]" /> Building in public</div>
+              <h1 className="mt-6 max-w-3xl text-5xl font-semibold leading-[0.88] tracking-[-0.045em] sm:text-6xl md:text-7xl lg:text-[6.8rem]" style={display}>I build software products from <span className="text-[#ff5c00]">idea to production.</span></h1>
+              <p className="mt-7 max-w-2xl text-base leading-7 text-[#262626] md:text-lg md:leading-8">Software engineer building and shipping web, mobile and AI-integrated products across frontend, backend, data, integrations, testing and deployment.</p>
+              <div className="mt-8 flex flex-wrap justify-start gap-3">
+                <a href="#contact" className="inline-flex items-center gap-2 border-2 border-[#080808] bg-[#080808] px-6 py-3.5 text-sm font-bold text-[#f4f3ef] shadow-[0_6px_0_#ff5c00]" style={mono}>Work with me <ArrowRight className="h-4 w-4" /></a>
+                <a href="#work" className="inline-flex items-center gap-2 border-2 border-[#080808] bg-[#f4f3ef] px-6 py-3.5 text-sm font-bold text-[#080808]" style={mono}>See the builds <ArrowRight className="h-4 w-4" /></a>
               </div>
+              <div className="mt-7 flex flex-wrap gap-2">
+                <span className="border-2 border-[#080808] bg-[#ff5c00] px-3 py-1.5 text-[10px] font-bold text-[#080808]" style={mono}>Projects from ₦500k</span>
+                <span className="border-2 border-[#080808] bg-[#9FE0C1] px-3 py-1.5 text-[10px] font-bold text-[#080808]" style={mono}>Web · Mobile · AI</span>
+              </div>
+              <p className="mt-5 text-xs text-[#66605a]" style={mono}>awesomeakokayo@gmail.com · +234 902 037 2640</p>
             </div>
+            <div className="lg:pl-4"><HeroBuildScene /></div>
           </div>
         </section>
 
@@ -228,13 +244,14 @@ export default function PortfolioSiteClean() {
             <div>
               <h2 className="text-5xl leading-[0.92] sm:text-6xl md:text-7xl" style={display}>Tell me what you’re trying to build.</h2>
               <p className="mt-7 max-w-xl text-base leading-7 text-[#b8b7b1]">Prefer WhatsApp? Message me directly and I’ll get back to you there. For detailed projects, the form gives me enough context to make the first reply useful.</p>
-              <div className="mt-8 rounded-[20px] border border-white/10 bg-white/[0.03] p-5">
+              <div className="mt-8 rounded-[14px] border-2 border-white/10 bg-white/[0.03] p-5">
                 <p className="text-[10px] uppercase tracking-[0.16em] text-[#73716a]" style={mono}>Direct email</p>
                 <div className="mt-3 flex flex-col gap-3"><a href="mailto:awesomeakokayo@gmail.com" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-[#ffb36b]" style={mono}>awesomeakokayo@gmail.com <ArrowUpRight className="h-4 w-4"/></a><a href="https://wa.me/2349020372640?text=Hi%20Awesome%2C%20I%20found%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noreferrer" className="inline-flex w-fit items-center gap-2 rounded-full border border-[#25D366]/40 bg-[#0d1711] px-4 py-2.5 text-xs font-bold text-[#d8ffe5] hover:border-[#25D366]/70" style={mono}>WhatsApp: +234 902 037 2640 <ArrowUpRight className="h-4 w-4"/></a></div>
               </div>
+              <div className="mt-7"><ContactBuildScene /></div>
             </div>
 
-            <form onSubmit={handleProjectSubmit} className="rounded-[24px] border border-white/10 bg-[#10100f] p-6 sm:p-8">
+            <form onSubmit={handleProjectSubmit} className="rounded-[14px] border-2 border-white/10 bg-[#10100f] p-6 shadow-[0_10px_0_#050505] sm:p-8">
               <div className="grid gap-5 sm:grid-cols-2">
                 <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Name</span><input required name="name" className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none placeholder:text-[#73716a]" placeholder="Your name" /></label>
                 <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Email</span><input required type="email" name="email" className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none placeholder:text-[#73716a]" placeholder="you@company.com" /></label>
@@ -244,7 +261,7 @@ export default function PortfolioSiteClean() {
                 <label className="block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>Timeline</span><select required name="timeline" className="mt-2 w-full rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm text-[#f4f3ef] outline-none"><option value="">Choose one</option><option>ASAP</option><option>2–4 weeks</option><option>1–2 months</option><option>2–3 months</option><option>Flexible</option></select></label>
               </div>
               <label className="mt-5 block"><span className="text-[10px] uppercase tracking-[0.14em] text-[#73716a]" style={mono}>What are you trying to build?</span><textarea required name="brief" rows="6" className="mt-2 w-full resize-y rounded-xl border border-white/10 bg-[#080808] px-4 py-3 text-sm leading-6 text-[#f4f3ef] outline-none placeholder:text-[#73716a]" placeholder="Give me the short version. What is the problem, who is it for, and what do you need the product to do?"></textarea></label>
-              <button type="submit" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#ff5c00] px-6 py-3.5 text-sm font-bold text-[#080808]" style={mono}>Prepare the email <ArrowRight className="h-4 w-4"/></button>
+              <button type="submit" disabled={contactState === "sending" || contactState === "sent"} className="mt-6 inline-flex items-center gap-2 border-2 border-[#080808] bg-[#ff5c00] px-6 py-3.5 text-sm font-bold text-[#080808] shadow-[0_5px_0_#080808] disabled:cursor-not-allowed disabled:opacity-70" style={mono}>{contactState === "sending" ? "Sending…" : contactState === "sent" ? "Enquiry sent" : "Send project enquiry"} <ArrowRight className="h-4 w-4"/></button>
             </form>
           </div>
         </div></section>
