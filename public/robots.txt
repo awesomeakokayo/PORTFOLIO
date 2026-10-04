@@ -13,4 +13,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://awesomeakokayo.cv/sitemap.xml
+Sitemap: https://www.awesomeakokayo.cv/sitemap.xml
