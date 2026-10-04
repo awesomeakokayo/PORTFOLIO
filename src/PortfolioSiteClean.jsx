@@ -404,7 +404,7 @@ export default function PortfolioSiteClean() {
         </section>
 
         <section id="contact" className="border-b border-white/10"><div className="mx-auto max-w-7xl px-5 py-24 sm:px-7 md:py-32 lg:px-10 xl:px-16">
-          <Eyebrow number="08">Start a project</Eyebrow>
+          <Eyebrow number="09">Start a project</Eyebrow>
           <div className="mt-7 grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
             <div>
               <h2 className="text-5xl leading-[0.92] sm:text-6xl md:text-7xl" style={display}>Tell me what you’re trying to build.</h2>
@@ -412,6 +412,20 @@ export default function PortfolioSiteClean() {
               <div className="mt-8 rounded-[14px] border-2 border-white/10 bg-white/[0.03] p-5">
                 <p className="text-[10px] uppercase tracking-[0.16em] text-[#73716a]" style={mono}>Direct email</p>
                 <div className="mt-3 flex flex-col gap-3"><a href="mailto:awesomeakokayo@gmail.com" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-[#ffb36b]" style={mono}>awesomeakokayo@gmail.com <ArrowUpRight className="h-4 w-4"/></a><a href="https://wa.me/2349020372640?text=Hi%20Awesome%2C%20I%20found%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noreferrer" className="inline-flex w-fit items-center gap-2 rounded-full border border-[#25D366]/40 bg-[#0d1711] px-4 py-2.5 text-xs font-bold text-[#d8ffe5] hover:border-[#25D366]/70" style={mono}>WhatsApp: +234 902 037 2640 <ArrowUpRight className="h-4 w-4"/></a></div>
+
+                <div className="mt-5 border-t border-white/10 pt-5">
+                  <p className="text-[10px] uppercase tracking-[0.16em] text-[#73716a]" style={mono}>Public profiles</p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {[
+                      ["GitHub", "https://github.com/awesomeakokayo"],
+                      ["LinkedIn", "https://www.linkedin.com/in/awesomeakokayo/"],
+                      ["X / Twitter", "https://x.com/awesomeakokayo"],
+                      ["Instagram", "https://www.instagram.com/awesomeakokayo/"],
+                    ].map(([label, href]) => (
+                      <a key={label} href={href} target="_blank" rel="noreferrer" className="border border-white/15 bg-[#10100f] px-3 py-2 text-[10px] font-bold text-[#d7d6d0] transition hover:-translate-y-0.5 hover:border-[#ff5c00]/60 hover:text-[#f4f3ef]" style={mono}>{label}</a>
+                    ))}
+                  </div>
+                </div>
               </div>
               <div className="mt-7"><ContactBuildScene /></div>
             </div>
