@@ -126,6 +126,7 @@ export default function ProjectShowcase() {
   const [dragging, setDragging] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const pointerStart = useRef(null);
+  const suppressClick = useRef(false);
 
   const next = () => {
     setActive((current) => (current + 1) % featured.length);
@@ -147,7 +148,11 @@ export default function ProjectShowcase() {
     const distance = event.clientX - pointerStart.current;
     pointerStart.current = null;
     setDragging(false);
-    if (Math.abs(distance) > 55) distance < 0 ? next() : previous();
+    if (Math.abs(distance) > 55) {
+      suppressClick.current = true;
+      distance < 0 ? next() : previous();
+      window.setTimeout(() => { suppressClick.current = false; }, 120);
+    }
   };
 
   useEffect(() => {
@@ -195,7 +200,7 @@ export default function ProjectShowcase() {
             className={`relative mt-7 h-[520px] touch-pan-y select-none sm:h-[610px] lg:h-[640px] ${dragging ? "cursor-grabbing" : "cursor-grab"}`}
             onPointerDown={onPointerDown}
             onPointerUp={onPointerUp}
-            onPointerCancel={() => { pointerStart.current = null; setDragging(false); }}
+            onPointerCancel={() => { pointerStart.current = null; setDragging(false); suppressClick.current = false; }}
           >
             <div className="absolute inset-x-0 bottom-0 mx-auto h-7 w-[70%] border-2 border-[#080808] bg-[#ff5c00]" />
             {featured.map((item, index) => (
@@ -204,7 +209,7 @@ export default function ProjectShowcase() {
                 project={item}
                 index={index}
                 active={index === active}
-                onClick={() => { setActive(index); setHasInteracted(true); }}
+                onClick={() => { if (suppressClick.current) return; setActive(index); setHasInteracted(true); }}
                 style={getPanelStyle(index)}
               />
             ))}
