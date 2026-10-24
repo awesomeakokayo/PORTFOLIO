@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ArrowRight, ArrowUpRight, Check, Menu, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Menu, X } from "lucide-react";
 import ProjectShowcase from "./ProjectShowcase.jsx";
 import { HeroBuildScene } from "./BlockWorld.jsx";
 import PricingPlayground from "./PricingPlayground.jsx";
