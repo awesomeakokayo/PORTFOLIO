@@ -362,8 +362,8 @@
   will-change: transform;
   transform-style: preserve-3d;
 }
-.curtain-panel-left { left: 0; clip-path: polygon(0 0, 100% 0, 91% 100%, 0 100%); border-right: 1px solid rgba(244,243,239,.24); }
-.curtain-panel-right { right: 0; clip-path: polygon(0 0, 100% 0, 100% 100%, 9% 100%); border-left: 1px solid rgba(244,243,239,.18); }
+.curtain-panel-left { left: 0; transform: translate3d(-112%, 0, 0); clip-path: polygon(0 0, 100% 0, 91% 100%, 0 100%); border-right: 1px solid rgba(244,243,239,.24); }
+.curtain-panel-right { right: 0; transform: translate3d(112%, 0, 0); clip-path: polygon(0 0, 100% 0, 100% 100%, 9% 100%); border-left: 1px solid rgba(244,243,239,.18); }
 .curtain-fold { position: absolute; top: 0; bottom: 0; width: 15%; background: linear-gradient(90deg, transparent, rgba(0,0,0,.44), rgba(255,255,255,.04), transparent); }
 .curtain-panel-left .curtain-fold { right: 12%; }
 .curtain-panel-right .curtain-fold { left: 12%; }
