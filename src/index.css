@@ -309,11 +309,16 @@
 .contact-link > span { display: grid; gap: 8px; min-width: 0; }
 .contact-link-label { color: var(--text-muted); font-size: 8px; letter-spacing: .08em; }
 .contact-link strong { overflow-wrap: anywhere; font-size: 13px; font-weight: 500; }
-.contact-form-disclosure { border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
-.contact-form-disclosure summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 0; cursor: pointer; list-style: none; font-size: 13px; font-weight: 600; }
-.contact-form-disclosure summary::-webkit-details-marker { display: none; }
-.contact-form-disclosure summary svg { flex: 0 0 auto; color: var(--accent); transition: transform .2s ease; }
-.contact-form-disclosure[open] summary svg { transform: rotate(90deg); }
+.contact-form-disclosure, .pricing-disclosure { border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+.contact-form-disclosure summary, .pricing-disclosure summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 0; cursor: pointer; list-style: none; font-size: 13px; font-weight: 600; }
+.contact-form-disclosure summary::-webkit-details-marker, .pricing-disclosure summary::-webkit-details-marker { display: none; }
+.contact-form-disclosure summary svg, .pricing-disclosure summary svg { flex: 0 0 auto; color: var(--accent); transition: transform .2s ease; }
+.contact-form-disclosure[open] summary svg, .pricing-disclosure[open] summary svg { transform: rotate(90deg); }
+.pricing-disclosure-body { padding: 0 0 26px; }
+.pricing-disclosure-intro { margin: 0 0 18px; color: var(--text-secondary); font-size: 12px; line-height: 1.75; }
+.project-prefill { margin-bottom: 23px; border: 1px solid rgba(255,92,0,.45); background: rgba(255,92,0,.06); padding: 15px; }
+.project-prefill-title { margin: 8px 0 0; color: var(--paper); font: 500 23px/1.15 var(--font-display); }
+.project-prefill-copy { margin: 8px 0 0; color: var(--text-secondary); font-size: 11px; line-height: 1.7; }
 .contact-form { padding: 2px 0 26px; animation: disclosure-in .25s ease-out both; }
 .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 17px 14px; }
 .contact-form label { display: flex; min-width: 0; flex-direction: column; gap: 8px; color: var(--text-muted); font: 400 8px/1.5 var(--font-mono); letter-spacing: .02em; }
