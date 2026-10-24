@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight, ArrowUpRight, Check, Menu, X } from "lucide-react";
 import ProjectShowcase from "./ProjectShowcase.jsx";
 import { HeroBuildScene } from "./BlockWorld.jsx";
+import PricingPlayground from "./PricingPlayground.jsx";
 
 const display = { fontFamily: "'Ojuju', sans-serif" };
 const mono = { fontFamily: "'Space Mono', monospace" };
@@ -95,7 +96,9 @@ function Nav({ open, setOpen }) {
 
 export default function PortfolioSiteClean() {
   const [open, setOpen] = useState(false);
+  const [projectPrefill, setProjectPrefill] = useState(null);
   const [contactState, setContactState] = useState("idle");
+  const formDisclosureRef = useRef(null);
   const [contactError, setContactError] = useState("");
 
   const handleProjectSubmit = async (event) => {
@@ -262,17 +265,47 @@ export default function PortfolioSiteClean() {
                   <span><span className="contact-link-label" style={mono}>WHATSAPP</span><strong>+234 902 037 2640</strong></span>
                   <ArrowUpRight size={20} />
                 </a>
+                <details className="pricing-disclosure">
+                  <summary>Project starting points <ArrowRight size={17} /></summary>
+                  <div className="pricing-disclosure-body">
+                    <p className="pricing-disclosure-intro">Starting budgets for common project types. Final scope depends on the brief.</p>
+                    <PricingPlayground
+                      onStartProject={(choice) => {
+                        setProjectPrefill({
+                          nonce: Date.now(),
+                          projectType: choice.id === "mobile" ? "Mobile app" : choice.id === "product" ? "Web application / SaaS" : "Website",
+                          budget: choice.id === "mobile" ? "₦2m+" : choice.id === "product" ? "₦1m – ₦2m" : "₦500k – ₦1m",
+                          label: choice.label,
+                          price: choice.price,
+                        });
+                        setContactState("idle");
+                        setContactError("");
+                        if (formDisclosureRef.current) formDisclosureRef.current.open = true;
+                        window.requestAnimationFrame(() => {
+                          formDisclosureRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+                        });
+                      }}
+                    />
+                  </div>
+                </details>
               </div>
 
-              <details className="contact-form-disclosure">
+              <details ref={formDisclosureRef} className="contact-form-disclosure" key={projectPrefill?.nonce || "contact-form"}>
                 <summary>Or send a project brief <ArrowRight size={17} /></summary>
                 <form onSubmit={handleProjectSubmit} className="contact-form">
+                  {projectPrefill && (
+                    <div className="project-prefill">
+                      <p className="contact-link-label" style={mono}>Selected starting point</p>
+                      <p className="project-prefill-title">{projectPrefill.label} · {projectPrefill.price}</p>
+                      <p className="project-prefill-copy">I’ve carried this choice into the form. Add your details and brief.</p>
+                    </div>
+                  )}
                   <div className="form-grid">
                     <label><span>Name</span><input required name="name" autoComplete="name" placeholder="Your name" /></label>
                     <label><span>Email</span><input required type="email" name="email" autoComplete="email" placeholder="you@company.com" /></label>
                     <label><span>Company / organisation</span><input name="company" autoComplete="organization" placeholder="Company name" /></label>
-                    <label><span>Project type</span><select required name="projectType" defaultValue=""><option value="">Select one</option><option>Website</option><option>Web application / SaaS</option><option>Mobile app</option><option>AI integration / automation</option><option>Something else</option></select></label>
-                    <label><span>Budget</span><select required name="budget" defaultValue=""><option value="">Choose a range</option>{contactBudgetOptions.map((option) => <option key={option}>{option}</option>)}</select></label>
+                    <label><span>Project type</span><select required name="projectType" defaultValue={projectPrefill?.projectType || ""}><option value="">Select one</option><option>Website</option><option>Web application / SaaS</option><option>Mobile app</option><option>AI integration / automation</option><option>Something else</option></select></label>
+                    <label><span>Budget</span><select required name="budget" defaultValue={projectPrefill?.budget || ""}><option value="">Choose a range</option>{contactBudgetOptions.map((option) => <option key={option}>{option}</option>)}</select></label>
                     <label><span>Timeline</span><select required name="timeline" defaultValue=""><option value="">Choose one</option><option>ASAP</option><option>2–4 weeks</option><option>1–2 months</option><option>2–3 months</option><option>Flexible</option></select></label>
                   </div>
                   <label className="form-brief"><span>What are you trying to build?</span><textarea required name="brief" rows="5" placeholder="The problem, who it is for, and what you need it to do." /></label>
