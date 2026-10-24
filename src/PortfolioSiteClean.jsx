@@ -290,9 +290,9 @@ export default function PortfolioSiteClean() {
                 </details>
               </div>
 
-              <details ref={formDisclosureRef} className="contact-form-disclosure" key={projectPrefill?.nonce || "contact-form"}>
+              <details ref={formDisclosureRef} className="contact-form-disclosure">
                 <summary>Or send a project brief <ArrowRight size={17} /></summary>
-                <form onSubmit={handleProjectSubmit} className="contact-form">
+                <form key={projectPrefill?.nonce || "contact-form"} onSubmit={handleProjectSubmit} className="contact-form">
                   {projectPrefill && (
                     <div className="project-prefill">
                       <p className="contact-link-label" style={mono}>Selected starting point</p>
