@@ -81,7 +81,7 @@ function ProjectMedia({ project, featured = false }) {
         <span>{project.number} / 04</span>
         <span>{project.category}</span>
       </div>
-      <span className="project-media-corner" aria-hidden="true"><ArrowUpRight size={18} /></span>
+      {project.url && <span className="project-media-corner" aria-hidden="true"><ArrowUpRight size={18} /></span>}
     </div>
   );
 }
