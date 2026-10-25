@@ -531,7 +531,7 @@ export default function ProductFoundry() {
             <div>
               <p className="pf-eyebrow">04 / Your turn</p>
               <h2 className="pf-contact-title">Have a good problem?</h2>
-              <p className="pf-contact-email"><span>Let’s turn it into something real.</span><Arrow diagonal size={15} /></p>
+              <a className="pf-contact-email" href="mailto:awesomeakokayo@gmail.com"><span>Let’s turn it into something real.</span><Arrow diagonal size={15} /></a>
             </div>
             <div>
               <p className="pf-contact-copy">Tell me what you’re trying to build, what is getting in the way, or what you think could be better. We can start there.</p>
