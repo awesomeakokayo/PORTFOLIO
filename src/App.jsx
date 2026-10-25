@@ -1,6 +1,6 @@
 import React from "react";
-import ProductFoundry from "./ProductFoundry.jsx";
+import LivingPortfolio from "./LivingPortfolio.jsx";
 
 export default function App() {
-  return <ProductFoundry />;
+  return <LivingPortfolio />;
 }
