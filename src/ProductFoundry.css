@@ -437,3 +437,13 @@
   .bp-visitor-marker::before { animation: none !important; }
   .bp-entry.is-entering .bp-entry-paper { transform: none; }
 }
+
+/* A soft camera arrival completes the paper-to-world transition. */
+.bp-world-root { animation: bp-world-enter .82s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes bp-world-enter {
+  from { opacity: 0; filter: blur(5px); transform: scale(1.025); }
+  to { opacity: 1; filter: blur(0); transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bp-world-root { animation: none !important; }
+}
