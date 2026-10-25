@@ -581,13 +581,12 @@ export default function LivingPortfolio() {
   const openPanel = (panel) => {
     setActivePanel(panel);
     setShowTourTip(false);
-    if (progressKeys.includes(panel)) {
-      setVisited((previous) => {
-        if (previous.includes(panel)) return previous;
-        const next = previous.concat(panel);
-        if (next.length === progressKeys.length) setShowDiscoveryToast(true);
-        return next;
-      });
+    if (["work", "craft", "story", "city", "contact"].includes(panel) && !visited.includes(panel)) {
+      const next = visited.concat(panel);
+      setVisited(next);
+      if (progressKeys.filter((key) => next.includes(key)).length === progressKeys.length) {
+        setShowDiscoveryToast(true);
+      }
     }
   };
 
@@ -639,7 +638,7 @@ export default function LivingPortfolio() {
               <ObjectHotspot
                 key={discovery.id}
                 {...discovery}
-                visited={visited.includes(discovery.id === "city" ? "work" : discovery.id)}
+                visited={visited.includes(discovery.id)}
                 onClick={() => {
                   if (discovery.id === "city") openPanel("city");
                   else openPanel(discovery.id);
