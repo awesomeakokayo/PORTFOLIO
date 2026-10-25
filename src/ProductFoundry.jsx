@@ -122,14 +122,37 @@ function FoundryArtifact() {
     const rect = artifactRef.current.getBoundingClientRect();
     const x = ((event.clientX - rect.left) / rect.width - 0.5) * 42;
     const y = ((event.clientY - rect.top) / rect.height - 0.5) * 42;
-    artifactRef.current.style.setProperty("--pf-pointer-x", x.toFixed(1) + "px");
-    artifactRef.current.style.setProperty("--pf-pointer-y", y.toFixed(1) + "px");
+    const layers = {
+      "--pf-pointer-x": x,
+      "--pf-pointer-y": y,
+      "--pf-device-x": x * 0.09,
+      "--pf-device-y": y * 0.07,
+      "--pf-orange-x": x * -0.12,
+      "--pf-orange-y": y * -0.08,
+      "--pf-cream-x": x * 0.06,
+      "--pf-cream-y": y * -0.11,
+      "--pf-blue-x": x * -0.07,
+      "--pf-blue-y": y * 0.1,
+      "--pf-mint-x": x * 0.12,
+      "--pf-mint-y": y * 0.1,
+      "--pf-yellow-x": x * -0.15,
+      "--pf-yellow-y": y * -0.07,
+      "--pf-cube-x": x * 0.07,
+      "--pf-cube-y": y * -0.11
+    };
+    Object.entries(layers).forEach(([name, value]) => {
+      artifactRef.current.style.setProperty(name, value.toFixed(1) + "px");
+    });
   };
 
   const resetPointer = () => {
     if (!artifactRef.current) return;
-    artifactRef.current.style.setProperty("--pf-pointer-x", "0px");
-    artifactRef.current.style.setProperty("--pf-pointer-y", "0px");
+    [
+      "--pf-pointer-x", "--pf-pointer-y", "--pf-device-x", "--pf-device-y",
+      "--pf-orange-x", "--pf-orange-y", "--pf-cream-x", "--pf-cream-y",
+      "--pf-blue-x", "--pf-blue-y", "--pf-mint-x", "--pf-mint-y",
+      "--pf-yellow-x", "--pf-yellow-y", "--pf-cube-x", "--pf-cube-y"
+    ].forEach((name) => artifactRef.current.style.setProperty(name, "0px"));
   };
 
   return (
