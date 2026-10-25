@@ -130,7 +130,7 @@ function EntryPortal({ onEnter, entering }) {
           <h1>A world is hidden <span>in every idea.</span></h1>
           <p className="bp-entry-description">Beyond the interface is a structure. Beyond the structure is a possibility. Step inside and see what can be built.</p>
           <div className="bp-entry-actions">
-            <button className="bp-enter-button" type="button" onClick={onEnter}>
+            <button className="bp-enter-button" type="button" onClick={() => onEnter(false)}>
               <span>STEP INTO THE BLUEPRINT</span><Arrow diagonal size={16} />
             </button>
             <button className="bp-skip-button" type="button" onClick={() => onEnter(true)}>Skip the introduction</button>
