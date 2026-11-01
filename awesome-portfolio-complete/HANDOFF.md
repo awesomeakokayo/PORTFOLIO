@@ -42,7 +42,7 @@ Keep the design flat. Do not introduce gradients, blur, glow, tinted overlays or
 - Body: Inter, weight 400–700.
 - Labels: JetBrains Mono, uppercase, minimum 12px.
 - Editorial contrast: Instrument Serif italic.
-- Fonts load from Google Fonts in the global stylesheet; local/system fallback families are defined.
+- Fonts load through `next/font/google` in `app/layout.tsx`; they expose `--font-display`, `--font-body`, `--font-mono` and `--font-serif`, with local/system fallback families in the stylesheet.
 
 ### Spacing and layout
 
@@ -57,8 +57,9 @@ Keep the design flat. Do not introduce gradients, blur, glow, tinted overlays or
 
 ```text
 app/
-  globals.css                 Tokens, fonts, all layout and responsive styling
-  layout.tsx                  SEO metadata, OG/Twitter metadata, global shell
+  globals.css                 Tokens, layout and responsive styling
+  layout.tsx                  Font loading, SEO metadata, global shell
+  opengraph-image.tsx         Static 1200×630 social card
   page.tsx                    Ordered section composition
   icon.svg                    AA. favicon
 components/
@@ -80,7 +81,7 @@ components/
   site-footer.tsx                   Small mono footer and back-to-top
 lib/
   content.ts                        Central copy, project and link data
-public/                             Available for local assets (currently empty)
+public/projects/                    Project screenshots used by work cards
 HANDOFF.md                           This guide
 README.md                            Setup and editing notes
 ```
@@ -90,7 +91,7 @@ README.md                            Setup and editing notes
 1. **Navigation:** fixed, blend-mode-difference, rolling desktop links, mobile full-screen dialog, Escape close, focus trap, scroll lock and focus restoration.
 2. **Hero:** three-line reveal; orange keyword; Instrument Serif italic “Africa.”; brief subcopy; small wireframe R3F object. Canvas is dynamically loaded only after device checks. Low-memory / low-core devices, reduced motion, WebGL absence or canvas render failure use a static SVG.
 3. **Marquee:** infinite outline ticker; pauses on hover for fine pointers and stops under reduced motion.
-4. **Selected work:** six sticky cards for Àjó, TaskBoro, OpenBooks, Tech Skills Hub, EmoHabit and Morgan Pay. Flat card palettes; custom CSS mockups; small tilt and parallax; mockup scale; `VIEW` cursor; description and tag reveal. Touch devices show details without hover.
+4. **Selected work:** five sticky cards for OpenBooks, Tech Skills Hub, Flood Report, Blancquake Foundation and EmoHabit. Flat card palettes; `public/projects` screenshots with CSS mockup fallback; small tilt and parallax; `VIEW` cursor; description and tag reveal (tags are omitted when empty). Touch devices show details without hover.
 5. **Services:** four tiles; desktop hover/focus flip to yellow; touch devices use tap state; one-line descriptions and tiny inline SVG glyphs.
 6. **Numbers:** three count-up stats, animated once on entry; static values for reduced motion.
 7. **Process:** four pinned horizontal panels on desktop; vertical sequence on small screens and for reduced-motion visitors.
@@ -116,30 +117,28 @@ README.md                            Setup and editing notes
 - nav labels and routes;
 - hero kicker, headline and supporting copy;
 - marquee items;
-- work section labels and all six projects (`name`, three-word `category`, `description`, `tags`, `theme`, `kind`, `href`);
+- work section labels and all five projects (`name`, `category`, `description`, `tags`, `theme`, `kind`, `href`, optional `image`);
 - services and descriptions;
 - stats and labels;
 - process steps;
-- contact email, subject, GitHub, LinkedIn and WhatsApp placeholder;
+- contact email, subject, GitHub and LinkedIn;
 - footer details.
 
-Do not hard-code replacement project or service copy in components. `Project` supports an optional `image: { src, alt }`; add this to an entry to replace the CSS-built mockup with a screenshot. Keep image files local in `public/` and use a path such as `/projects/ajo-dashboard.webp`.
+Do not hard-code replacement project or service copy in components. `Project` supports an optional `image: { src, alt }`; every current project uses a local screenshot from `public/projects/` and falls back to the CSS-built mockup if the field is removed. Keep image files local in `public/` and use a landscape crop, since cards render them with `object-fit: cover`.
 
-## 7. Known TODOs / not yet done
+## 7. Known limitations / not yet done
 
-- Project summaries and technology tags are intentionally marked `TODO`; confirm every claim before publishing.
-- All project `href` values currently route to `#contact`; replace with verified live product or case-study URLs.
-- WhatsApp link is intentionally disabled until a correct public contact number is supplied.
-- No real project screenshots are bundled; current product visuals are CSS compositions and are easy to replace via the optional `image` field.
+- Flood Report, Blancquake Foundation and OpenBooks currently link to `#contact`; Tech Skills Hub links to its live site. Replace the rest once public URLs are confirmed.
+- `blancquake.png` and `emohabit.png` are flat typographic stand-ins, not product screenshots. Swap in real captures using the same filenames.
 - No deployment was performed and no Vercel project/domain configuration was changed.
 - Actual browser QA at 360px, 768px and 1440px, keyboard audit, screen-reader audit and Lighthouse performance/accessibility checks remain to be run after dependencies install.
-- All 21 TypeScript/TSX files passed syntax transpilation; local imports and declared package dependencies were checked, and the global PostCSS parser accepted the stylesheet. A full typecheck and `npm run build` could not be completed because npm registry DNS failed (`EAI_AGAIN`), so dependencies could not be installed and `next` was unavailable. Run `npm install`, `npm run typecheck`, and `npm run build` in a network-enabled environment before deployment.
+- `npm run build` and `npx tsc --noEmit` pass in this environment; the social card is generated statically from `app/opengraph-image.tsx`.
 
 ## 8. Safe continuation instructions
 
 1. Install dependencies and run the typecheck and production build.
 2. Fix any genuine compile/build/runtime issues without changing the visual direction.
-3. Replace TODO descriptions, tags, links and the WhatsApp placeholder only after fact-checking them.
-4. Add approved local product screenshots through `Project.image`.
+3. Replace the remaining placeholder screenshots and `#contact` project links only after fact-checking them.
+4. Keep card imagery landscape; the work cards crop with `object-fit: cover`.
 5. Run device/browser checks at 360px, 768px and 1440px; verify reduced motion, keyboard navigation, the project stack, mobile menu, and fallback when WebGL is unavailable.
 6. Deploy only after the user approves the deployment target and production impact.
