@@ -4,10 +4,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   Check,
-  ChevronDown,
   Copy,
-  Menu,
-  X,
 } from "lucide-react";
 import BrandMark from "./BrandMark.jsx";
 import ThemeSlider from "./ThemeSlider.jsx";
