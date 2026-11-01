@@ -174,9 +174,9 @@ export const siteContent = {
     eyebrow: "03 / BY THE NUMBERS",
     title: "A little perspective.",
     stats: [
-      { value: 6, suffix: "", label: "Featured projects", detail: "Across the work selection" },
-      { value: 1, suffix: "", label: "Home country", detail: "Nigeria, building for Africa" },
-      { value: 4, suffix: "", label: "Ways to build", detail: "Web, mobile, AI, fintech" },
+      { value: 32, suffix: "", label: "Learning tracks live", detail: "Across Tech Skills Hub" },
+      { value: 5, suffix: "", label: "Featured builds", detail: "Selected work" },
+      { value: 2, suffix: "", label: "Free products for Africa", detail: "Open source and free to use" },
     ],
   },
   process: {
