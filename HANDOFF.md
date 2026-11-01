@@ -134,7 +134,7 @@ Do not hard-code replacement project or service copy in components. `Project.log
 - OpenBooks, Tech Skills Hub, Elroi Hub and Blancquake Foundation link to live sites. Flood Report and NaviPro are intentionally static until public URLs exist.
 - The Tech Skills Hub logo is the current green step mark; swap `public/logos/tech-skills.png` when the new wordmark is supplied.
 - The Flood Report and NaviPro marks were designed as flat placeholders in the site palette.
-- No deployment was performed and no Vercel project/domain configuration was changed.
+- Production deploys run from the repository root; Vercel detects Next.js and `resources/` is excluded with `.vercelignore`.
 - Actual browser QA at 360px, 768px and 1440px, keyboard audit, screen-reader audit and Lighthouse performance/accessibility checks remain to be run after dependencies install.
 - `npm run build` and `npx tsc --noEmit` pass in this environment; the social card is generated statically from `app/opengraph-image.tsx`.
 
@@ -145,4 +145,4 @@ Do not hard-code replacement project or service copy in components. `Project.log
 3. Confirm live URLs and replace placeholder logos only after fact-checking them.
 4. Keep logo files transparent and uncropped; cards use `object-fit: contain`.
 5. Run device/browser checks at 360px, 768px and 1440px; verify reduced motion, keyboard navigation, the project stack, mobile menu, and fallback when WebGL is unavailable.
-6. Deploy only after the user approves the deployment target and production impact.
+6. Confirm production deploys from the repository root; `resources/` must stay excluded from the deployment.

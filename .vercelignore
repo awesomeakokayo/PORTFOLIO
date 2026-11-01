@@ -1,0 +1,5 @@
+resources/
+.freebuff/
+.next/
+node_modules/
+*.log
