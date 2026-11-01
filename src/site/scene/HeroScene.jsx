@@ -412,7 +412,7 @@ export default function HeroScene({ progressRef, active = true, reduced = false,
   return (
     <SceneFrame
       active={active}
-      reduced={false}
+      reduced={reduced}
       shadows={false}
       camera={{ position: [0, 0, narrow ? 7.6 : 9], fov: 30 }}
       fallback={<HeroFallback />}
