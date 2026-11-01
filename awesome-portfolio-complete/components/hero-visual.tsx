@@ -45,7 +45,7 @@ export function HeroVisual() {
       webglAvailable = false;
     }
 
-    const lowEnd = (typeof memory === "number" && memory <= 4) || cores <= 4;
+    const lowEnd = (typeof memory === "number" && memory <= 4) || cores <= 2;
     setUseFallback(reducedMotion || lowEnd || !webglAvailable);
   }, []);
 

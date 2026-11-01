@@ -54,6 +54,14 @@ export function HeroSection() {
           {hero.description}
         </motion.p>
         <motion.p
+          className="hero-section__tag"
+          initial={reducedMotion ? false : { opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease, delay: reducedMotion ? 0 : 0.44 }}
+        >
+          {hero.availability}
+        </motion.p>
+        <motion.p
           className="hero-section__meta"
           initial={reducedMotion ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}

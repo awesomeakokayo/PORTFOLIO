@@ -55,6 +55,7 @@ export const siteContent = {
     lineTwo: "things for",
     serifWord: "Africa.",
     description: "Digital products for real needs, built with intent.",
+    availability: "OPEN TO FULL-TIME ROLES",
     location: "INDEPENDENT BUILDER · BASED IN NIGERIA",
     scroll: "Scroll to explore",
     visualAlt: "Abstract three-dimensional wireframe form",
