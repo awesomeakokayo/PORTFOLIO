@@ -13,8 +13,64 @@ const BODY_W = 2.0;
 const BODY_H = 3.62;
 const BODY_D = 0.46;
 const BEVEL = 0.11;
-const BUTTON_R = 0.6;
+const BUTTON_R = 0.66;
 const BUTTON_TRAVEL = 0.42;
+
+function letterTexture(letter, color = "#e8ece4") {
+  const size = 128;
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const context = canvas.getContext("2d");
+  if (!context) return null;
+  context.clearRect(0, 0, size, size);
+  context.fillStyle = color;
+  context.font = "600 62px 'Instrument Sans', Arial, sans-serif";
+  context.textAlign = "center";
+  context.textBaseline = "middle";
+  context.fillText(letter, size / 2, size / 2 + 3);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.anisotropy = 4;
+  texture.colorSpace = THREE.SRGBColorSpace;
+  return texture;
+}
+
+function CompassLetters() {
+  const letters = useMemo(
+    () =>
+      [
+        { char: "N", angle: 0 },
+        { char: "E", angle: Math.PI / 2 },
+        { char: "S", angle: Math.PI },
+        { char: "W", angle: (3 * Math.PI) / 2 },
+      ].map(({ char, angle }) => ({
+        char,
+        x: Math.sin(angle) * 0.47,
+        y: Math.cos(angle) * 0.47,
+        texture: letterTexture(char),
+      })),
+    []
+  );
+
+  useEffect(
+    () => () => letters.forEach((letter) => letter.texture?.dispose()),
+    [letters]
+  );
+
+  return letters.map(({ char, x, y, texture }) =>
+    texture ? (
+      <mesh key={char} position={[x, y, 0.012]}>
+        <planeGeometry args={[0.14, 0.14]} />
+        <meshBasicMaterial
+          map={texture}
+          transparent
+          depthWrite={false}
+          toneMapped={false}
+        />
+      </mesh>
+    ) : null
+  );
+}
 
 function roundedRectShape(width, height, radius) {
   const x = -width / 2;
@@ -126,7 +182,7 @@ function CompassNeedle({ silverMaterial, accentMaterial }) {
   }, [needleGeomA, needleGeomB]);
 
   return (
-    <group scale={1.12}>
+    <group scale={0.92}>
       <mesh geometry={needleGeomA} material={accentMaterial} castShadow={false} />
       <mesh geometry={needleGeomB} material={silverMaterial} castShadow={false} />
       <mesh position={[0, -0.06, 0.025]}>
@@ -309,17 +365,19 @@ function HeroEntity({ progressRef, reduced, dark, narrow }) {
 
   useFrame((state, delta) => {
     const raw = reduced ? 1 : THREE.MathUtils.clamp(progressRef.current ?? 0, 0, 1);
-    const progress = raw * raw * (3 - 2 * raw);
+    const smooth = raw * raw * (3 - 2 * raw);
     const speed = reduced ? 60 : 3.2;
 
     if (tilt.current) {
-      const zTarget = narrow ? 0 : THREE.MathUtils.lerp(-0.56, 0.16, progress);
-      const yTarget = reduced ? 0 : state.pointer.x * (narrow ? 0.05 : 0.16);
-      const xTarget = reduced ? 0.1 : 0.12 - state.pointer.y * 0.06;
-
-      tilt.current.rotation.z = THREE.MathUtils.damp(tilt.current.rotation.z, zTarget, speed, delta);
-      tilt.current.rotation.y = THREE.MathUtils.damp(tilt.current.rotation.y, yTarget, speed, delta);
-      tilt.current.rotation.x = THREE.MathUtils.damp(tilt.current.rotation.x, xTarget, speed, delta);
+      /* The object keeps its resting angle. Only the dial and needle move. */
+      tilt.current.rotation.z = THREE.MathUtils.damp(
+        tilt.current.rotation.z,
+        narrow ? 0 : -0.42,
+        speed,
+        delta
+      );
+      tilt.current.rotation.x = THREE.MathUtils.damp(tilt.current.rotation.x, 0.06, speed, delta);
+      tilt.current.rotation.y = THREE.MathUtils.damp(tilt.current.rotation.y, 0, speed, delta);
     }
 
     if (float.current) {
@@ -331,18 +389,17 @@ function HeroEntity({ progressRef, reduced, dark, narrow }) {
     if (button.current) {
       /* Gravitational pull: starts at the top, accelerates downwards with scroll */
       const fallProgress = Math.min(1, Math.pow(raw, 1.35));
-      const topY = narrow ? 0.85 : 1.10;
-      const bottomY = narrow ? -0.85 : -1.10;
+      const topY = narrow ? 1.06 : 1.10;
+      const bottomY = narrow ? -1.06 : -1.10;
       const yTarget = THREE.MathUtils.lerp(topY, bottomY, fallProgress);
       button.current.position.y = THREE.MathUtils.damp(button.current.position.y, yTarget, speed, delta);
     }
 
     if (arrow.current) {
-      /* Compass needle dynamically settles like a physical magnetic needle */
-      const fallProgress = Math.min(1, Math.pow(raw, 1.35));
-      const startAngle = narrow ? Math.PI / 2 : Math.PI / 3.8;
-      const endAngle = narrow ? -Math.PI / 2 : -Math.PI / 2.8;
-      const targetAngle = THREE.MathUtils.lerp(startAngle, endAngle, fallProgress);
+      /* The needle settles like a physical compass as the dial travels. */
+      const startAngle = narrow ? 0 : -0.58;
+      const endAngle = narrow ? Math.PI : -1.2;
+      const targetAngle = THREE.MathUtils.lerp(startAngle, endAngle, smooth);
 
       arrow.current.rotation.z = THREE.MathUtils.damp(
         arrow.current.rotation.z,
@@ -355,7 +412,7 @@ function HeroEntity({ progressRef, reduced, dark, narrow }) {
 
   return (
     <group ref={float} scale={narrow ? 0.95 : 0.92}>
-      <group ref={tilt} rotation={[0.12, 0, -0.56]}>
+      <group ref={tilt} rotation={[0.06, 0, narrow ? 0 : -0.42]}>
         <mesh geometry={bodyGeometry} material={bodyMaterial} castShadow receiveShadow />
 
         <mesh
@@ -364,24 +421,26 @@ function HeroEntity({ progressRef, reduced, dark, narrow }) {
           position={[0, 0, bodyFront + 0.012]}
         />
 
-        {/* Compass Rose cardinal markers on top and bottom resting points */}
-        <group position={[0, narrow ? 0.85 : 1.10, bodyFront + 0.015]} scale={0.9}>
-          <CardinalTicks material={tickMaterial} radius={0.72} />
-        </group>
-        <group position={[0, narrow ? -0.85 : -1.10, bodyFront + 0.015]} scale={0.9}>
-          <CardinalTicks material={tickMaterial} radius={0.72} />
+        {/* The engraved rose at the end of the dial's travel. */}
+        <group position={[0, narrow ? -1.06 : -1.10, bodyFront + 0.015]} scale={0.9}>
+          <CardinalTicks material={tickMaterial} radius={0.76} />
+          <mesh>
+            <torusGeometry args={[0.84, 0.0045, 8, 96]} />
+            <primitive object={tickMaterial} attach="material" />
+          </mesh>
         </group>
 
-        {/* Gravitational sliding compass dial button */}
-        <group ref={button} position={[0, narrow ? 0.85 : 1.10, bodyFront + 0.1]}>
+        {/* Gravitational sliding compass dial */}
+        <group ref={button} position={[0, narrow ? 1.06 : 1.10, bodyFront + 0.1]}>
           <mesh geometry={buttonShape} material={buttonMaterial} castShadow />
           <group position={[0, 0, 0.01]}>
-            <CardinalTicks material={tickMaterial} radius={BUTTON_R + 0.08} />
+            <CardinalTicks material={tickMaterial} radius={BUTTON_R - 0.055} />
           </group>
+          <CompassLetters />
           <group
             ref={arrow}
             position={[0, 0, 0.118]}
-            rotation={[0, 0, narrow ? Math.PI / 2 : Math.PI / 3.8]}
+            rotation={[0, 0, narrow ? 0 : -0.58]}
           >
             <CompassNeedle silverMaterial={silverMaterial} accentMaterial={needleAccentMaterial} />
           </group>
@@ -397,8 +456,14 @@ function HeroFallback() {
       <span className="rb-entity-fallback-pill">
         <span className="rb-entity-fallback-rim" />
         <span className="rb-entity-fallback-button">
-          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-            <path d="M8 24 24 8M12 8h12v12" />
+          <span className="rb-fallback-rose" aria-hidden="true">
+            <i className="is-n">N</i>
+            <i className="is-e">E</i>
+            <i className="is-s">S</i>
+            <i className="is-w">W</i>
+          </span>
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
+            <path d="M12 20 20 12M13 12h7v7" />
           </svg>
         </span>
       </span>

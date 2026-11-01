@@ -4,10 +4,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   Check,
-  ChevronDown,
   Copy,
-  Menu,
-  X,
 } from "lucide-react";
 import BrandMark from "./BrandMark.jsx";
 import ThemeSlider from "./ThemeSlider.jsx";
@@ -17,7 +14,6 @@ import {
   useReducedMotion,
   useScrollProgress,
   useScrollReveal,
-  useTilt,
 } from "./motion.js";
 import { getThemeMode, useThemeLevel } from "./theme.js";
 import "./site.css";
@@ -101,26 +97,22 @@ const principles = [
   {
     number: "01",
     title: "Problem before code.",
-    text: "The first job is to understand what should change for the person using the product. The stack comes after that, not before it.",
-    tag: "Discovery",
+    text: "Understand what should change for the person using the product. The stack comes after that, not before it.",
   },
   {
     number: "02",
     title: "Design is part of engineering.",
-    text: "A feature is not finished when it runs. It is finished when someone can use it without being taught, and trust it with something real.",
-    tag: "Experience",
+    text: "A feature is finished when someone can use it without being taught, and trust it with something real.",
   },
   {
     number: "03",
     title: "Ship, then learn.",
-    text: "Working software in front of real people beats a perfect plan in a document. What happens after launch decides what gets built next.",
-    tag: "Delivery",
+    text: "Working software in front of real people beats a perfect plan in a document. Usage decides what comes next.",
   },
   {
     number: "04",
     title: "AI with judgement.",
-    text: "AI is leverage, not a personality. I use it where it removes real work, and keep the product decisions and accountability with the builder.",
-    tag: "Leverage",
+    text: "AI is leverage, not a personality. It earns its place where it removes real work — the decisions stay human.",
   },
 ];
 
@@ -170,13 +162,6 @@ const toolkit = [
   },
 ];
 
-const aboutFacts = [
-  ["2026", "B.Sc. Computer Science, Coal City University"],
-  ["2025", "Presented original research at Springer ETMiS"],
-  ["2024", "Former Vice President II, NACOS"],
-  ["Now", "Founder & builder — OpenBooks, TechSkillHub, NaviPro"],
-];
-
 const moreWork = [
   {
     name: "EmoHabit",
@@ -218,103 +203,77 @@ const clientLogos = [
   {
     name: "OpenBooks",
     url: "https://www.openbooks.click",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" className="rb-monomark-svg">
-        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
-        <path d="M6 6h10M6 10h10" />
-      </svg>
-    ),
+    logo: "/logos/openbooks.png",
   },
   {
     name: "TechSkillHub",
     url: "https://www.techskillhub.cv",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" className="rb-monomark-svg">
-        <polygon points="12 2 2 7 12 12 22 7 12 2" />
-        <polyline points="2 17 12 22 22 17" />
-        <polyline points="2 12 12 17 22 12" />
-      </svg>
-    ),
+    logo: "/logos/steps-mark.png",
   },
   {
     name: "Elroi Hub",
     url: "https://www.elroihubllc.com",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" className="rb-monomark-svg">
-        <circle cx="12" cy="12" r="10" />
-        <polygon points="12 8 8 12 12 16 16 12 12 8" />
-      </svg>
-    ),
+    logo: "/logos/elroi-hub.png",
   },
   {
     name: "NaviPro",
     url: "#work",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" className="rb-monomark-svg">
-        <circle cx="12" cy="12" r="10" />
-        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
-      </svg>
-    ),
+    wordmark: "NaviPro",
+    variant: "sans",
   },
   {
     name: "CCU Journal",
     url: "#work",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" className="rb-monomark-svg">
-        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-      </svg>
-    ),
+    wordmark: "CCU Journal",
+    variant: "serif",
   },
   {
     name: "Blancquake",
     url: "#work",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" className="rb-monomark-svg">
-        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-      </svg>
-    ),
+    wordmark: "Blancquake",
+    variant: "mono",
   },
 ];
 
-const focusPillars = [
+const sectors = [
   {
-    id: "saas",
-    name: "SaaS",
-    desc: "Self-serve platforms, recurring workflows, billing & complex dashboard UX",
-    accent: "#8ae2a8",
-    bgClass: "rb-pillar-green",
-  },
-  {
-    id: "startup",
     name: "Startups",
-    desc: "Rapid 0-to-1 MVP architecture, clickable prototypes & investor-ready launches",
-    accent: "#f6df69",
-    bgClass: "rb-pillar-yellow",
+    note: "0→1 products and MVPs",
+    color: "#b06a4a",
+    position: "is-top",
   },
   {
-    id: "agencies",
-    name: "Agencies & B2B",
-    desc: "High-conversion web platforms, bespoke client systems & scalable REST APIs",
-    accent: "#7c8cf6",
-    bgClass: "rb-pillar-blue",
+    name: "SaaS & B2B",
+    note: "Dashboards and workflows",
+    color: "#3f6b52",
+    position: "is-right",
   },
   {
-    id: "civic",
-    name: "Civic & NGOs",
-    desc: "Mission-driven products, accessible interfaces, reporting & community advocacy",
-    accent: "#f8a3d6",
-    bgClass: "rb-pillar-pink",
+    name: "Agencies",
+    note: "Brand sites and platforms",
+    color: "#a9893f",
+    position: "is-bottom",
+  },
+  {
+    name: "NGOs & civic",
+    note: "Public-interest tools",
+    color: "#5b6f8a",
+    position: "is-left",
   },
 ];
 
-const capabilityPills = [
-  "Product Strategy",
-  "Full-Stack Dev",
-  "AI & LLM APIs",
-  "Design Systems",
-  "SEO & Performance",
-  "Conversion UX",
+const capabilities = [
+  "Product engineering",
+  "Interface design",
+  "Technical SEO",
+  "AI when it helps",
+];
+
+const compassArms = [
+  { x1: 310, y1: 132, x2: 310, y2: 302 },
+  { x1: 488, y1: 310, x2: 318, y2: 310 },
+  { x1: 310, y1: 488, x2: 310, y2: 318 },
+  { x1: 132, y1: 310, x2: 302, y2: 310 },
 ];
 
 function Reveal({ as: Tag = "div", delay = 0, className = "", style, children, ...rest }) {
@@ -330,25 +289,76 @@ function Reveal({ as: Tag = "div", delay = 0, className = "", style, children, .
   );
 }
 
-function TiltSurface({ className = "", children }) {
-  const tilt = useTilt({ max: 3.2 });
+function SectorCompass() {
   return (
-    <div
-      ref={tilt.ref}
-      className={"rb-tilt " + className}
-      onPointerMove={tilt.onPointerMove}
-      onPointerLeave={tilt.onPointerLeave}
-    >
-      {children}
-    </div>
-  );
-}
+    <div className="rb-compass-figure">
+      <svg className="rb-compass-svg" viewBox="0 0 620 620" aria-hidden="true">
+        <defs>
+          {sectors.map((sector, index) => (
+            <marker
+              key={sector.name}
+              id={`rb-sector-arrow-${index}`}
+              viewBox="0 0 10 10"
+              refX="7.5"
+              refY="5"
+              markerWidth="4.5"
+              markerHeight="4.5"
+              orient="auto-start-reverse"
+            >
+              <path d="M0 0 10 5 0 10z" fill={sector.color} />
+            </marker>
+          ))}
+        </defs>
 
-function Eyebrow({ children }) {
-  return (
-    <p className="rb-eyebrow">
-      <span>{children}</span>
-    </p>
+        <circle className="rb-compass-ring" cx="310" cy="310" r="176" />
+
+        {Array.from({ length: 24 }).map((_, index) => {
+          const angle = (index / 24) * Math.PI * 2;
+          const major = index % 6 === 0;
+          const inner = major ? 150 : 162;
+          const outer = 176;
+          return (
+            <line
+              key={index}
+              className={"rb-compass-tick" + (major ? " is-major" : "")}
+              x1={310 + Math.sin(angle) * inner}
+              y1={310 - Math.cos(angle) * inner}
+              x2={310 + Math.sin(angle) * outer}
+              y2={310 - Math.cos(angle) * outer}
+            />
+          );
+        })}
+
+        {compassArms.map((arm, index) => (
+          <line
+            key={sectors[index].name}
+            className="rb-compass-arm"
+            x1={arm.x1}
+            y1={arm.y1}
+            x2={arm.x2}
+            y2={arm.y2}
+            stroke={sectors[index].color}
+            markerEnd={`url(#rb-sector-arrow-${index})`}
+          />
+        ))}
+
+        <circle className="rb-compass-hub" cx="310" cy="310" r="5" />
+      </svg>
+
+      <ul className="rb-sector-list">
+        {sectors.map((sector) => (
+          <li
+            key={sector.name}
+            className={"rb-sector " + sector.position}
+            style={{ "--sector": sector.color }}
+          >
+            <span className="rb-sector-dot" aria-hidden="true" />
+            <strong>{sector.name}</strong>
+            <small>{sector.note}</small>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
@@ -358,8 +368,14 @@ function EntityFallback() {
       <span className="rb-entity-fallback-pill">
         <span className="rb-entity-fallback-rim" />
         <span className="rb-entity-fallback-button">
-          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-            <path d="M8 24 24 8M12 8h12v12" />
+          <span className="rb-fallback-rose" aria-hidden="true">
+            <i className="is-n">N</i>
+            <i className="is-e">E</i>
+            <i className="is-s">S</i>
+            <i className="is-w">W</i>
+          </span>
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
+            <path d="M12 20 20 12M13 12h7v7" />
           </svg>
         </span>
       </span>
@@ -416,69 +432,24 @@ function ScrollProgress() {
   );
 }
 
-function Nav({
-  open,
-  setOpen,
-  scrolled,
-  onEnterMuseum,
-  themeLevel,
-  setThemeLevel,
-}) {
+function Nav({ scrolled, themeLevel, setThemeLevel }) {
   const links = [
     ["Work", "#work"],
     ["Approach", "#approach"],
     ["About", "#about"],
-    ["Contact", "#contact"],
   ];
 
-  useEffect(() => {
-    const close = (event) => {
-      if (event.key === "Escape") setOpen(false);
-    };
-    window.addEventListener("keydown", close);
-    return () => window.removeEventListener("keydown", close);
-  }, [setOpen]);
-
-  useEffect(() => {
-    if (!open) return undefined;
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = previous;
-    };
-  }, [open]);
-
   return (
-    <header className={"rb-header" + (scrolled ? " is-scrolled" : "") + (open ? " is-open" : "")}>
+    <header className={"rb-header" + (scrolled ? " is-scrolled" : "")}>
       <div className="rb-container rb-nav">
         <a className="rb-brand" href="#top" aria-label="Awesome Akokayo, home">
-          <BrandMark size={44} standalone />
+          <BrandMark size={46} standalone />
           <span className="rb-brand-name">Awesome</span>
         </a>
 
-        {/* When scrolled on mobile: compact contact pill directly docked with logo */}
-        <a
-          className={"rb-pill rb-pill-cta rb-mobile-scrolled-cta" + (scrolled ? " is-visible" : "")}
-          href="#contact"
-        >
-          <span className="rb-pill-orb" aria-hidden="true">
-            <ArrowRight size={13} />
-          </span>
-          <span>Contact</span>
-        </a>
-
-        <div className={"rb-mobile-theme" + (scrolled ? " is-hidden" : "")}>
-          <ThemeSlider
-            wide
-            level={themeLevel}
-            onChange={setThemeLevel}
-            className="rb-theme-mobile"
-          />
-        </div>
-
         <div className="rb-nav-glass">
           <nav className="rb-nav-links" aria-label="Main navigation">
-            {links.slice(0, 3).map(([label, href]) => (
+            {links.map(([label, href]) => (
               <a key={label} href={href}>
                 {label}
               </a>
@@ -497,66 +468,34 @@ function Nav({
             <span className="rb-nav-orb" aria-hidden="true">
               <ArrowRight size={13} />
             </span>
-            Let's talk
-          </a>
-        </div>
-      </div>
-
-      {!scrolled && (
-        <div className="rb-container rb-mobile-bar">
-          <button
-            type="button"
-            className="rb-pill"
-            onClick={() => setOpen(!open)}
-            aria-expanded={open}
-            aria-controls="rb-mobile-nav"
-          >
-            {open ? <X size={14} /> : <Menu size={14} />}
-            <span>{open ? "Close" : "Menu"}</span>
-            <ChevronDown size={14} className="rb-pill-chevron" aria-hidden="true" />
-          </button>
-
-          <a className="rb-pill rb-pill-cta" href="#contact" onClick={() => setOpen(false)}>
-            <span className="rb-pill-orb" aria-hidden="true">
-              <ArrowRight size={13} />
-            </span>
             Contact
           </a>
         </div>
-      )}
 
-      <div id="rb-mobile-nav" className={"rb-mobile-nav" + (open ? " is-open" : "")}>
-        <nav aria-label="Mobile navigation">
-          {links.map(([label, href]) => (
-            <a key={label} href={href} onClick={() => setOpen(false)}>
-              {label}
-              <ArrowUpRight size={17} />
-            </a>
-          ))}
-          {onEnterMuseum && (
-            <button
-              type="button"
-              className="rb-mobile-museum"
-              onClick={() => {
-                setOpen(false);
-                onEnterMuseum();
-              }}
-            >
-              Enter the 3D archive <ArrowUpRight size={15} />
-            </button>
-          )}
-        </nav>
-        <p className="rb-mobile-nav-foot">Building digital products beyond the code.</p>
+        <a className="rb-mobile-cta" href="#contact">
+          <span className="rb-pill-orb" aria-hidden="true">
+            <ArrowRight size={13} />
+          </span>
+          <span>Contact</span>
+        </a>
+
+        <div className={"rb-mobile-theme" + (scrolled ? " is-hidden" : "")}>
+          <ThemeSlider
+            wide
+            level={themeLevel}
+            onChange={setThemeLevel}
+            className="rb-theme-mobile"
+          />
+        </div>
       </div>
     </header>
   );
 }
 
-function SectionHead({ label, title, aside, id }) {
+function SectionHead({ title, aside, id }) {
   return (
     <Reveal className="rb-section-head">
       <div className="rb-section-head-main">
-        <Eyebrow>{label}</Eyebrow>
         <h2 id={id}>{title}</h2>
       </div>
       {aside && <p className="rb-section-aside">{aside}</p>}
@@ -564,186 +503,109 @@ function SectionHead({ label, title, aside, id }) {
   );
 }
 
-function LiveBadge() {
+function ProjectFigure({ project, large = false }) {
   return (
-    <span className="rb-live">
-      <span aria-hidden="true" />
-      Live
-    </span>
-  );
-}
-
-function InteractiveLiveFrame({ project, large = false }) {
-  const [hovered, setHovered] = useState(false);
-  const frameRef = useRef(null);
-
-  const handleMouseMove = (e) => {
-    if (!frameRef.current) return;
-    const rect = frameRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    frameRef.current.style.setProperty("--mouse-x", `${x}px`);
-    frameRef.current.style.setProperty("--mouse-y", `${y}px`);
-  };
-
-  return (
-    <div
-      ref={frameRef}
-      className={`rb-liveframe ${large ? "is-large" : ""}`}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {/* Radial cursor spotlight tracking */}
-      <span className="rb-liveframe-spotlight" aria-hidden="true" />
-      <span className="rb-liveframe-scanline" aria-hidden="true" />
-
-      {/* Browser / Application Chrome Header */}
-      <div className="rb-liveframe-chrome">
-        <div className="rb-liveframe-dots" aria-hidden="true">
-          <span className="rb-dot rb-dot-red" />
-          <span className="rb-dot rb-dot-yellow" />
-          <span className="rb-dot rb-dot-green" />
-        </div>
-
-        <div className="rb-liveframe-urlbar">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" className="rb-lock-icon">
-            <rect x="3" y="7" width="10" height="7" rx="1.5" />
-            <path d="M5.5 7V4.5a2.5 2.5 0 0 1 5 0V7" />
-          </svg>
-          <span className="rb-liveframe-domain">{project.domain || "app.production"}</span>
-          {project.url && <span className="rb-liveframe-ping" title="Production live" />}
-        </div>
-
-        <div className="rb-liveframe-status">
-          {project.url ? (
-            <span className="rb-liveframe-badge">200 OK</span>
-          ) : (
-            <span className="rb-liveframe-badge rb-badge-beta">PROTOTYPE</span>
-          )}
-        </div>
-      </div>
-
-      {/* Frame Viewport */}
-      <div className="rb-liveframe-viewport">
-        <img
-          src={project.image}
-          alt={project.imageAlt}
-          loading={large ? "eager" : "lazy"}
-          decoding="async"
-        />
-
-        {/* Hover overlay micro-interaction */}
-        <div className={`rb-liveframe-overlay ${hovered ? "is-active" : ""}`}>
-          <span className="rb-liveframe-cta-pill">
-            <span>{project.url ? "Launch preview" : "View architecture"}</span>
-            <ArrowUpRight size={14} />
-          </span>
-        </div>
-      </div>
+    <div className={"rb-project-figure" + (large ? " is-large" : "")}>
+      <img
+        src={project.image}
+        alt={project.imageAlt}
+        loading={large ? "eager" : "lazy"}
+        decoding="async"
+      />
+      <span className="rb-figure-cta" aria-hidden="true">
+        {project.url ? "Open the project" : "Built prototype"}
+        <ArrowUpRight size={15} />
+      </span>
     </div>
   );
 }
 
 function FeaturedProject({ project }) {
+  const linked = Boolean(project.url);
+  const Tag = linked ? "a" : "article";
+
   return (
-    <Reveal className="rb-featured-liveframe">
-      <div className="rb-featured-head">
-        <div className="rb-project-kicker">
-          <span className="rb-project-category">{project.category}</span>
-          {project.url && <LiveBadge />}
-        </div>
-        <div className="rb-featured-role-pill">
-          <span>{project.role}</span>
-        </div>
+    <Reveal
+      as={Tag}
+      className="rb-featured"
+      {...(linked
+        ? {
+            href: project.url,
+            target: "_blank",
+            rel: "noreferrer",
+            "aria-label": `${project.name} — ${project.linkLabel || "Open the product"}`,
+          }
+        : {})}
+    >
+      <div className="rb-featured-figure-col">
+        <ProjectFigure project={project} large />
       </div>
 
-      <div className="rb-featured-title-wrap">
+      <div className="rb-featured-copy">
+        <div className="rb-project-meta-row">
+          <span className="rb-project-category">{project.category}</span>
+        </div>
+
         <h3>{project.name}</h3>
         <p className="rb-featured-title">{project.title}</p>
         <p className="rb-featured-description">{project.description}</p>
-      </div>
 
-      {/* Interactive Live Frame Centerpiece */}
-      <InteractiveLiveFrame project={project} large />
+        <p className="rb-project-stack">{project.tags.join(" · ")}</p>
 
-      <div className="rb-featured-bottom">
-        <ul className="rb-tags" aria-label="Product stack">
-          {project.tags.map((tag) => (
-            <li key={tag} className="rb-tag-chip">{tag}</li>
-          ))}
-        </ul>
-
-        <div className="rb-featured-actions">
-          {project.url ? (
-            <a className="rb-liveframe-btn" href={project.url} target="_blank" rel="noreferrer">
-              <span>{project.linkLabel || "Open the product"}</span>
-              <ArrowUpRight size={15} />
-            </a>
-          ) : (
-            <span className="rb-muted-note">Available on request</span>
-          )}
+        <div className="rb-project-foot">
+          <span className="rb-project-link">
+            {linked ? project.linkLabel || "Open the product" : "Available on request"}
+            {linked && <ArrowUpRight size={15} />}
+          </span>
+          <span className="rb-project-role">{project.role}</span>
         </div>
       </div>
     </Reveal>
   );
 }
 
-function ProjectCard({ project, delay }) {
+function ProjectCard({ project, delay, className = "" }) {
+  const linked = Boolean(project.url);
+  const Tag = linked ? "a" : "article";
+
   return (
-    <Reveal as="article" className="rb-project-liveframe" delay={delay}>
-      <div className="rb-card-head">
-        <div className="rb-project-kicker">
+    <Reveal
+      as={Tag}
+      className={"rb-project " + className}
+      delay={delay}
+      {...(linked
+        ? {
+            href: project.url,
+            target: "_blank",
+            rel: "noreferrer",
+            "aria-label": `${project.name} — ${project.linkLabel || "Visit the site"}`,
+          }
+        : {})}
+    >
+      <ProjectFigure project={project} />
+
+      <div className="rb-project-copy">
+        <div className="rb-project-meta-row">
           <span className="rb-project-category">{project.category}</span>
-          {project.url && <LiveBadge />}
         </div>
-        <span className="rb-card-role">{project.role}</span>
-      </div>
 
-      <div className="rb-card-title-wrap">
-        <h3>
-          {project.url ? (
-            <a href={project.url} target="_blank" rel="noreferrer">
-              {project.name}
-            </a>
-          ) : (
-            project.name
-          )}
-        </h3>
+        <h3>{project.name}</h3>
         <p className="rb-project-title">{project.title}</p>
-      </div>
+        <p className="rb-project-description">{project.description}</p>
 
-      {/* Interactive Live Frame */}
-      <InteractiveLiveFrame project={project} />
-
-      <p className="rb-project-description">{project.description}</p>
-
-      <div className="rb-card-bottom">
-        <ul className="rb-tags" aria-label="Technologies">
-          {project.tags.map((tag) => (
-            <li key={tag} className="rb-tag-chip">{tag}</li>
-          ))}
-        </ul>
-
-        {project.url && (
-          <a
-            className="rb-card-action-btn"
-            href={project.url}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={`${project.linkLabel || "Open"}: ${project.name}`}
-          >
-            <span>Live demo</span>
-            <ArrowUpRight size={14} />
-          </a>
-        )}
+        <div className="rb-project-foot">
+          <p className="rb-project-stack">{project.tags.join(" · ")}</p>
+          <span className="rb-project-link">
+            {linked ? "Visit site" : project.role}
+            {linked && <ArrowUpRight size={14} />}
+          </span>
+        </div>
       </div>
     </Reveal>
   );
 }
 
 export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen = false }) {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [copied, setCopied] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
@@ -783,13 +645,19 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
       frame = 0;
       const rect = track.getBoundingClientRect();
       const isNarrow = window.innerWidth < 861;
-      const distance = isNarrow
-        ? Math.max(rect.height * 0.62, 1)
-        : Math.max(rect.height - window.innerHeight, 1);
+      let progress = 0;
 
-      const progress = isNarrow
-        ? Math.min(1, Math.max(0, window.scrollY / Math.max(window.innerHeight * 0.55, 1)))
-        : Math.min(1, Math.max(0, -rect.top / distance));
+      if (isNarrow) {
+        /* Mobile: the object is in normal flow, so the dial lets go from the
+           top of the capsule as soon as the page starts moving. */
+        progress = Math.min(
+          1,
+          Math.max(0, window.scrollY / Math.max(window.innerHeight * 0.55, 1))
+        );
+      } else {
+        const distance = Math.max(rect.height - window.innerHeight, 1);
+        progress = Math.min(1, Math.max(0, -rect.top / distance));
+      }
 
       heroProgressRef.current = progress;
       track.style.setProperty("--hero-shift", progress.toFixed(4));
@@ -875,10 +743,7 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
       <a className="rb-skip" href="#work">Skip to selected work</a>
       <ScrollProgress />
       <Nav
-        open={menuOpen}
-        setOpen={setMenuOpen}
         scrolled={scrolled}
-        onEnterMuseum={onEnterMuseum}
         themeLevel={themeLevel}
         setThemeLevel={setThemeLevel}
       />
@@ -892,12 +757,16 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
                   <div className="rb-hero-intro">
                     <div className="rb-hero-focus-tag">
                       <span className="rb-focus-dot" aria-hidden="true" />
-                      <span>SaaS · Startups · B2B Platforms · Civic Systems</span>
+                      <span>Startups · SaaS · B2B websites · NGOs &amp; civic systems</span>
                     </div>
 
                     <h1 id="rb-hero-title" className="rb-hero-title">
                       Product-focused <span className="rb-accent">software engineer.</span>
                     </h1>
+
+                    <p className="rb-hero-lede">
+                      I design, build and ship digital products — from the first sketch to a live system.
+                    </p>
 
                     <p className="rb-hero-location">
                       Nigeria <span aria-hidden="true">/</span> Remote
@@ -941,7 +810,7 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
                     <span className="rb-entity-shadow" aria-hidden="true" />
                   </a>
                   <p className="rb-entity-caption">
-                    <span>The round trip</span> Idea → shipped
+                    <span>Made to move</span> Idea → live product
                   </p>
                 </div>
               </div>
@@ -956,81 +825,54 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
           </div>
         </section>
 
-        {/* IN THE WILD: Solid deep black capsule with monochrome white logos (Image 1 style) */}
+        {/* In the wild: a plain black band, monochrome marks only. */}
         <section className="rb-logos" aria-labelledby="rb-logos-title">
-          <div className="rb-container">
-            <Reveal className="rb-logos-capsule-dark">
-              <div className="rb-logos-capsule-head">
-                <span className="rb-capsule-dot" aria-hidden="true" />
-                <span id="rb-logos-title" className="rb-capsule-title">In the wild</span>
-                <span className="rb-capsule-divider" aria-hidden="true">/</span>
-                <span className="rb-capsule-sub">Products built, shipped & deployed</span>
-              </div>
-              <ul className="rb-logos-capsule-row">
-                {clientLogos.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      className="rb-capsule-item"
-                      href={item.url}
-                      target={item.url.startsWith("http") ? "_blank" : "_self"}
-                      rel={item.url.startsWith("http") ? "noreferrer" : ""}
-                    >
-                      <span className="rb-capsule-icon" aria-hidden="true">
-                        {item.icon}
-                      </span>
-                      <span className="rb-capsule-text">
-                        <strong>{item.name}</strong>
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+          <div className="rb-container rb-logos-inner">
+            <p id="rb-logos-title" className="rb-logos-label">
+              In the wild
+            </p>
+            <ul className="rb-logos-row">
+              {clientLogos.map((item) => (
+                <li key={item.name}>
+                  <a
+                    className="rb-logo-link"
+                    href={item.url}
+                    target={item.url.startsWith("http") ? "_blank" : "_self"}
+                    rel={item.url.startsWith("http") ? "noreferrer" : ""}
+                    aria-label={item.name}
+                  >
+                    {item.logo ? (
+                      <img src={item.logo} alt={item.name} loading="lazy" decoding="async" />
+                    ) : (
+                      <span className={"rb-wordmark is-" + item.variant}>{item.wordmark}</span>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
-        {/* PILLARS OF PRACTICE (Image 2 style): Slanted colorful pill tracks with interactive dark buttons */}
+        {/* Why I build: one compact statement, one compass of sectors. */}
         <section className="rb-section rb-pillars-section" aria-labelledby="rb-pillars-title">
           <div className="rb-container rb-pillars-grid">
             <Reveal className="rb-pillars-copy">
-              <p className="rb-eyebrow">
-                <span className="rb-status-dot" aria-hidden="true" />
-                <span>Why & how I build</span>
-              </p>
               <h2 id="rb-pillars-title" className="rb-pillars-heading">
-                Engineering in service of <span className="rb-accent">real outcomes.</span>
+                Designed, engineered, and built to be <span className="rb-accent">found.</span>
               </h2>
               <p className="rb-pillars-lead">
-                I partner with founders and forward-thinking teams to turn ambiguous ideas into resilient, production-grade software. The goal is never code for its own sake—it is clarity for the user, stability under load, and measurable traction for the business.
+                I work across product engineering, interface design and technical SEO. Fewer handoffs,
+                faster decisions, and a product that still makes sense after launch.
               </p>
-              
-              <div className="rb-pillars-tags-wrap">
-                <p className="rb-pillars-tags-label">Core capabilities & focus:</p>
-                <ul className="rb-pillars-tags">
-                  {capabilityPills.map((tag) => (
-                    <li key={tag} className="rb-tag-pill">{tag}</li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="rb-capability-line" aria-label="Capabilities">
+                {capabilities.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
             </Reveal>
 
-            <Reveal className="rb-pillars-interactive" delay={120}>
-              <div className="rb-slanted-track-row">
-                {focusPillars.map((pillar) => (
-                  <div key={pillar.id} className="rb-slanted-column">
-                    <div className={`rb-slanted-capsule ${pillar.bgClass}`}>
-                      <span className="rb-slanted-capsule-glare" aria-hidden="true" />
-                      <div className="rb-slanted-capsule-button">
-                        <ArrowUpRight size={22} strokeWidth={2.4} />
-                      </div>
-                    </div>
-                    <div className="rb-slanted-label">
-                      <strong>{pillar.name}</strong>
-                      <p>{pillar.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <Reveal className="rb-pillars-interactive" delay={110}>
+              <SectorCompass />
             </Reveal>
           </div>
         </section>
@@ -1038,9 +880,8 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
         <section id="work" className="rb-section rb-work" aria-labelledby="rb-work-title">
           <div className="rb-container">
             <SectionHead
-              label="Selected work"
-              title={<>The work is the <span className="rb-accent">proof.</span></>}
-              aside="A small sample of products and systems — what they do, who they are for, and the part I played."
+              title={<>A few things I've <span className="rb-accent">shipped.</span></>}
+              aside="Products, platforms and client work — what they do, who they are for, and the part I played."
               id="rb-work-title"
             />
 
@@ -1048,12 +889,17 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
 
             <div className="rb-project-grid">
               {projects.slice(1).map((project, index) => (
-                <ProjectCard key={project.name} project={project} delay={index * 70} />
+                <ProjectCard
+                  key={project.name}
+                  project={project}
+                  delay={index * 70}
+                  className={"rb-project-" + ["a", "b", "c"][index]}
+                />
               ))}
             </div>
 
             <Reveal className="rb-more">
-              <p className="rb-label">Also built & explored</p>
+              <h3>Also built</h3>
               <ul>
                 {moreWork.map((item, index) => (
                   <li key={item.name} style={{ "--row": index }}>
@@ -1070,9 +916,8 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
         <section id="approach" className="rb-section rb-approach" aria-labelledby="rb-approach-title">
           <div className="rb-container">
             <SectionHead
-              label="How I work"
-              title={<>Product thinking. <span className="rb-accent">Engineering discipline.</span></>}
-              aside="The difference is not another framework. It is knowing what to build, what not to build, and how to make the result hold up in real use."
+              title={<>How I think about <span className="rb-accent">the work.</span></>}
+              aside="Not another framework. A set of decisions about what to build, what to leave out, and how to make the result hold up in real use."
               id="rb-approach-title"
             />
 
@@ -1088,7 +933,6 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
                     <h3>{principle.title}</h3>
                     <p>{principle.text}</p>
                   </div>
-                  <span className="rb-principle-tag">{principle.tag}</span>
                 </Reveal>
               ))}
             </div>
@@ -1098,9 +942,8 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
         <section className="rb-section rb-process" aria-labelledby="rb-process-title">
           <div className="rb-container">
             <SectionHead
-              label="The build loop"
-              title={<>From an unclear idea to <span className="rb-accent">working software.</span></>}
-              aside="Scroll through the loop. The object does what the work does: separate pieces become one product."
+              title={<>From a rough idea to <span className="rb-accent">working software.</span></>}
+              aside="The loop is simple. The decisions are not. Scroll through what each stage actually involves."
               id="rb-process-title"
             />
           </div>
@@ -1122,16 +965,7 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
                     <ScenePlaceholder process />
                   )}
                 </div>
-                <div className="rb-process-overlay" aria-hidden="true">
-                  <span className="rb-label">Fig. 02 — The build</span>
-                  <span className="rb-process-count">
-                    {String(activeStep + 1).padStart(2, "0")} / 04
-                  </span>
-                </div>
                 <div className="rb-process-caption">
-                  <span className="rb-process-caption-index" aria-hidden="true">
-                    {processSteps[activeStep].number}
-                  </span>
                   <p>{processSteps[activeStep].short}</p>
                 </div>
               </div>
@@ -1147,7 +981,6 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
                   }
                   key={step.number}
                 >
-                  <span className="rb-process-step-number">{step.number}</span>
                   <div>
                     <h3>{step.title}</h3>
                     <p>{step.text}</p>
@@ -1160,20 +993,6 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
 
         <section id="about" className="rb-section rb-about" aria-labelledby="rb-about-title">
           <div className="rb-container rb-about-grid">
-            <div className="rb-about-side">
-              <Eyebrow index="04">About</Eyebrow>
-              <div className="rb-about-card">
-                <BrandMark size={52} standalone />
-                <p className="rb-about-name">Awesome Akokayo</p>
-                <p className="rb-about-role">Product-focused software engineer</p>
-                <div className="rb-about-meta">
-                  <span>Nigeria</span>
-                  <span>Remote</span>
-                  <span className="rb-about-available"><i aria-hidden="true" />Available</span>
-                </div>
-              </div>
-            </div>
-
             <div className="rb-about-body">
               <Reveal>
                 <h2 id="rb-about-title">
@@ -1181,48 +1000,47 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
                 </h2>
                 <div className="rb-about-copy">
                   <p>
-                    I'm Awesome, a software engineer from Nigeria. I enjoy taking ideas that are
-                    still messy, unclear or sitting in someone's head and turning them into
-                    products people can actually use.
+                    I'm Awesome, a software engineer from Nigeria. I take ideas that are still
+                    messy, unclear or sitting in someone's head and turn them into products people
+                    can actually use.
                   </p>
                   <p>
-                    I studied Computer Science at Coal City University, presented original
-                    research at Springer ETMiS 2025, and have led a cross-functional team building
-                    an AI career platform. I care about what gets built, not just what gets coded.
+                    I studied Computer Science at Coal City University and now work across product,
+                    design and engineering — often for teams that need one person to hold the whole
+                    thing together.
                   </p>
                 </div>
               </Reveal>
 
-              <Reveal className="rb-about-facts" delay={80}>
-                <ul>
-                  {aboutFacts.map(([year, text]) => (
-                    <li key={text}>
-                      <span>{year}</span>
-                      <p>{text}</p>
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
-
-              <Reveal className="rb-toolkit" delay={80}>
-                <p className="rb-label">Toolkit</p>
-                <div className="rb-toolkit-grid">
-                  {toolkit.map((group) => (
-                    <div key={group.label}>
-                      <h3>{group.label}</h3>
-                      <p>{group.items}</p>
-                    </div>
-                  ))}
+              <Reveal className="rb-about-signature" delay={60}>
+                <BrandMark size={40} standalone />
+                <div>
+                  <p className="rb-about-name">Awesome Akokayo</p>
+                  <p className="rb-about-role">Product-focused software engineer</p>
                 </div>
+                <span className="rb-about-available">
+                  <i aria-hidden="true" />
+                  Available for select work
+                </span>
               </Reveal>
             </div>
+
+            <Reveal className="rb-toolkit" delay={90}>
+              <div className="rb-toolkit-grid">
+                {toolkit.map((group) => (
+                  <div key={group.label}>
+                    <h3>{group.label}</h3>
+                    <p>{group.items}</p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
           </div>
         </section>
 
         <section id="contact" className="rb-contact" aria-labelledby="rb-contact-title">
           <div className="rb-container">
             <Reveal className="rb-contact-head">
-              <Eyebrow index="05">Contact</Eyebrow>
               <h2 id="rb-contact-title">Have something worth <span className="rb-accent">building?</span></h2>
               <p>
                 It does not need to be fully figured out. Bring the problem, the idea, or the
