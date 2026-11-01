@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ArrowDown,
   ArrowRight,
@@ -104,6 +104,7 @@ const socialLinks = [
   ["LinkedIn", "Professional profile", "https://www.linkedin.com/in/awesomeakokayo/"],
   ["GitHub", "Code and projects", "https://github.com/awesomeakokayo"],
   ["X", "Thoughts and build notes", "https://x.com/awesomeakokayo"],
+  ["Instagram", "Behind the work", "https://www.instagram.com/awesomeakokayo/"],
 ];
 
 function Eyebrow({ children, light = false }) {
@@ -204,7 +205,7 @@ function SiteHeader({ menuOpen, setMenuOpen, scrolled, onEnterMuseum }) {
 
 function ProjectImage({ project, featured = false }) {
   return (
-    <div className={"ed-project-image" + (featured ? " is-featured" : "")}>
+    <div className={"ed-project-image ed-project-image-" + (project.imageMode || "cover") + (featured ? " is-featured" : "")}>
       <img
         src={project.image}
         alt={project.imageAlt}
@@ -293,7 +294,6 @@ export default function EditorialSite({ onEnterMuseum, museumEntryRef, museumOpe
   const [copied, setCopied] = useState(false);
   const [formState, setFormState] = useState("idle");
   const [formError, setFormError] = useState("");
-  const formRef = useRef(null);
   const featuredProject = projects[0];
   const otherProjects = projects.slice(1);
 
@@ -666,7 +666,7 @@ export default function EditorialSite({ onEnterMuseum, museumEntryRef, museumOpe
                   <span>Prefer a project brief?</span>
                   <p>Share a few details and I'll reply by email.</p>
                 </div>
-                <form ref={formRef} className="ed-form" onSubmit={handleSubmit}>
+                <form className="ed-form" onSubmit={handleSubmit}>
                   <div className="ed-form-grid">
                     <label>
                       <span>Name</span>
