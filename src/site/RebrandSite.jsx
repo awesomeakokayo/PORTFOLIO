@@ -416,47 +416,24 @@ function ScrollProgress() {
   );
 }
 
-function Nav({
-  open,
-  setOpen,
-  scrolled,
-  onEnterMuseum,
-  themeLevel,
-  setThemeLevel,
-}) {
-  const links = [
-    ["Work", "#work"],
-    ["Approach", "#approach"],
-    ["About", "#about"],
-    ["Contact", "#contact"],
-  ];
-
-  useEffect(() => {
-    const close = (event) => {
-      if (event.key === "Escape") setOpen(false);
-    };
-    window.addEventListener("keydown", close);
-    return () => window.removeEventListener("keydown", close);
-  }, [setOpen]);
-
-  useEffect(() => {
-    if (!open) return undefined;
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = previous;
-    };
-  }, [open]);
-
+function Nav({ scrolled, themeLevel, setThemeLevel }) {
   return (
-    <header className={"rb-header" + (scrolled ? " is-scrolled" : "") + (open ? " is-open" : "")}>
+    <header className={"rb-header" + (scrolled ? " is-scrolled" : "")}>
       <div className="rb-container rb-nav">
         <a className="rb-brand" href="#top" aria-label="Awesome Akokayo, home">
           <BrandMark size={44} standalone />
           <span className="rb-brand-name">Awesome</span>
         </a>
 
-        {/* When scrolled on mobile: compact contact pill directly docked with logo */}
+        <div className={"rb-header-theme" + (scrolled ? " is-hidden" : "")}>
+          <ThemeSlider
+            wide
+            level={themeLevel}
+            onChange={setThemeLevel}
+            className="rb-theme-header"
+          />
+        </div>
+
         <a
           className={"rb-pill rb-pill-cta rb-mobile-scrolled-cta" + (scrolled ? " is-visible" : "")}
           href="#contact"
@@ -466,92 +443,10 @@ function Nav({
           </span>
           <span>Contact</span>
         </a>
-
-        <div className={"rb-mobile-theme" + (scrolled ? " is-hidden" : "")}>
-          <ThemeSlider
-            wide
-            level={themeLevel}
-            onChange={setThemeLevel}
-            className="rb-theme-mobile"
-          />
-        </div>
-
-        <div className="rb-nav-glass">
-          <nav className="rb-nav-links" aria-label="Main navigation">
-            {links.slice(0, 3).map(([label, href]) => (
-              <a key={label} href={href}>
-                {label}
-              </a>
-            ))}
-          </nav>
-
-          <span className="rb-nav-rule" aria-hidden="true" />
-
-          <ThemeSlider
-            level={themeLevel}
-            onChange={setThemeLevel}
-            className="rb-theme-nav"
-          />
-
-          <a className="rb-nav-cta" href="#contact">
-            <span className="rb-nav-orb" aria-hidden="true">
-              <ArrowRight size={13} />
-            </span>
-            Let's talk
-          </a>
-        </div>
-      </div>
-
-      {!scrolled && (
-        <div className="rb-container rb-mobile-bar">
-          <button
-            type="button"
-            className="rb-pill"
-            onClick={() => setOpen(!open)}
-            aria-expanded={open}
-            aria-controls="rb-mobile-nav"
-          >
-            {open ? <X size={14} /> : <Menu size={14} />}
-            <span>{open ? "Close" : "Menu"}</span>
-            <ChevronDown size={14} className="rb-pill-chevron" aria-hidden="true" />
-          </button>
-
-          <a className="rb-pill rb-pill-cta" href="#contact" onClick={() => setOpen(false)}>
-            <span className="rb-pill-orb" aria-hidden="true">
-              <ArrowRight size={13} />
-            </span>
-            Contact
-          </a>
-        </div>
-      )}
-
-      <div id="rb-mobile-nav" className={"rb-mobile-nav" + (open ? " is-open" : "")}>
-        <nav aria-label="Mobile navigation">
-          {links.map(([label, href]) => (
-            <a key={label} href={href} onClick={() => setOpen(false)}>
-              {label}
-              <ArrowUpRight size={17} />
-            </a>
-          ))}
-          {onEnterMuseum && (
-            <button
-              type="button"
-              className="rb-mobile-museum"
-              onClick={() => {
-                setOpen(false);
-                onEnterMuseum();
-              }}
-            >
-              Enter the 3D archive <ArrowUpRight size={15} />
-            </button>
-          )}
-        </nav>
-        <p className="rb-mobile-nav-foot">Building digital products beyond the code.</p>
       </div>
     </header>
   );
 }
-
 function SectionHead({ label, title, aside, id }) {
   return (
     <Reveal className="rb-section-head">
@@ -743,7 +638,6 @@ function ProjectCard({ project, delay }) {
 }
 
 export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen = false }) {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [copied, setCopied] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
@@ -875,10 +769,7 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
       <a className="rb-skip" href="#work">Skip to selected work</a>
       <ScrollProgress />
       <Nav
-        open={menuOpen}
-        setOpen={setMenuOpen}
         scrolled={scrolled}
-        onEnterMuseum={onEnterMuseum}
         themeLevel={themeLevel}
         setThemeLevel={setThemeLevel}
       />
@@ -956,7 +847,7 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
           </div>
         </section>
 
-        {/* IN THE WILD: Solid deep black capsule with monochrome white logos (Image 1 style) */}
+        {/* IN THE WILD: Theme-aware liquid-glass strip for the products built and shipped */}
         <section className="rb-logos" aria-labelledby="rb-logos-title">
           <div className="rb-container">
             <Reveal className="rb-logos-capsule-dark">
