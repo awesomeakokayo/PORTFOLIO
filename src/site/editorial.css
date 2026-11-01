@@ -50,7 +50,7 @@ body.ed-body ::selection {
 
 .ed-root {
   min-height: 100vh;
-  overflow: clip;
+  overflow-x: clip;
   background: var(--ed-bg);
   color: var(--ed-ink);
   font-family: var(--ed-sans);
@@ -649,6 +649,12 @@ body.ed-body ::selection {
   object-fit: cover;
   object-position: top center;
   transition: transform .75s var(--ed-ease);
+}
+
+.ed-project-image-contain img {
+  object-fit: contain;
+  padding: clamp(12px, 3vw, 30px);
+  background: var(--ed-paper-2);
 }
 
 .ed-featured-visual:hover .ed-project-image img,
@@ -2045,8 +2051,8 @@ html.ed-motion-ready .ed-reveal.is-visible {
   }
 
   .ed-about-caption {
-    position: absolute;
-    margin: -72px 0 0 138px;
+    position: static;
+    margin: 12px 0 0;
   }
 
   .ed-about-main h2 {
