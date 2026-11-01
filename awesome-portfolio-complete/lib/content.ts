@@ -1,5 +1,4 @@
 export type ProjectTheme = "pink" | "yellow" | "paper" | "dark";
-export type ProjectKind = "openbooks" | "techskills" | "flood" | "blancquake" | "emohabit";
 
 export interface ProjectImage {
   src: string;
@@ -10,18 +9,18 @@ export interface Project {
   name: string;
   category: string;
   description: string;
-  tags: string[];
   theme: ProjectTheme;
-  kind: ProjectKind;
-  href: string;
-  image?: ProjectImage;
+  year: string;
+  discipline: string;
+  href: string | null;
+  logo: ProjectImage;
 }
 
 export const siteContent = {
   metadata: {
     title: "Awesome Akokayo — Product Engineer & AI Builder",
     description:
-      "Independent product engineer building useful digital products for Africa.",
+      "Independent product engineer building useful digital products for people everywhere.",
     url: "https://awesomeakokayo.cv",
     applicationName: "Awesome Akokayo",
   },
@@ -50,14 +49,14 @@ export const siteContent = {
     cursorDefault: "OPEN",
   },
   hero: {
-    kicker: "PRODUCT ENGINEER  /  AI BUILDER  /  NIGERIA",
+    kicker: "PRODUCT ENGINEER  /  AI BUILDER",
     lineOne: "Build",
     accentWord: "useful",
     lineTwo: "things for",
-    serifWord: "Africa.",
+    serifWord: "everyone.",
     description: "Digital products for real needs, built with intent.",
     availability: "OPEN TO FULL-TIME ROLES",
-    location: "INDEPENDENT BUILDER · BASED IN NIGERIA",
+    location: "INDEPENDENT BUILDER · WORKING GLOBALLY",
     scroll: "Scroll to explore",
     visualAlt: "Abstract three-dimensional wireframe form",
   },
@@ -69,75 +68,86 @@ export const siteContent = {
     eyebrow: "01 / SELECTED WORK",
     title: "Made to matter.",
     intro: "A selection of products, systems, and experiments.",
-    viewLabel: "VIEW",
-    tagsLabel: "Project technology tags",
-    sideNote: "Five selected builds",
-    fallbackLink: "#contact",
+    viewLabel: "OPEN",
+    sideNote: "Six selected builds",
   },
   projects: [
     {
       name: "OpenBooks",
       category: "Business finance tools",
       description: "Nigeria-first open-source cashbook for small businesses.",
-      tags: ["Open source", "Fintech"],
       theme: "yellow",
-      kind: "openbooks",
-      href: "#contact",
-      image: {
-        src: "/projects/openbooks.png",
-        alt: "OpenBooks landing page with the headline “Run your business with clarity.”",
+      year: "2026",
+      discipline: "Full-stack",
+      href: "https://www.openbooks.click",
+      logo: {
+        src: "/logos/openbooks.png",
+        alt: "OpenBooks logo",
       },
     },
     {
-      name: "Tech Skills Hub",
+      name: "Tech Skill Hub",
       category: "Guided learning platform",
       description: "Free, curated roadmaps. 32 tracks, one clear order.",
-      tags: ["Next.js", "Prisma", "Neon", "Paystack"],
       theme: "dark",
-      kind: "techskills",
-      href: "https://techskillhub.cv",
-      image: {
-        src: "/projects/techskills.png",
-        alt: "TechSkillHub landing page with a curated roadmap preview.",
+      year: "2025",
+      discipline: "Full-stack",
+      href: "https://www.techskillhub.cv",
+      logo: {
+        src: "/logos/tech-skills.png",
+        alt: "Tech Skill Hub logo",
+      },
+    },
+    {
+      name: "Elroi Hub",
+      category: "Agency website",
+      description: "A brand-led agency site connecting services, proof and enquiries.",
+      theme: "pink",
+      year: "2026",
+      discipline: "Front-end",
+      href: "https://www.elroihubllc.com",
+      logo: {
+        src: "/logos/elroi-hub.png",
+        alt: "Elroi Hub logo",
       },
     },
     {
       name: "Flood Report",
       category: "Civic safety app",
       description: "Flood reporting for Southwest Nigeria, powered by AI.",
-      tags: ["React Native", "FastAPI", "Gemini AI"],
       theme: "paper",
-      kind: "flood",
-      href: "#contact",
-      image: {
-        src: "/projects/flood.png",
-        alt: "Flood Report app showing live flood incidents on an Ibadan map.",
+      year: "2025",
+      discipline: "Mobile",
+      href: null,
+      logo: {
+        src: "/logos/flood-report.png",
+        alt: "Flood Report logo",
       },
     },
     {
       name: "Blancquake Foundation",
       category: "Nonprofit",
-      description: "Built for Blancquake Foundation.",
-      tags: [],
-      theme: "pink",
-      kind: "blancquake",
-      href: "#contact",
-      image: {
-        src: "/projects/blancquake.png",
-        alt: "Blancquake Foundation poster reading “Making the difference.”",
+      description: "A clearer digital home for neuro-health and blood-donation advocacy.",
+      theme: "yellow",
+      year: "2026",
+      discipline: "Front-end",
+      href: "https://blancquake-site.vercel.app",
+      logo: {
+        src: "/logos/blancquake.png",
+        alt: "Blancquake Foundation logo",
       },
     },
     {
-      name: "EmoHabit",
-      category: "Wellness app",
-      description: "AI-powered habit tracker.",
-      tags: ["React Native", "FastAPI", "Groq", "Firebase"],
-      theme: "yellow",
-      kind: "emohabit",
-      href: "#contact",
-      image: {
-        src: "/projects/emohabit.png",
-        alt: "EmoHabit poster with an AI habit-tracking ring.",
+      name: "NaviPro",
+      category: "AI career platform",
+      description: "An AI career platform turning unclear next steps into practical direction.",
+      theme: "dark",
+      year: "2025",
+      discipline: "Full-stack",
+      href: null,
+      logo: {
+        src: "/logos/navipro.png",
+        alt: "NaviPro logo",
       },
     },
   ] satisfies Project[],
@@ -162,12 +172,12 @@ export const siteContent = {
   aboutPage: {
     meta: {
       title: "About — Awesome Akokayo",
-      description: "Product-focused software engineer from Nigeria, building useful things for Africa.",
+      description: "Product-focused software engineer building useful products for people everywhere.",
     },
     hero: {
       lineOne: "Hi, I'm",
       serifWord: "Awesome.",
-      subline: "Product-focused software engineer from Nigeria.",
+      subline: "Product-focused software engineer.",
     },
     photo: "/about/awesome.jpg",
     photoAlt: "Awesome Akokayo smiling and waving at the camera",
@@ -234,9 +244,9 @@ export const siteContent = {
     eyebrow: "04 / BY THE NUMBERS",
     title: "A little perspective.",
     stats: [
-      { value: 32, suffix: "", label: "Learning tracks live", detail: "Across Tech Skills Hub" },
-      { value: 5, suffix: "", label: "Featured builds", detail: "Selected work" },
-      { value: 2, suffix: "", label: "Free products for Africa", detail: "Open source and free to use" },
+      { value: 32, suffix: "", label: "Learning tracks live", detail: "Across Tech Skill Hub" },
+      { value: 6, suffix: "", label: "Featured builds", detail: "Selected work" },
+      { value: 2, suffix: "", label: "Free products for everyone", detail: "Open source and free to use" },
     ],
   },
   process: {
@@ -272,7 +282,8 @@ export const siteContent = {
     lineOne: "Let's build",
     lineTwo: "something.",
     button: "Start a conversation",
-    emailSubject: "Let's build something",
+    whatsappNumber: "2349020372640",
+    whatsappMessage: "Hi Awesome, I visited your portfolio website and I am interested in working with you.",
     emailNote: "For products, partnerships, and good problems.",
     email: "awesomeakokayo@gmail.com",
     links: [
@@ -282,7 +293,7 @@ export const siteContent = {
     ],
   },
   footer: {
-    location: "BASED IN NIGERIA · BUILDING FOR AFRICA",
+    location: "INDEPENDENT BUILDER · WORKING GLOBALLY",
     copyright: "© 2026 AWESOME AKOKAYO",
     backToTop: "BACK TO TOP",
   },

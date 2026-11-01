@@ -13,6 +13,7 @@ function MagneticButton() {
   const y = useSpring(rawY, { stiffness: 220, damping: 18, mass: 0.35 });
   const reducedMotion = useReducedMotion();
   const contact = siteContent.contact;
+  const whatsappHref = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappMessage)}`;
 
   const handleMove = (event: ReactPointerEvent<HTMLAnchorElement>) => {
     if (event.pointerType !== "mouse" || reducedMotion) return;
@@ -31,7 +32,9 @@ function MagneticButton() {
   return (
     <motion.a
       className="magnetic-button"
-      href={`mailto:${contact.email}?subject=${encodeURIComponent(contact.emailSubject)}`}
+      href={whatsappHref}
+      target="_blank"
+      rel="noreferrer"
       style={{ x, y }}
       onPointerMove={handleMove}
       onPointerLeave={reset}

@@ -1,10 +1,9 @@
 "use client";
 
-import Link from "next/link";
+import Image from "next/image";
 import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import { siteContent, type Project } from "@/lib/content";
-import { ProjectMockup } from "@/components/project-mockup";
 import { Reveal } from "@/components/reveal";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -15,26 +14,21 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   const rawY = useMotionValue(0);
   const rotateX = useSpring(rawY, { stiffness: 180, damping: 22, mass: 0.6 });
   const rotateY = useSpring(rawX, { stiffness: 180, damping: 22, mass: 0.6 });
-  const visualX = useSpring(0, { stiffness: 120, damping: 24, mass: 0.7 });
-  const visualY = useSpring(0, { stiffness: 120, damping: 24, mass: 0.7 });
-  const titleClass = project.name.length > 12 ? " project-card__title--small" : "";
+  const nameClass = project.name.length > 12 ? " project-card__name--small" : "";
+  const work = siteContent.work;
 
   const handlePointerMove = (event: ReactPointerEvent<HTMLElement>) => {
     if (event.pointerType !== "mouse" || reducedMotion) return;
     const bounds = event.currentTarget.getBoundingClientRect();
     const x = (event.clientX - bounds.left) / bounds.width - 0.5;
     const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-    rawX.set(x * 4.4);
-    rawY.set(y * -4.4);
-    visualX.set(x * 40);
-    visualY.set(y * 40);
+    rawX.set(x * 3);
+    rawY.set(y * -3);
   };
 
   const resetTilt = () => {
     rawX.set(0);
     rawY.set(0);
-    visualX.set(0);
-    visualY.set(0);
   };
 
   return (
@@ -50,36 +44,44 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     >
       <div className={`project-card project-card--${project.theme}`}>
         <div className="project-card__top">
+          <span className="project-card__index">
+            {String(index + 1).padStart(2, "0")} / {String(siteContent.projects.length).padStart(2, "0")}
+          </span>
           <span className="project-card__category">{project.category}</span>
         </div>
 
-        <motion.div className="project-card__visual" style={{ x: visualX, y: visualY }}>
-          <ProjectMockup project={project} />
-        </motion.div>
-
-        <h3 className={`project-card__title${titleClass}`}>{project.name}</h3>
-
-        <div className="project-card__hover-info">
-          <p className="project-card__description">{project.description}</p>
-          {project.tags.length > 0 && (
-            <div className="project-card__tags" aria-label={siteContent.work.tagsLabel}>
-              {project.tags.map((tag) => (
-                <span className="project-card__tag" key={tag}>{tag}</span>
-              ))}
-            </div>
-          )}
+        <div className="project-card__center">
+          <span className="project-card__logo">
+            <Image
+              className="project-card__logo-image"
+              src={project.logo.src}
+              alt={project.logo.alt}
+              fill
+              sizes="(max-width: 640px) 160px, 260px"
+            />
+          </span>
+          <h3 className={`project-card__name${nameClass}`}>{project.name}</h3>
+          <p className="project-card__note">{project.description}</p>
         </div>
 
-        <span className="project-card__view" aria-hidden="true">{siteContent.work.viewLabel}</span>
-        <Link
-          className="project-card__link"
-          href={project.href || siteContent.work.fallbackLink}
-          aria-label={`${siteContent.work.viewLabel} ${project.name}`}
-          data-cursor="view"
-          data-cursor-label={siteContent.work.viewLabel}
-        >
-          {`${siteContent.work.viewLabel} ${project.name}`}
-        </Link>
+        <div className="project-card__meta">
+          <span className="project-card__pill">{project.year}</span>
+          <span className="project-card__pill">{project.discipline}</span>
+        </div>
+
+        {project.href && (
+          <>
+            <span className="project-card__view" aria-hidden="true">{work.viewLabel}</span>
+            <a
+              className="project-card__link"
+              href={project.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${work.viewLabel} ${project.name} in a new tab`}
+              data-cursor-label={work.viewLabel}
+            />
+          </>
+        )}
       </div>
     </motion.article>
   );

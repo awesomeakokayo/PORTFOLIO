@@ -1,20 +1,25 @@
-# Awesome Akokayo — Portfolio rebuild
+# Awesome Akokayo — Portfolio
 
-Stage 01 shell for the Next.js App Router rebuild.
+Mobile-first portfolio for Awesome Akokayo, built with Next.js App Router, Tailwind, Motion for React and Lenis.
 
 ## Project media
 
-Project cards read screenshots from `public/projects/` and fall back to the CSS device mockups when no image is set.
+The work section renders flat logo cards. Logos live in `public/logos/` and are drawn with `object-fit: contain`, so they never crop or distort.
 
 | File | Project |
 |---|---|
-| `public/projects/openbooks.png` | OpenBooks |
-| `public/projects/techskills.png` | Tech Skills Hub |
-| `public/projects/flood.png` | Flood Report |
-| `public/projects/blancquake.png` | Blancquake Foundation |
-| `public/projects/emohabit.png` | EmoHabit |
+| `public/logos/openbooks.png` | OpenBooks |
+| `public/logos/tech-skills.png` | Tech Skills Hub |
+| `public/logos/elroi-hub.png` | Elroi Hub |
+| `public/logos/flood-report.png` | Flood Report |
+| `public/logos/blancquake.png` | Blancquake Foundation |
+| `public/logos/navipro.png` | NaviPro |
 
-Replace a file in place to update a card. Keep the same filename and a landscape crop; cards render images with `object-fit: cover`.
+Projects with a live site open it in a new tab. Flood Report and NaviPro have no public URL yet.
+
+## About photo
+
+`public/about/awesome.jpg` is the portrait used on the home About section and the `/about` page.
 
 ## Requirements
 
@@ -37,25 +42,35 @@ npm run typecheck
 npm run build
 ```
 
-## Stage 01 files
+## Structure
 
 ```text
 app/
   globals.css
   layout.tsx
   page.tsx
+  about/page.tsx
+  opengraph-image.tsx
 components/
+  about-photo.tsx
+  about-section.tsx
+  contact-section.tsx
   custom-cursor.tsx
+  hero-section.tsx
+  numbers-section.tsx
+  process-section.tsx
+  selected-work.tsx
+  services-section.tsx
+  site-footer.tsx
   site-nav.tsx
   smooth-scroll.tsx
-next-env.d.ts
-next.config.ts
-package.json
-postcss.config.mjs
-tailwind.config.ts
-tsconfig.json
+lib/
+  content.ts
+public/
+  about/
+  logos/
 ```
 
-The main page is intentionally an empty stage shell. The hero is Stage 02; no temporary hero content has been added here.
+All site copy, project metadata and links live in `lib/content.ts`.
 
 Motion for React is the maintained successor to Framer Motion and uses the same motion-component model. Import paths use `motion/react`.

@@ -4,7 +4,7 @@ This file is the continuation brief for a new chat or developer. It describes th
 
 ## 1. Project identity
 
-A mobile-first, editorial portfolio for Awesome Akokayo: product engineer, full-stack developer, AI builder and founder based in Nigeria, building for Africa. The experience should feel like a considered independent creative studio, not a default developer template.
+A mobile-first, editorial portfolio for Awesome Akokayo: product-focused software engineer, full-stack developer, AI builder and founder. The experience should feel like a considered independent creative studio, not a default developer template.
 
 **Stack:** Next.js App Router 16.4.3, React 19.3.1, TypeScript 5.9.3, Tailwind CSS 3.4.17, Motion for React 14.9.0 (`motion/react`), Lenis 1.3.27, React Three Fiber 9.8.2 and Three.js 0.187.0. React Three Fiber v9 is paired with React 19. `@types/node` is pinned to 22.20.5; React and Three type packages are pinned in `package.json`.
 
@@ -72,19 +72,18 @@ components/
   hero-canvas.tsx               Single interactive wireframe object
   hero-visual-fallback.tsx      Static SVG fallback
   marquee-section.tsx           Infinite outlined ticker
-  selected-work.tsx              Sticky project stack, tilt, hover/tap details
-  project-mockup.tsx             CSS-built project device/dashboard compositions
+  selected-work.tsx              Sticky project stack, logo cards, tilt, live links
   about-section.tsx              Home about section with photo and mono rows
   about-photo.tsx                 Shared rotated portrait treatment for both pages
   services-section.tsx           Four flip service tiles
   numbers-section.tsx             Three in-view count-up stats
   process-section.tsx              Pinned desktop horizontal process / mobile stack
-  contact-section.tsx              Giant CTA and magnetic email button
+  contact-section.tsx              Giant CTA and magnetic WhatsApp button
   reveal.tsx                        Shared once-only section reveal
   site-footer.tsx                   Small mono footer and back-to-top
 lib/
   content.ts                        Central copy, project and link data
-public/projects/                    Project screenshots used by work cards
+public/logos/                       Project logos used by the work cards
 public/about/                       Portrait used by the about section and page
 HANDOFF.md                           This guide
 README.md                            Setup and editing notes
@@ -93,13 +92,13 @@ README.md                            Setup and editing notes
 ## 4. Section implementation status
 
 1. **Navigation:** fixed, blend-mode-difference, rolling desktop links, mobile full-screen dialog, Escape close, focus trap, scroll lock and focus restoration.
-2. **Hero:** three-line reveal; orange keyword; Instrument Serif italic “Africa.”; brief subcopy; small wireframe R3F object. Canvas is dynamically loaded only after device checks. Low-memory / low-core devices, reduced motion, WebGL absence or canvas render failure use a static SVG.
+2. **Hero:** three-line reveal; orange keyword; Instrument Serif italic “everyone.”; brief subcopy; small wireframe R3F object. Canvas is dynamically loaded only after device checks. Low-memory / low-core devices, reduced motion, WebGL absence or canvas render failure use a static SVG.
 3. **Marquee:** infinite outline ticker; pauses on hover for fine pointers and stops under reduced motion.
-4. **Selected work:** five sticky cards for OpenBooks, Tech Skills Hub, Flood Report, Blancquake Foundation and EmoHabit. Flat card palettes; `public/projects` screenshots with CSS mockup fallback; small tilt and parallax; `VIEW` cursor; description and tag reveal (tags are omitted when empty). Touch devices show details without hover.
+4. **Selected work:** six sticky logo cards for OpenBooks, Tech Skills Hub, Elroi Hub, Flood Report, Blancquake Foundation and NaviPro. Each card uses a flat brand palette, a contained logo, the project name, a one-line note, a year pill and a discipline pill. Live projects link out in a new tab with an orange `OPEN` hover circle; Flood Report and NaviPro do not link. Small tilt only.
 5. **Services:** four tiles; desktop hover/focus flip to yellow; touch devices use tap state; one-line descriptions and tiny inline SVG glyphs.
 6. **Numbers:** three count-up stats, animated once on entry; static values for reduced motion.
 7. **Process:** four pinned horizontal panels on desktop; vertical sequence on small screens and for reduced-motion visitors.
-8. **CTA:** oversized copy, spring-magnetic email button, contact and social links.
+8. **CTA:** oversized copy, spring-magnetic WhatsApp button with a prefilled message, contact and social links.
 9. **Footer:** mono metadata and back-to-top.
 
 ## 5. Animation conventions
@@ -121,19 +120,20 @@ README.md                            Setup and editing notes
 - nav labels and routes;
 - hero kicker, headline and supporting copy;
 - marquee items;
-- work section labels and all five projects (`name`, `category`, `description`, `tags`, `theme`, `kind`, `href`, optional `image`);
+- work section labels and all six projects (`name`, `category`, `description`, `theme`, `year`, `discipline`, `href`, `logo`);
 - services and descriptions;
 - stats and labels;
 - process steps;
-- contact email, subject, GitHub and LinkedIn;
+- contact email, WhatsApp number and message, GitHub and LinkedIn;
 - footer details.
 
-Do not hard-code replacement project or service copy in components. `Project` supports an optional `image: { src, alt }`; every current project uses a local screenshot from `public/projects/` and falls back to the CSS-built mockup if the field is removed. Keep image files local in `public/` and use a landscape crop, since cards render them with `object-fit: cover`.
+Do not hard-code replacement project or service copy in components. `Project.logo` points at a local file in `public/logos/`; cards draw it with `object-fit: contain`, so keep transparent PNGs and do not pre-crop them. `href: null` renders a static card with no outbound link.
 
 ## 7. Known limitations / not yet done
 
-- Flood Report, Blancquake Foundation and OpenBooks currently link to `#contact`; Tech Skills Hub links to its live site. Replace the rest once public URLs are confirmed.
-- `blancquake.png` and `emohabit.png` are flat typographic stand-ins, not product screenshots. Swap in real captures using the same filenames.
+- OpenBooks, Tech Skills Hub, Elroi Hub and Blancquake Foundation link to live sites. Flood Report and NaviPro are intentionally static until public URLs exist.
+- The Tech Skills Hub logo is the current green step mark; swap `public/logos/tech-skills.png` when the new wordmark is supplied.
+- The Flood Report and NaviPro marks were designed as flat placeholders in the site palette.
 - No deployment was performed and no Vercel project/domain configuration was changed.
 - Actual browser QA at 360px, 768px and 1440px, keyboard audit, screen-reader audit and Lighthouse performance/accessibility checks remain to be run after dependencies install.
 - `npm run build` and `npx tsc --noEmit` pass in this environment; the social card is generated statically from `app/opengraph-image.tsx`.
@@ -142,7 +142,7 @@ Do not hard-code replacement project or service copy in components. `Project` su
 
 1. Install dependencies and run the typecheck and production build.
 2. Fix any genuine compile/build/runtime issues without changing the visual direction.
-3. Replace the remaining placeholder screenshots and `#contact` project links only after fact-checking them.
-4. Keep card imagery landscape; the work cards crop with `object-fit: cover`.
+3. Confirm live URLs and replace placeholder logos only after fact-checking them.
+4. Keep logo files transparent and uncropped; cards use `object-fit: contain`.
 5. Run device/browser checks at 360px, 768px and 1440px; verify reduced motion, keyboard navigation, the project stack, mobile menu, and fallback when WebGL is unavailable.
 6. Deploy only after the user approves the deployment target and production impact.
