@@ -1279,6 +1279,7 @@ html.has-custom-cursor * {
   display: inline-flex;
   min-height: 44px;
   align-items: center;
+  gap: 8px;
   color: var(--color-muted);
   font-family: var(--font-mono), monospace;
   font-size: 12px;
@@ -1329,6 +1330,34 @@ html.has-custom-cursor * {
 
 .site-footer__back-top span {
   font-size: 16px;
+}
+
+/* Shared arrow icons */
+
+.site-nav__cta-arrow,
+.menu-overlay__close-icon,
+.menu-overlay__arrow,
+.menu-overlay__contact > span,
+.magnetic-button__arrow,
+.contact-link__arrow,
+.about-section__button-arrow,
+.drive-card__arrow,
+.site-footer__back-top > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-nav__cta-arrow svg,
+.menu-overlay__close-icon svg,
+.menu-overlay__arrow svg,
+.menu-overlay__contact > span svg,
+.magnetic-button__arrow svg,
+.contact-link__arrow svg,
+.about-section__button-arrow svg,
+.drive-card__arrow svg,
+.site-footer__back-top > span svg {
+  display: block;
 }
 
 /* About: shared photo treatment */

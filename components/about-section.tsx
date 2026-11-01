@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { siteContent } from "@/lib/content";
 import { AboutPhoto } from "@/components/about-photo";
 import { Reveal } from "@/components/reveal";
@@ -42,7 +43,9 @@ export function AboutSection() {
               data-cursor-label={about.cursor}
             >
               {about.button}
-              <span className="about-section__button-arrow" aria-hidden="true">↗</span>
+              <span className="about-section__button-arrow" aria-hidden="true">
+                <ArrowUpRight size="1em" strokeWidth={2.2} />
+              </span>
             </Link>
           </Reveal>
         </div>

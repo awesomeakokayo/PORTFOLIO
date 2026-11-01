@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { useReducedMotion, useMotionValue, useSpring, motion } from "motion/react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import { siteContent } from "@/lib/content";
@@ -41,7 +42,9 @@ function MagneticButton() {
       data-cursor-label={siteContent.nav.cursorSend}
     >
       <span>{contact.button}</span>
-      <span className="magnetic-button__arrow" aria-hidden="true">↗</span>
+      <span className="magnetic-button__arrow" aria-hidden="true">
+        <ArrowUpRight size="1em" strokeWidth={2.2} />
+      </span>
     </motion.a>
   );
 }
@@ -80,7 +83,10 @@ export function ContactSection() {
                   rel={item.href.startsWith("http") ? "noreferrer" : undefined}
                   data-cursor-label="OPEN"
                 >
-                  {item.label} <span aria-hidden="true">↗</span>
+                  {item.label}{" "}
+                  <span className="contact-link__arrow" aria-hidden="true">
+                    <ArrowUpRight size="1em" strokeWidth={2.2} />
+                  </span>
                 </Link>
               ))}
           </nav>

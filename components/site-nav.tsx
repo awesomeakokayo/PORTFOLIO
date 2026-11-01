@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ArrowUpRight, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { siteContent } from "@/lib/content";
@@ -104,7 +105,9 @@ export function SiteNav() {
         >
           <Link className="site-nav__cta" href="/#contact" data-cursor-label={nav.cursorTalk}>
             {nav.talk}
-            <span className="site-nav__cta-arrow" aria-hidden="true">↗</span>
+            <span className="site-nav__cta-arrow" aria-hidden="true">
+              <ArrowUpRight size="1em" strokeWidth={2.2} />
+            </span>
           </Link>
         </motion.div>
 
@@ -149,7 +152,9 @@ export function SiteNav() {
                 aria-label={nav.closeLabel}
               >
                 <span>{nav.close}</span>
-                <span className="menu-overlay__close-icon" aria-hidden="true">×</span>
+                <span className="menu-overlay__close-icon" aria-hidden="true">
+                  <X size="1em" strokeWidth={2} />
+                </span>
               </button>
             </div>
 
@@ -164,7 +169,9 @@ export function SiteNav() {
                   <Link className="menu-overlay__link" href={item.href} onClick={closeMenu}>
                     <span className="menu-overlay__number">0{index + 1}</span>
                     <span>{item.label}</span>
-                    <span className="menu-overlay__arrow" aria-hidden="true">↗</span>
+                    <span className="menu-overlay__arrow" aria-hidden="true">
+                      <ArrowUpRight size="1em" strokeWidth={1.8} />
+                    </span>
                   </Link>
                 </motion.div>
               ))}
@@ -173,7 +180,10 @@ export function SiteNav() {
             <div className="menu-overlay__bottom">
               <span className="menu-overlay__eyebrow">{siteContent.contact.eyebrow}</span>
               <Link className="menu-overlay__contact" href="/#contact" onClick={closeMenu}>
-                {nav.talk} <span aria-hidden="true">↗</span>
+                {nav.talk}{" "}
+                <span aria-hidden="true">
+                  <ArrowUpRight size="1em" strokeWidth={2.2} />
+                </span>
               </Link>
             </div>
           </motion.div>

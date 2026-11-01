@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { AboutPhoto } from "@/components/about-photo";
 import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
@@ -72,7 +73,9 @@ export default function AboutPage() {
                   <article className={`drive-card drive-card--${item.theme}`}>
                     <span className="drive-card__word">{item.word}</span>
                     <p className="drive-card__line">{item.line}</p>
-                    <span className="drive-card__arrow" aria-hidden="true">↗</span>
+                    <span className="drive-card__arrow" aria-hidden="true">
+                      <ArrowUpRight size="1em" strokeWidth={2} />
+                    </span>
                   </article>
                 </Reveal>
               ))}
@@ -106,7 +109,9 @@ export default function AboutPage() {
                 data-cursor-label={siteContent.nav.cursorTalk}
               >
                 {aboutPage.looking.button}
-                <span className="magnetic-button__arrow" aria-hidden="true">↗</span>
+                <span className="magnetic-button__arrow" aria-hidden="true">
+                  <ArrowUpRight size="1em" strokeWidth={2.2} />
+                </span>
               </Link>
             </Reveal>
           </div>
