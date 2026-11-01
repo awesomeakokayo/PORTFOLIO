@@ -81,6 +81,10 @@ export const siteContent = {
       theme: "yellow",
       kind: "openbooks",
       href: "#contact",
+      image: {
+        src: "/projects/openbooks.png",
+        alt: "OpenBooks landing page with the headline “Run your business with clarity.”",
+      },
     },
     {
       name: "Tech Skills Hub",
@@ -90,6 +94,10 @@ export const siteContent = {
       theme: "dark",
       kind: "techskills",
       href: "https://techskillhub.cv",
+      image: {
+        src: "/projects/techskills.png",
+        alt: "TechSkillHub landing page with a curated roadmap preview.",
+      },
     },
     {
       name: "Flood Report",
@@ -99,6 +107,10 @@ export const siteContent = {
       theme: "paper",
       kind: "flood",
       href: "#contact",
+      image: {
+        src: "/projects/flood.png",
+        alt: "Flood Report app showing live flood incidents on an Ibadan map.",
+      },
     },
     {
       name: "Blancquake Foundation",
@@ -108,6 +120,10 @@ export const siteContent = {
       theme: "pink",
       kind: "blancquake",
       href: "#contact",
+      image: {
+        src: "/projects/blancquake.png",
+        alt: "Blancquake Foundation poster reading “Making the difference.”",
+      },
     },
     {
       name: "EmoHabit",
@@ -117,6 +133,10 @@ export const siteContent = {
       theme: "yellow",
       kind: "emohabit",
       href: "#contact",
+      image: {
+        src: "/projects/emohabit.png",
+        alt: "EmoHabit poster with an AI habit-tracking ring.",
+      },
     },
   ] satisfies Project[],
   services: {

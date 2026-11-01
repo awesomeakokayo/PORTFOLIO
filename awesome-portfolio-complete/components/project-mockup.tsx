@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 import type { Project } from "@/lib/content";
 
@@ -100,13 +101,13 @@ export function ProjectMockup({ project }: { project: Project }) {
   if (project.image?.src) {
     return (
       <div className="mockup-stage mockup-stage--image">
-        {/* User-supplied product screenshots replace this CSS composition. */}
-        <img
+        {/* Screenshots replace the CSS composition when a project provides one. */}
+        <Image
           className="project-screenshot"
           src={project.image.src}
           alt={project.image.alt}
-          loading="lazy"
-          decoding="async"
+          fill
+          sizes="(max-width: 640px) 90vw, 55vw"
         />
       </div>
     );
