@@ -66,8 +66,9 @@ export function ContactSection() {
 
         <Reveal delay={0.1}>
           <nav className="contact-links" aria-label="Contact and social links">
-            {contact.links.map((item) => (
-              item.href ? (
+            {contact.links
+              .filter((item) => Boolean(item.href))
+              .map((item) => (
                 <Link
                   className="contact-link"
                   key={item.label}
@@ -78,17 +79,7 @@ export function ContactSection() {
                 >
                   {item.label} <span aria-hidden="true">↗</span>
                 </Link>
-              ) : (
-                <span
-                  className="contact-link contact-link--disabled"
-                  key={item.label}
-                  title={contact.whatsappTodo}
-                  aria-label={`${item.label}. ${contact.whatsappTodo}`}
-                >
-                  {item.label} <span aria-hidden="true">↗</span>
-                </span>
-              )
-            ))}
+              ))}
           </nav>
         </Reveal>
       </div>

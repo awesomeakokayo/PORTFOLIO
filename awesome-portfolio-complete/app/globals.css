@@ -1503,11 +1503,6 @@ html.has-custom-cursor * {
   color: var(--color-accent);
 }
 
-.contact-link--disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-
 /* Footer */
 
 .site-footer {

@@ -218,11 +218,9 @@ export const siteContent = {
     email: "awesomeakokayo@gmail.com",
     links: [
       { label: "EMAIL", href: "mailto:awesomeakokayo@gmail.com" },
-      { label: "WHATSAPP", href: null },
       { label: "GITHUB", href: "https://github.com/awesomeakokayo" },
       { label: "LINKEDIN", href: "https://www.linkedin.com/in/awesome-stephens/" },
     ],
-    whatsappTodo: "TODO: Add verified WhatsApp number.",
   },
   footer: {
     location: "BASED IN NIGERIA · BUILDING FOR AFRICA",
