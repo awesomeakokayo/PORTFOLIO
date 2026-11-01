@@ -21,7 +21,7 @@ export const siteContent = {
     title: "Awesome Akokayo — Product Engineer & AI Builder",
     description:
       "Independent product engineer building useful digital products for people everywhere.",
-    url: "https://awesomeakokayo.cv",
+    url: "https://www.awesomeakokayo.cv",
     applicationName: "Awesome Akokayo",
   },
   nav: {

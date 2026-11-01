@@ -37,7 +37,11 @@ Projects with a live site open it in a new tab. Flood Report and NaviPro have no
 
 ## About photo
 
-`public/about/awesome.jpg` is the portrait used on the home About section and the `/about` page.
+`public/about/awesome.jpg` is the portrait used on the home About section and the `/about` page. `public/about/awesome-og.jpg` is the 4:5 crop used in the Open Graph card.
+
+## Social preview
+
+`app/opengraph-image.tsx` generates a 1200×630 Open Graph image with the portrait, name and availability line. Next exposes it automatically as `og:image` and `twitter:image`, using the site URL from `lib/content.ts`.
 
 ## Structure
 

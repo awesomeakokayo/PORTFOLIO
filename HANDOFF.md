@@ -136,7 +136,7 @@ Do not hard-code replacement project or service copy in components. `Project.log
 - The Flood Report and NaviPro marks were designed as flat placeholders in the site palette.
 - Production deploys run from the repository root; Vercel detects Next.js and `resources/` is excluded with `.vercelignore`.
 - Actual browser QA at 360px, 768px and 1440px, keyboard audit, screen-reader audit and Lighthouse performance/accessibility checks remain to be run after dependencies install.
-- `npm run build` and `npx tsc --noEmit` pass in this environment; the social card is generated statically from `app/opengraph-image.tsx`.
+- `npm run build` and `npx tsc --noEmit` pass in this environment; the 1200×630 Open Graph card is generated from `app/opengraph-image.tsx` with `public/about/awesome-og.jpg`.
 
 ## 8. Safe continuation instructions
 
