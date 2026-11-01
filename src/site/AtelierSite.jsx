@@ -104,6 +104,37 @@ function SectionLabel({ number, children, light = false }) {
   );
 }
 
+function ProjectLogoRail({ onSelect }) {
+  return (
+    <section className="at-logo-rail" aria-label="Selected product and project marks">
+      <div className="at-container at-logo-rail-inner">
+        <span className="at-logo-rail-label">A FEW THINGS I'VE HELPED BUILD</span>
+        <div className="at-logo-rail-marks">
+          {projects.map((project) => (
+            <a
+              className={"at-logo-link at-logo-" + project.slug}
+              href={"#project-" + project.slug}
+              key={project.slug}
+              onClick={onSelect}
+              aria-label={"Jump to " + project.name + " project"}
+            >
+              <span className="at-logo-mark" aria-hidden="true">
+                {project.logo ? (
+                  <img src={project.logo} alt="" loading="lazy" decoding="async" />
+                ) : (
+                  <span className="at-logo-monogram">{project.monogram}</span>
+                )}
+              </span>
+              <span className="at-sr-only">{project.name}</span>
+            </a>
+          ))}
+        </div>
+        <span className="at-logo-rail-note">PRODUCTS / CLIENT WORK / CIVIC TECH</span>
+      </div>
+    </section>
+  );
+}
+
 function ProjectArtwork({ project, featured = false }) {
   return (
     <div className={"at-project-art at-art-" + project.slug + (featured ? " is-featured" : "")}>
@@ -131,7 +162,7 @@ function ProjectArtwork({ project, featured = false }) {
 
 function ProjectFeature({ project }) {
   return (
-    <article className="at-feature-project" data-at-reveal>
+    <article id={"project-" + project.slug} className="at-feature-project" data-at-reveal>
       <a className="at-feature-link" href={project.url || "#contact"} target={project.url ? "_blank" : undefined} rel={project.url ? "noreferrer" : undefined}>
         <ProjectArtwork project={project} featured />
         <div className="at-feature-copy">
@@ -157,7 +188,7 @@ function ProjectFeature({ project }) {
 function ProjectTile({ project, layout = "standard" }) {
   const link = project.url || "#contact";
   return (
-    <article className={"at-project-tile at-tile-" + layout} data-at-reveal>
+    <article id={"project-" + project.slug} className={"at-project-tile at-tile-" + layout} data-at-reveal>
       <a href={link} target={project.url ? "_blank" : undefined} rel={project.url ? "noreferrer" : undefined}>
         <ProjectArtwork project={project} />
         <div className="at-tile-copy">
@@ -204,6 +235,7 @@ export default function AtelierSite({ onEnterMuseum, museumEntryRef }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [processVisible, setProcessVisible] = useState(false);
+  const [workFilter, setWorkFilter] = useState("all");
 
   const copyEmail = useCallback(async () => {
     try {
@@ -305,8 +337,17 @@ export default function AtelierSite({ onEnterMuseum, museumEntryRef }) {
 
   const closeMenu = () => setMenuOpen(false);
   const selected = projects.slice(0, 4);
-  const featured = selected[0];
-  const remaining = selected.slice(1);
+  const projectFilters = [
+    { id: "all", label: "All work", count: selected.length },
+    { id: "product", label: "Products", count: selected.filter((project) => project.kind === "product").length },
+    { id: "client", label: "Client work", count: selected.filter((project) => project.kind === "client").length },
+    { id: "civic", label: "Civic tech", count: selected.filter((project) => project.kind === "civic").length },
+  ];
+  const visibleProjects = workFilter === "all"
+    ? selected
+    : selected.filter((project) => project.kind === workFilter);
+  const featured = workFilter === "all" ? selected[0] : null;
+  const remaining = workFilter === "all" ? selected.slice(1) : visibleProjects;
 
   return (
     <main className="at-site" ref={rootRef}>
@@ -393,6 +434,8 @@ export default function AtelierSite({ onEnterMuseum, museumEntryRef }) {
         </div>
       </section>
 
+      <ProjectLogoRail onSelect={() => setWorkFilter("all")} />
+
       <section className="at-work" id="work">
         <div className="at-work-progress"><span /></div>
         <div className="at-container">
@@ -404,16 +447,40 @@ export default function AtelierSite({ onEnterMuseum, museumEntryRef }) {
             <p>A few products and systems I've helped bring into the world. Each one starts with a problem worth solving.</p>
           </div>
 
-          <div className="at-work-feature">
-            <div className="at-work-count"><span>01</span><span>THE FEATURED PROJECT</span><span className="at-count-rule" /></div>
-            <ProjectFeature project={featured} />
-          </div>
-
-          <div className="at-project-grid">
-            {remaining.map((project, index) => (
-              <ProjectTile key={project.slug} project={project} layout={index === 0 ? "wide" : "standard"} />
+          <div className="at-work-filters" role="group" aria-label="Filter selected projects">
+            {projectFilters.map((filter) => (
+              <button
+                className="at-work-filter"
+                type="button"
+                key={filter.id}
+                aria-pressed={workFilter === filter.id}
+                onClick={() => setWorkFilter(filter.id)}
+              >
+                {filter.label} <span>{String(filter.count).padStart(2, "0")}</span>
+              </button>
             ))}
           </div>
+
+          {featured ? (
+            <>
+              <div className="at-work-feature">
+                <div className="at-work-count"><span>01</span><span>THE FEATURED PROJECT</span><span className="at-count-rule" /></div>
+                <ProjectFeature project={featured} />
+              </div>
+
+              <div className="at-project-grid">
+                {remaining.map((project, index) => (
+                  <ProjectTile key={project.slug} project={project} layout={index === 0 ? "wide" : "standard"} />
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className="at-project-grid at-filtered-project-grid" aria-live="polite">
+              {visibleProjects.map((project, index) => (
+                <ProjectTile key={project.slug} project={project} layout={index === 0 ? "wide" : "standard"} />
+              ))}
+            </div>
+          )}
 
           <div className="at-more-work">
             <div className="at-more-heading">

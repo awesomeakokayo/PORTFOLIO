@@ -1225,3 +1225,146 @@
     animation-iteration-count: 1 !important;
   }
 }
+
+
+/* Project identity rail: use real portfolio marks where available and compact monograms elsewhere. */
+.at-logo-rail {
+  background: var(--at-paper);
+  color: var(--at-ink);
+  border-top: 1px solid var(--at-line-dark);
+  border-bottom: 1px solid var(--at-line-dark);
+  padding: 26px 0;
+}
+.at-logo-rail-inner {
+  display: grid;
+  grid-template-columns: minmax(150px, .72fr) minmax(0, 2fr) minmax(145px, .72fr);
+  align-items: center;
+  gap: 24px;
+}
+.at-logo-rail-label,
+.at-logo-rail-note {
+  color: #687167;
+  font: 400 8px/1.6 var(--at-mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.at-logo-rail-note { text-align: right; }
+.at-logo-rail-marks {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-around;
+  gap: 18px;
+}
+.at-logo-link {
+  display: grid;
+  min-width: 80px;
+  min-height: 58px;
+  flex: 1 1 0;
+  place-items: center;
+  border-left: 1px solid rgba(8, 11, 9, .13);
+  padding: 6px 14px;
+  transition: background .22s ease, transform .22s ease;
+}
+.at-logo-link:last-child { border-right: 1px solid rgba(8, 11, 9, .13); }
+.at-logo-link:hover { background: rgba(49, 89, 70, .06); transform: translateY(-2px); }
+.at-logo-mark {
+  display: grid;
+  width: 100%;
+  min-height: 42px;
+  place-items: center;
+}
+.at-logo-mark img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 145px);
+  max-height: 42px;
+  object-fit: contain;
+}
+.at-logo-monogram {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(8, 11, 9, .3);
+  color: var(--at-pine);
+  font: 500 10px/1 var(--at-mono);
+  letter-spacing: -.04em;
+}
+.at-logo-techskillhub .at-logo-monogram { border-color: rgba(49, 89, 70, .5); background: rgba(49, 89, 70, .08); }
+.at-logo-southwest-flood-monitor .at-logo-monogram { border-color: rgba(60, 108, 119, .45); color: #315c67; background: rgba(60, 108, 119, .08); }
+.at-sr-only,
+.at-sr-only:not(:focus):not(:active) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Small editorial filters keep the archive useful without turning it into a dashboard. */
+.at-work-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: -25px 0 34px;
+}
+.at-work-filter {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid rgba(243, 241, 233, .22);
+  border-radius: 0;
+  background: transparent;
+  padding: 0 12px;
+  color: #aab3a9;
+  cursor: pointer;
+  font: 400 8px/1 var(--at-mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+.at-work-filter span { color: #7c897d; font-size: 7px; }
+.at-work-filter:hover,
+.at-work-filter[aria-pressed="true"] {
+  border-color: var(--at-pine-bright);
+  background: rgba(159, 202, 138, .1);
+  color: var(--at-paper);
+}
+.at-work-filter[aria-pressed="true"] span { color: var(--at-pine-bright); }
+.at-filtered-project-grid { margin-top: 0; }
+.at-feature-project,
+.at-project-tile { scroll-margin-top: 108px; }
+
+@media (max-width: 1100px) {
+  .at-logo-rail-inner {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .at-logo-rail-label,
+  .at-logo-rail-note { text-align: center; }
+  .at-logo-rail-note { display: none; }
+}
+@media (max-width: 640px) {
+  .at-logo-rail { padding: 20px 0; }
+  .at-logo-rail-marks {
+    justify-content: flex-start;
+    gap: 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+  .at-logo-rail-marks::-webkit-scrollbar { display: none; }
+  .at-logo-link { min-width: 25%; padding-inline: 10px; }
+  .at-logo-mark img { max-width: 112px; max-height: 34px; }
+  .at-logo-monogram { width: 36px; height: 36px; font-size: 9px; }
+  .at-work-filters { margin: -16px 0 28px; gap: 6px; }
+  .at-work-filter { min-height: 36px; padding-inline: 9px; gap: 9px; font-size: 7px; }
+  .at-filtered-project-grid { grid-template-columns: 1fr; gap: 38px; }
+}
