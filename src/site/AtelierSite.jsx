@@ -198,6 +198,7 @@ export default function AtelierSite({ onEnterMuseum, museumEntryRef }) {
   const rootRef = useRef(null);
   const processRef = useRef(null);
   const processProgress = useRef({ current: 0 });
+  const heroProgress = useRef({ current: 0 });
   const reduced = useReducedMotionPreference();
   const wide = useWideViewport();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -283,6 +284,12 @@ export default function AtelierSite({ onEnterMuseum, museumEntryRef }) {
         scrollTrigger: { trigger: ".at-feature-project", start: "top bottom", end: "bottom top", scrub: true },
       });
 
+      gsap.to(heroProgress.current, {
+        current: 1,
+        ease: "none",
+        scrollTrigger: { trigger: ".at-hero", start: "top top", end: "bottom top", scrub: true },
+      });
+
       gsap.to(processProgress.current, {
         current: 1,
         ease: "none",
@@ -351,7 +358,7 @@ export default function AtelierSite({ onEnterMuseum, museumEntryRef }) {
             <div className="at-visual-stage">
               {wide ? (
                 <Suspense fallback={<div className="at-hero-object-fallback"><span /><i /></div>}>
-                  <HeroScene progressRef={{ current: 0 }} active={true} reduced={reduced} dark narrow={false} />
+                  <HeroScene progressRef={heroProgress.current} active={true} reduced={reduced} dark narrow={false} />
                 </Suspense>
               ) : (
                 <div className="at-hero-object-fallback"><span /><i /></div>
