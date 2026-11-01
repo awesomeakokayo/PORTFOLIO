@@ -3687,3 +3687,193 @@ html.rb-motion .rb-reveal.is-visible {
     transform: none;
   }
 }
+
+
+/* ---------------------------------------------------------------------------
+   Focused header + liquid-glass polish
+   The navigation is intentionally reduced to the standalone mark and the
+   appearance control. Page navigation stays in the content, not a toolbar.
+--------------------------------------------------------------------------- */
+
+.rb-nav {
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.rb-header-theme {
+  display: flex;
+  flex: 0 1 auto;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.rb-theme.is-wide {
+  width: min(70vw, 440px);
+}
+
+.rb-theme.is-wide .rb-theme-track {
+  height: 48px;
+}
+
+.rb-mobile-scrolled-cta {
+  display: none;
+}
+
+/* Theme-responsive liquid glass instead of a permanently black logo panel. */
+.rb-logos-capsule-dark {
+  border: 1px solid var(--rb-glass-border);
+  background: linear-gradient(180deg, var(--rb-glass-strong), var(--rb-glass));
+  box-shadow:
+    inset 0 1px 0 var(--rb-glass-highlight),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.035),
+    0 24px 60px -34px var(--rb-shadow-color);
+  color: var(--rb-ink);
+  backdrop-filter: blur(var(--rb-glass-blur)) saturate(1.45);
+  -webkit-backdrop-filter: blur(var(--rb-glass-blur)) saturate(1.45);
+  transition:
+    background-color 280ms ease,
+    border-color 280ms ease,
+    color 280ms ease,
+    box-shadow 280ms ease;
+}
+
+.rb-capsule-dot {
+  background: var(--rb-pine);
+  box-shadow: 0 0 10px var(--rb-focus-ring);
+}
+
+.rb-capsule-title,
+.rb-capsule-item,
+.rb-capsule-icon,
+.rb-monomark-svg,
+.rb-capsule-text strong {
+  color: var(--rb-ink);
+}
+
+.rb-capsule-divider {
+  color: var(--rb-line-strong);
+}
+
+.rb-capsule-sub {
+  color: var(--rb-muted);
+}
+
+.rb-capsule-item {
+  opacity: 0.86;
+}
+
+.rb-capsule-item:hover {
+  opacity: 1;
+}
+
+.rb-root :where(section, article, footer, header, .rb-logos-capsule-dark, .rb-theme-track) {
+  transition-property: background-color, color, border-color, box-shadow;
+  transition-duration: 280ms;
+  transition-timing-function: ease;
+}
+
+@media (max-width: 860px) {
+  .rb-nav {
+    height: 64px;
+    gap: 10px;
+  }
+
+  .rb-brand {
+    gap: 8px;
+  }
+
+  .rb-brand-name {
+    display: none !important;
+  }
+
+  .rb-header-theme {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-left: 6px;
+    transition: opacity 180ms ease;
+  }
+
+  .rb-header-theme.is-hidden {
+    display: none;
+  }
+
+  .rb-header-theme .rb-theme {
+    width: min(70vw, 440px);
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .rb-header-theme .rb-theme-readout {
+    display: none;
+  }
+
+  .rb-theme.is-wide .rb-theme-track {
+    height: 42px;
+  }
+
+  .rb-theme.is-wide .rb-theme-thumb {
+    --rb-thumb: 30px;
+    --rb-thumb-pad: 6px;
+  }
+
+  .rb-mobile-scrolled-cta {
+    display: none;
+  }
+
+  .rb-mobile-scrolled-cta.is-visible {
+    display: inline-flex !important;
+    margin-left: auto;
+  }
+
+  .rb-logos-capsule-head {
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .rb-logos-capsule-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    gap: 8px;
+  }
+
+  .rb-logos-capsule-row > li:nth-child(n + 4) {
+    display: none;
+  }
+
+  .rb-capsule-item {
+    display: flex;
+    min-height: 68px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+    padding: 8px 3px;
+    text-align: center;
+  }
+
+  .rb-capsule-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .rb-capsule-text strong {
+    font-size: clamp(9px, 2.7vw, 11px);
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .rb-logos-capsule-dark {
+    background: var(--rb-surface);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rb-root :where(section, article, footer, header, .rb-logos-capsule-dark, .rb-theme-track) {
+    transition-duration: 0.001ms !important;
+  }
+}
