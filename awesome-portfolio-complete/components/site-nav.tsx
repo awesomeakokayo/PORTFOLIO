@@ -82,15 +82,17 @@ export function SiteNav() {
               href={item.href}
               data-cursor-label={nav.cursorGo}
             >
-              <motion.span
-                className="nav-link__track"
-                initial={{ y: "0%" }}
-                whileHover={{ y: "-50%" }}
-                transition={{ duration: 0.32, ease }}
-              >
-                <span>{item.label}</span>
-                <span aria-hidden="true">{item.label}</span>
-              </motion.span>
+              <span className="nav-link__viewport">
+                <motion.span
+                  className="nav-link__track"
+                  initial={{ y: "0%" }}
+                  whileHover={{ y: "-50%" }}
+                  transition={{ duration: 0.32, ease }}
+                >
+                  <span>{item.label}</span>
+                  <span aria-hidden="true">{item.label}</span>
+                </motion.span>
+              </span>
             </Link>
           ))}
         </nav>
@@ -100,7 +102,7 @@ export function SiteNav() {
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.97 }}
         >
-          <Link className="site-nav__cta" href="#contact" data-cursor-label={nav.cursorTalk}>
+          <Link className="site-nav__cta" href="/#contact" data-cursor-label={nav.cursorTalk}>
             {nav.talk}
             <span className="site-nav__cta-arrow" aria-hidden="true">↗</span>
           </Link>
@@ -170,7 +172,7 @@ export function SiteNav() {
 
             <div className="menu-overlay__bottom">
               <span className="menu-overlay__eyebrow">{siteContent.contact.eyebrow}</span>
-              <Link className="menu-overlay__contact" href="#contact" onClick={closeMenu}>
+              <Link className="menu-overlay__contact" href="/#contact" onClick={closeMenu}>
                 {nav.talk} <span aria-hidden="true">↗</span>
               </Link>
             </div>

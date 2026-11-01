@@ -29,9 +29,10 @@ export const siteContent = {
     brand: "AA.",
     brandName: "AWESOME AKOKAYO",
     links: [
-      { label: "Work", href: "#work" },
-      { label: "Services", href: "#services" },
-      { label: "Process", href: "#process" },
+      { label: "Work", href: "/#work" },
+      { label: "About", href: "/about" },
+      { label: "Services", href: "/#services" },
+      { label: "Process", href: "/#process" },
     ],
     talk: "Let's talk",
     menu: "Menu",
@@ -140,8 +141,66 @@ export const siteContent = {
       },
     },
   ] satisfies Project[],
+  about: {
+    eyebrow: "02 / ABOUT",
+    lineOne: "I build from",
+    serifWord: "real",
+    lineTwo: "problems.",
+    text: "Product-focused software engineer. I spot a user problem, then build the fix.",
+    rows: [
+      { label: "PRODUCT FIRST", sentence: "Every build starts with a user problem." },
+      { label: "CLIENT WORK", sentence: "My favorite kind of project." },
+      { label: "COMMUNICATION", sentence: "The thing I value most." },
+      { label: "ALWAYS TRYING", sentence: "Too comfortable? Time for something new." },
+    ],
+    button: "More about me",
+    href: "/about",
+    cursor: "MORE",
+    photo: "/about/awesome.jpg",
+    photoAlt: "Awesome Akokayo smiling and waving at the camera",
+  },
+  aboutPage: {
+    meta: {
+      title: "About — Awesome Akokayo",
+      description: "Product-focused software engineer from Nigeria, building useful things for Africa.",
+    },
+    hero: {
+      lineOne: "Hi, I'm",
+      serifWord: "Awesome.",
+      subline: "Product-focused software engineer from Nigeria.",
+    },
+    photo: "/about/awesome.jpg",
+    photoAlt: "Awesome Akokayo smiling and waving at the camera",
+    story: {
+      label: "STORY",
+      paragraphs: [
+        "I'm a computer science graduate who started building before I had the degree.",
+        "Along the way I became a product-focused engineer: I see a user problem, then I build from it. That's how most of my projects started.",
+        "Client work is some of my favorite, because real people with real needs keep you honest.",
+      ],
+    },
+    drives: {
+      label: "WHAT DRIVES ME",
+      items: [
+        { word: "Build", line: "I love making cool things from scratch.", theme: "pink" },
+        { word: "Design", line: "I care how it looks and how it feels.", theme: "yellow" },
+        { word: "Communicate", line: "Clear talk makes better products.", theme: "paper" },
+        { word: "Evolve", line: "Comfort is my cue to try something harder.", theme: "dark" },
+      ],
+    },
+    thinking: {
+      label: "HOW I THINK",
+      text: "There's always more to do in tech, and change is how we move forward. When I get too comfortable, I get an itch to try something new and make things better.",
+    },
+    looking: {
+      label: "WHAT I'M LOOKING FOR",
+      text: "A team of creative people building cool stuff. If that's you, let's talk.",
+      button: "Let's talk",
+      href: "/#contact",
+    },
+  },
   services: {
-    eyebrow: "02 / WHAT I DO",
+    eyebrow: "03 / WHAT I DO",
     title: "Built around outcomes.",
     intro: "From first sketch to production systems.",
     items: [
@@ -172,7 +231,7 @@ export const siteContent = {
     ],
   },
   numbers: {
-    eyebrow: "03 / BY THE NUMBERS",
+    eyebrow: "04 / BY THE NUMBERS",
     title: "A little perspective.",
     stats: [
       { value: 32, suffix: "", label: "Learning tracks live", detail: "Across Tech Skills Hub" },
@@ -181,7 +240,7 @@ export const siteContent = {
     ],
   },
   process: {
-    eyebrow: "04 / THE PROCESS",
+    eyebrow: "05 / THE PROCESS",
     title: "From problem to product.",
     hint: "Scroll to move through the process",
     mobileTitle: "A clear way forward.",
@@ -209,7 +268,7 @@ export const siteContent = {
     ],
   },
   contact: {
-    eyebrow: "05 / HAVE A GOOD PROBLEM?",
+    eyebrow: "06 / HAVE A GOOD PROBLEM?",
     lineOne: "Let's build",
     lineTwo: "something.",
     button: "Start a conversation",

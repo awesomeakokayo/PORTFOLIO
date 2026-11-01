@@ -1,6 +1,7 @@
 import { HeroSection } from "@/components/hero-section";
 import { MarqueeSection } from "@/components/marquee-section";
 import { SelectedWork } from "@/components/selected-work";
+import { AboutSection } from "@/components/about-section";
 import { ServicesSection } from "@/components/services-section";
 import { NumbersSection } from "@/components/numbers-section";
 import { ProcessSection } from "@/components/process-section";
@@ -15,6 +16,7 @@ export default function HomePage() {
         <HeroSection />
         <MarqueeSection />
         <SelectedWork />
+        <AboutSection />
         <ServicesSection />
         <NumbersSection />
         <ProcessSection />

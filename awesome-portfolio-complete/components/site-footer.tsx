@@ -8,7 +8,7 @@ export function SiteFooter() {
     <footer className="site-footer">
       <span>{footer.location}</span>
       <span>{footer.copyright}</span>
-      <Link className="site-footer__back-top" href="#top" data-cursor-label={siteContent.nav.cursorTop}>
+      <Link className="site-footer__back-top" href="/#top" data-cursor-label={siteContent.nav.cursorTop}>
         {footer.backToTop} <span aria-hidden="true">↑</span>
       </Link>
     </footer>

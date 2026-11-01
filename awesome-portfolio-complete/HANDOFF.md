@@ -61,6 +61,7 @@ app/
   layout.tsx                  Font loading, SEO metadata, global shell
   opengraph-image.tsx         Static 1200×630 social card
   page.tsx                    Ordered section composition
+  about/page.tsx              Full about page with its own metadata
   icon.svg                    AA. favicon
 components/
   site-nav.tsx                 Fixed desktop nav + accessible mobile overlay
@@ -73,6 +74,8 @@ components/
   marquee-section.tsx           Infinite outlined ticker
   selected-work.tsx              Sticky project stack, tilt, hover/tap details
   project-mockup.tsx             CSS-built project device/dashboard compositions
+  about-section.tsx              Home about section with photo and mono rows
+  about-photo.tsx                 Shared rotated portrait treatment for both pages
   services-section.tsx           Four flip service tiles
   numbers-section.tsx             Three in-view count-up stats
   process-section.tsx              Pinned desktop horizontal process / mobile stack
@@ -82,6 +85,7 @@ components/
 lib/
   content.ts                        Central copy, project and link data
 public/projects/                    Project screenshots used by work cards
+public/about/                       Portrait used by the about section and page
 HANDOFF.md                           This guide
 README.md                            Setup and editing notes
 ```
