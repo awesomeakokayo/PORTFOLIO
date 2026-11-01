@@ -4,11 +4,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f6f5f0" />
+  <meta name="color-scheme" content="light dark" />
+
+  <!-- Apply the saved appearance before first paint to avoid a light flash. -->
+  <script>
+    (function () {
+      try {
+        var raw = window.localStorage.getItem("awesome-appearance-level");
+        var level = raw === null ? 0 : Number(raw);
+        if (!isFinite(level)) level = 0;
+        level = Math.max(0, Math.min(100, level));
+
+        var root = document.documentElement;
+        var dark = level >= 68;
+        root.dataset.rbTheme = dark ? "dark" : "light";
+        root.style.colorScheme = dark ? "dark" : "light";
+
+        if (level > 0) {
+          var t = level / 100;
+          var surfaceMix = t <= 0.5 ? t * 0.6 : 0.3 + (t - 0.5) * 1.4;
+          var light = [246, 245, 240];
+          var night = [8, 11, 9];
+          var rgb = light.map(function (value, index) {
+            return Math.round(value + (night[index] - value) * surfaceMix);
+          });
+          var hex =
+            "#" +
+            rgb
+              .map(function (value) {
+                return value.toString(16).padStart(2, "0");
+              })
+              .join("");
+
+          var style = document.createElement("style");
+          style.id = "rb-prepaint";
+          style.textContent = "html,body{background:" + hex + "!important}";
+          document.head.appendChild(style);
+
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute("content", hex);
+        }
+      } catch (error) {
+        /* Storage can be unavailable; the default light theme is fine. */
+      }
+    })();
+  </script>
 
   <!-- Primary -->
-  <title>Awesome Akokayo — Full-Stack Engineer & AI Product Builder</title>
-  <meta name="description" content="Awesome Akokayo is a Nigerian full-stack software engineer building web, mobile and AI-integrated products. Explore selected products, backend systems and shipped work." />
-  <meta name="keywords" content="Awesome Akokayo, full-stack software engineer Nigeria, software engineer Nigeria, React developer Nigeria, Next.js developer Nigeria, FastAPI developer, React Native developer, AI product engineer, web app developer, mobile app developer, product builder Nigeria" />
+  <title>Awesome Akokayo — Product-Focused Software Engineer</title>
+  <meta name="description" content="Awesome Akokayo is a product-focused software engineer building digital products that solve real problems — full-stack engineering, AI and thoughtful user experience. Based in Nigeria, working worldwide." />
+  <meta name="keywords" content="Awesome Akokayo, product-focused software engineer, product engineer Nigeria, full-stack software engineer Nigeria, software engineer Nigeria, React developer Nigeria, Next.js developer Nigeria, FastAPI developer, React Native developer, AI product engineer, web app developer, mobile app developer, product builder Nigeria, product thinking, user experience" />
   <meta name="author" content="Awesome Akokayo" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
@@ -20,19 +66,19 @@
   <meta property="profile:last_name" content="Akokayo" />
   <meta property="profile:username" content="awesomeakokayo" />
   <meta property="og:url" content="https://www.awesomeakokayo.cv/" />
-  <meta property="og:title" content="Awesome Akokayo — Full-Stack Engineer & AI Product Builder" />
-  <meta property="og:description" content="Full-stack engineer building web, mobile and AI-integrated products. Explore selected products, backend systems and shipped work." />
+  <meta property="og:title" content="Awesome Akokayo — Product-Focused Software Engineer" />
+  <meta property="og:description" content="Building digital products beyond the code. Full-stack engineering, product thinking, AI and thoughtful user experience — from first conversation to shipped product." />
   <meta property="og:image" content="https://raw.githubusercontent.com/awesomeakokayo/PORTFOLIO/main/logo.png" />
-  <meta property="og:image:alt" content="Awesome Akokayo — Full-Stack Engineer & AI Product Builder" />
+  <meta property="og:image:alt" content="Awesome Akokayo — Product-Focused Software Engineer" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@awesomeakokayo" />
   <meta name="twitter:creator" content="@awesomeakokayo" />
-  <meta name="twitter:title" content="Awesome Akokayo — Full-Stack Engineer & AI Product Builder" />
-  <meta name="twitter:description" content="Nigerian full-stack engineer building web, mobile and AI-integrated products. Explore selected work and product engineering." />
+  <meta name="twitter:title" content="Awesome Akokayo — Product-Focused Software Engineer" />
+  <meta name="twitter:description" content="Building digital products beyond the code. Software engineering, product thinking, AI and user experience." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/awesomeakokayo/PORTFOLIO/main/logo.png" />
-  <meta name="twitter:image:alt" content="Awesome Akokayo — Full-Stack Engineer & AI Product Builder" />
+  <meta name="twitter:image:alt" content="Awesome Akokayo — Product-Focused Software Engineer" />
 
   <!-- Canonical -->
   <link rel="canonical" href="https://www.awesomeakokayo.cv/" />
@@ -47,7 +93,7 @@
       "@id": "https://www.awesomeakokayo.cv/#website",
       "url": "https://www.awesomeakokayo.cv/",
       "name": "Awesome Akokayo",
-      "description": "Portfolio of Awesome Akokayo, a full-stack software engineer and product builder building web, mobile and AI-integrated software.",
+      "description": "Portfolio of Awesome Akokayo, a product-focused software engineer building digital products that solve real problems — full-stack engineering, AI and user experience.",
       "inLanguage": "en-NG",
       "publisher": { "@id": "https://www.awesomeakokayo.cv/#person" }
     },
@@ -55,7 +101,7 @@
       "@type": "ProfilePage",
       "@id": "https://www.awesomeakokayo.cv/#profile",
       "url": "https://www.awesomeakokayo.cv/",
-      "name": "Awesome Akokayo | Full-Stack Engineer & AI Product Builder",
+      "name": "Awesome Akokayo | Product-Focused Software Engineer",
       "isPartOf": { "@id": "https://www.awesomeakokayo.cv/#website" },
       "mainEntity": { "@id": "https://www.awesomeakokayo.cv/#person" }
     },
@@ -64,9 +110,9 @@
       "@id": "https://www.awesomeakokayo.cv/#person",
       "name": "Awesome Akokayo",
       "alternateName": "@awesomeakokayo",
-      "jobTitle": "Full-Stack Engineer & AI Product Builder",
+      "jobTitle": "Product-Focused Software Engineer",
       "url": "https://www.awesomeakokayo.cv/",
-      "description": "Nigerian full-stack software engineer and product builder building web applications, mobile products, backend systems and AI-integrated software from idea to production.",
+      "description": "Nigerian product-focused software engineer building digital products that solve real problems. Works across product thinking, user experience, full-stack engineering and AI from idea to production.",
       "email": "awesomeakokayo@gmail.com",
       "telephone": "+234 902 037 2640",
       "nationality": "Nigerian",
@@ -77,6 +123,9 @@
         "https://www.instagram.com/awesomeakokayo/"
       ],
       "knowsAbout": [
+        "Product engineering",
+        "Product thinking",
+        "User experience",
         "Software engineering",
         "Full-stack web development",
         "Web application development",
@@ -163,24 +212,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
-  <!-- Preload the Ojuju bold font file to prevent Flash of Unstyled Text (FOUT) -->
-  <link rel="preload" href="https://fonts.gstatic.com/s/ojuju/v5/7r3bqXF7v9ApbrMih3jYQBVm9-n_yp455w.ttf" as="font" type="font/ttf" crossorigin>
-  
-  <!-- Import Fonts: Ojuju (display), Inter (body), Space Mono (eyebrows/badges/tags) -->
-  <link href="https://fonts.googleapis.com/css2?family=Ojuju:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Import Fonts: Instrument Sans (display/body), Instrument Serif (editorial accents), JetBrains Mono (labels).
+       Ojuju, Space Mono and Inter remain for the optional 3D museum experience. -->
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Ojuju:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <link rel="icon" type="image/png" href="/logo.png" />
 </head>
 
-<body class="bg-canvas text-text-primary antialiased selection:bg-accent selection:text-white">
+<body class="rb-body">
   <div id="root"></div>
   <noscript>
     <section>
-      <h1>Awesome Akokayo — Full-Stack Software Engineer &amp; Product Builder</h1>
-      <p>Awesome Akokayo is a Nigerian full-stack software engineer and product builder. He builds web applications, mobile applications, backend systems and AI-integrated products from idea to production.</p>
+      <h1>Awesome Akokayo — Product-Focused Software Engineer</h1>
+      <p>Awesome Akokayo is a Nigerian product-focused software engineer. He builds digital products that solve real problems, working across product thinking, user experience, full-stack engineering and AI from idea to production.</p>
       <p>Core technologies: TypeScript, JavaScript, React, Next.js, React Native, Expo, Python, FastAPI, Node.js, PostgreSQL, Prisma, REST APIs, LLM APIs, Paystack, Docker, Vercel and Render.</p>
-      <p>Selected work: OpenBooks, Elroi Hub, TechSkillHub, Southwest Flood Monitor, CCU Journal Platform and Blancquake Foundation.</p>
-      <p>Available for remote software engineering and product development work in Nigeria and internationally. Website projects start from ₦500,000.</p>
+      <p>Selected work: OpenBooks, TechSkillHub, Southwest Flood Monitor and Elroi Hub. More work includes EmoHabit, NaviPro, CCU Journal of Education, AE-FUNAI Journal and Blancquake Foundation.</p>
+      <p>Available for remote product and engineering work in Nigeria and internationally.</p>
       <p>
         <a href="https://github.com/awesomeakokayo">GitHub</a> ·
         <a href="https://www.linkedin.com/in/awesomeakokayo/">LinkedIn</a> ·

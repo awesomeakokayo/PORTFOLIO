@@ -1,63 +1,10 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import CurtainReveal from "./CurtainReveal.jsx";
+import { projects } from "./data/projects.js";
 
 const display = { fontFamily: "'Ojuju', sans-serif" };
 const mono = { fontFamily: "'Space Mono', monospace" };
-
-const projects = [
-  {
-    name: "OpenBooks",
-    number: "01",
-    category: "Business product · Live",
-    description: "A Nigeria-first cashbook for invoices, payments, expenses and customer records.",
-    role: "Product engineering",
-    image: "/projects/openbooks-cover.webp",
-    imageAlt: "OpenBooks product interface",
-    url: "https://www.openbooks.click",
-    linkLabel: "Open product",
-    tags: ["Invoices", "Payment tracking", "Business records"],
-    featured: true,
-    imageMode: "cover",
-  },
-  {
-    name: "TechSkillHub",
-    number: "02",
-    category: "EdTech platform · Live",
-    description: "Structured learning paths, practical projects and saved progress for independent learners.",
-    role: "Founder · Full-stack",
-    image: "/projects/tech-skill-hub.webp",
-    imageAlt: "TechSkillHub learning platform interface",
-    url: "https://www.techskillhub.cv",
-    linkLabel: "Visit platform",
-    tags: ["Next.js", "Prisma", "PostgreSQL"],
-    imageMode: "cover",
-  },
-  {
-    name: "Southwest Flood Monitor",
-    number: "03",
-    category: "Civic technology · Built",
-    description: "A mobile reporting flow that pairs community flood reports with AI-assisted image analysis.",
-    role: "Mobile + backend",
-    image: "/projects/flood-monitor.webp",
-    imageAlt: "Southwest Flood Monitor mobile report screen",
-    tags: ["React Native", "FastAPI", "Gemini"],
-    imageMode: "contain",
-  },
-  {
-    name: "Elroi Hub",
-    number: "04",
-    category: "Client build · Live",
-    description: "A brand-led agency website that connects services, proof and a clear path to enquire.",
-    role: "Frontend development",
-    image: "/projects/elroi-hub.webp",
-    imageAlt: "Elroi Hub agency website",
-    url: "https://www.elroihubllc.com",
-    linkLabel: "Visit website",
-    tags: ["TypeScript", "CSS", "Responsive UI"],
-    imageMode: "cover",
-  },
-];
 
 function ProjectMedia({ project, featured = false }) {
   const image = (

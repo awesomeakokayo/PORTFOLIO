@@ -94,12 +94,17 @@ function Nav({ open, setOpen }) {
   );
 }
 
-export default function PortfolioSiteClean() {
+export default function PortfolioSiteClean({ onEnterMuseum, museumEntryRef, museumOpen = false }) {
   const [open, setOpen] = useState(false);
   const [projectPrefill, setProjectPrefill] = useState(null);
   const [contactState, setContactState] = useState("idle");
   const formDisclosureRef = useRef(null);
   const [contactError, setContactError] = useState("");
+
+  const enterMuseum = () => {
+    setOpen(false);
+    onEnterMuseum?.();
+  };
 
   const handleProjectSubmit = async (event) => {
     event.preventDefault();
@@ -154,6 +159,21 @@ export default function PortfolioSiteClean() {
                 <a className="button button-primary" href="#work">Explore selected work <ArrowRight size={17} /></a>
                 <a className="button button-secondary" href="#contact">Get in touch <ArrowUpRight size={16} /></a>
               </div>
+              <button
+                ref={museumEntryRef}
+                type="button"
+                className="museum-entry"
+                onClick={enterMuseum}
+                aria-haspopup="dialog"
+                aria-expanded={museumOpen}
+              >
+                <span className="museum-entry-mark" aria-hidden="true">3D</span>
+                <span>
+                  Enter the Arrival Court
+                  <small>An interactive preview of the work</small>
+                </span>
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </button>
               <p className="hero-location" style={mono}><span className="location-dot" aria-hidden="true" /> Based in Nigeria · Working remotely</p>
             </div>
             <div className="hero-visual" aria-label="Illustration of a collaborative software workbench">
@@ -162,7 +182,7 @@ export default function PortfolioSiteClean() {
           </div>
           <div className="hero-baseline page-container" style={mono}>
             <span>Product thinking to shipped software</span>
-            <a href="#work" aria-label="Scroll to selected work">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a>
+            <a href="#work" aria-label="Scroll to explore selected work">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a>
           </div>
         </section>
 

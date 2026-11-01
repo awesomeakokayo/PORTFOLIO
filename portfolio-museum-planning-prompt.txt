@@ -1,0 +1,82 @@
+PORTFOLIO MUSEUM PLANNING PROMPT
+
+Use this prompt in a new planning chat. Upload portfolio-museum-research-build-brief.md alongside it so the AI can use the full research, existing-code audit, source links, design system, asset-licensing notes, phased plan, and acceptance criteria. Do not ask the AI to implement code yet.
+
+You are a principal product designer, senior UI/UX architect, creative developer, technical lead for WebGL/Three.js, and digital-heritage researcher. You are planning an implementation for a real portfolio, not writing a generic concept article.
+
+OWNER AND PROJECT
+- Owner: Awesome Akokayo, a Nigerian full-stack software engineer and AI-integrated product builder.
+- Live site: https://www.awesomeakokayo.cv/
+- Public repository: https://github.com/awesomeakokayo/PORTFOLIO
+- Coding environment: OpenCode.
+- Coding model: DeepSeek V4.1 Flash.
+- Goal: rebuild the portfolio as an immersive, interactive 3D world with a reward/discovery layer, inspired by museum experiences and specifically researched Edo/Benin art and spatial design.
+
+READ THIS FIRST
+Use the supplied “Portfolio as an Immersive 3D Museum” brief as the source of truth. Do not ignore the existing app, brand, project data, cultural-research notes, asset licences, accessibility requirements, or staged acceptance criteria. Before generating instructions, examine the live website and the current repository/default branch as far as the available tools allow. If you cannot inspect the browser-rendered page, explicitly say so and use the source code without claiming a visual screenshot audit was completed.
+
+VERIFIED CURRENT IMPLEMENTATION (CONFIRM AGAINST CURRENT TREE)
+- React 18 + Vite + Tailwind + Lucide React.
+- Main files include src/App.jsx, src/PortfolioSiteClean.jsx, src/ProjectShowcase.jsx, src/BlockWorld.jsx, src/FramerMotionLayer.jsx, src/WhatsAppCTA.jsx, src/BackToTop.jsx, src/index.css and index.html.
+- Existing hero “3D” illustration in BlockWorld.jsx is SVG/HTML/CSS, not real WebGL 3D.
+- The inspected package.json does not currently include three or @react-three/fiber.
+- Brand tokens to preserve and evolve: #080808, #0e0e0d, #f4f3ef, #b8b7b1, #9c9b94, #ff5c00, #ff7324, #9FE0C1; Ojuju display font, Inter body, Space Mono monospace.
+- Preserve all genuine portfolio content, project images/links, enquiry form, WhatsApp action, responsive behavior, SEO metadata, analytics and motion/accessibility foundations unless you prove a specific migration is necessary.
+- Current primary project cards in ProjectShowcase.jsx include OpenBooks, TechSkillHub, Southwest Flood Monitor and Elroi Hub. Verify their facts and URLs from the repo before using them.
+
+CORE CREATIVE CONCEPT
+Working title: “The Living Archive — The World Behind the Work.” Build a contemporary digital gallery informed by Edo/Benin material culture, historical courtyard compounds and modern West African museum design. It is an original portfolio world, not an official museum and not an exact reconstruction of a palace or MOWAA. The user's software projects remain the main attraction; the researched heritage collection is a clearly labelled, separate contextual gallery.
+
+SUGGESTED SPATIAL SEQUENCE
+1. Arrival Court/Threshold with a strong sense of place and clear “Enter the Gallery” and “Browse Portfolio Without 3D” controls.
+2. A small Benin/Edo context room with two to four sourced, properly credited artefact exhibits.
+3. The main Works Gallery containing actual portfolio projects as interactive exhibits/pedestals, with real project screenshots and useful HTML case-study panels.
+4. Workshop/Process room showing truthful architecture, product, AI, data/API and build-process information.
+5. Archive room for experience, toolkit, education and leadership.
+6. Contact Studio/Exit with working email, WhatsApp and current project enquiry form.
+
+INTERACTION VISION
+- The site should feel like a place you can enter and explore, with coherent room geometry, believable scale, natural/specialised lighting, materials, shadows and navigation—not merely a 3D background behind ordinary cards.
+- Users may use desktop keyboard/mouse and touch-friendly mobile controls. Prefer clear bounded navigation or guided waypoints to free roaming that can get the visitor lost.
+- Hover/focus reveals a title cue; select/click/Enter opens an accessible HTML exhibit panel; visitors can close/back and continue exploring.
+- Reward exploration with useful behind-the-build notes, case-study details and a modest optional discovery-progress indicator. Never lock important portfolio content or contact actions behind achievements. Do not turn culturally significant artefacts into game collectibles or points.
+- No auto-playing audio, no long unskippable cinematics, no forced pointer lock at page load and no trap that prevents visitors exiting to the normal portfolio.
+
+RESEARCH AND CULTURAL REQUIREMENTS
+- Research the Kingdom of Benin/Edo people in present-day Nigeria; do not conflate them with the modern Republic of Benin.
+- Read and cite the National Museums Scotland Benin court arts/history page, The Met Benin chronology, the Cambridge University Press article about reconstruction of the old palace landscape, MOWAA's official pages, Digital Benin/Manchester Museum, The Met Open Access API and Cooper Hewitt's Casting Memories project.
+- Explain which architectural elements are supported by historical sources and which are interpretive design choices. Do not invent palace plans, exact room layouts, dates, iconographic meanings, names, provenance or sacred/ritual use.
+- Distinguish an original artwork, a museum photograph, a 3D scan and a 3D reconstruction inspired by images.
+- Review each asset's current licence and record creator, source URL, object/model name, licence URL, attribution text, and modifications. The reviewed Casting Memories pages for Ovonramwen's Stool, Head of an Oba I and Queen Mother Pendant Mask: Iyoba displayed CC BY, but verify again before use and retain attribution. Never assume every Sketchfab asset has the same licence.
+- For museum images, use only images with an explicit public-domain/open-access status or permission. The Met's object page for “Plaque with Warrior and Attendants” marks its image Public Domain and the Met API exposes rights metadata. Do not assume Digital Benin images are all freely reusable.
+- Be transparent about the 1897 British invasion/looting and provenance where relevant. Avoid sensationalism or gamification of sacred heritage.
+
+TECHNICAL DIRECTION
+- Preserve React 18 and Vite unless repository evidence gives a strong reason to change.
+- Use a React 18-compatible version of React Three Fiber (official pairing: Fiber 8 with React 18; Fiber 9 pairs with React 19). Verify package peer dependencies before installing. Only add compatible drei helpers if needed. Avoid blind latest-version upgrades.
+- Use GLB/glTF assets and local serving for stable runtime. Organise the new feature in a dedicated folder rather than putting everything into PortfolioSiteClean.jsx.
+- Lazy-load the 3D scene/assets after user intent; keep the initial page quick. Use a loading state, recover from errors/context loss, and provide a 2D HTML fallback with all project links/content.
+- Use semantic HTML overlays for text, controls and exhibit information. The canvas cannot be the only way to navigate or read content.
+- Respect prefers-reduced-motion; cap pixel ratio; reduce shadows/post-processing on mobile; pause rendering when idle where viable; clean up unused GPU resources; avoid oversized models and blocking initial downloads.
+- Do not add libraries unless tied to a specific requirement. Do not create a backend or user login just to store discovery progress.
+
+SAFETY AND CHANGE CONTROL
+- First inspect the existing working tree and current branch. Preserve user edits. Never run destructive git commands, clean resets, force pushes, deploys or production-changing actions.
+- Do not change unrelated product content, logos, brand colours or links to fit a generic template.
+- Do not fake live data, user numbers, testimonials, awards, project success metrics or project statuses.
+- Build in phases. Each phase must end with explicit files changed, commands run, test/build results, what was visually checked and known issues. Never claim the scene works merely because the TypeScript/build step passes.
+
+YOUR DELIVERABLE IN THIS CHAT
+Do not start coding. Create an implementation-ready package that I can hand to OpenCode/DeepSeek V4.1 Flash. Include:
+1. A concise research synthesis with sources and specific visual insights.
+2. A source-verified current-code audit and risk register.
+3. A final experience concept, spatial story, desktop/mobile interaction map and UI component inventory.
+4. A technical architecture with file/folder plan and dependency/version strategy.
+5. A vetted asset plan, starting with a small list of suitable objects and their licence/attribution checks; identify any asset that still needs confirmation instead of treating it as cleared.
+6. A data schema for portfolio exhibits and heritage objects.
+7. A phased implementation plan with gates and testable acceptance criteria.
+8. Separate copy/paste OpenCode prompts for Phase 0 (read-only audit), Phase 1 (prototype design/spec only), Phase 2 (single-room real-3D proof of concept), Phase 3 (integrate exhibits and full route), Phase 4 (accessibility/performance), and Phase 5 (release QA). Make each prompt precise enough to execute without the next prompt, but do not let a single phase make a huge risky rewrite.
+9. A final regression checklist for the form, WhatsApp, project links, metadata, analytics, mobile menu, reduced motion, WebGL failure, keyboard access, asset credits and production build.
+10. A definition of done that prevents “it compiles” from being mistaken for “the experience works.”
+
+Be specific. Refer to real filenames and existing project content. Prefer implementation trade-offs with reasons over abstract inspiration adjectives. Avoid generic AI design language such as “make it pop,” “premium futuristic,” “next-level,” or “use a beautiful immersive experience.” The output must tell a coding agent exactly what to inspect, what to build, what to preserve, how to test it, and when to stop and report a blocker.

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 
-export default function BackToTop() {
+export default function BackToTop({ suspended = false }) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ export default function BackToTop() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (!visible) return null;
+  if (!visible || suspended) return null;
 
   return (
     <button
