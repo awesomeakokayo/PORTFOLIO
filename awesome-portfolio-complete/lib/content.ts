@@ -1,0 +1,211 @@
+export type ProjectTheme = "pink" | "yellow" | "paper" | "dark";
+export type ProjectKind = "openbooks" | "techskills" | "flood" | "blancquake" | "emohabit";
+
+export interface ProjectImage {
+  src: string;
+  alt: string;
+}
+
+export interface Project {
+  name: string;
+  category: string;
+  description: string;
+  tags: string[];
+  theme: ProjectTheme;
+  kind: ProjectKind;
+  href: string;
+  image?: ProjectImage;
+}
+
+export const siteContent = {
+  metadata: {
+    title: "Awesome Akokayo — Product Engineer & AI Builder",
+    description:
+      "Independent product engineer building useful digital products for Africa.",
+    url: "https://awesomeakokayo.cv",
+    applicationName: "Awesome Akokayo",
+  },
+  nav: {
+    brand: "AA.",
+    brandName: "AWESOME AKOKAYO",
+    links: [
+      { label: "Work", href: "#work" },
+      { label: "Services", href: "#services" },
+      { label: "Process", href: "#process" },
+    ],
+    talk: "Let's talk",
+    menu: "Menu",
+    close: "Close",
+    menuLabel: "Open navigation menu",
+    closeLabel: "Close navigation menu",
+    dialogLabel: "Site navigation",
+    skipToContent: "Skip to content",
+    cursorHome: "HOME",
+    cursorGo: "GO",
+    cursorTalk: "TALK",
+    cursorExplore: "EXPLORE",
+    cursorSend: "SEND",
+    cursorTop: "TOP",
+    cursorDefault: "OPEN",
+  },
+  hero: {
+    kicker: "PRODUCT ENGINEER  /  AI BUILDER  /  NIGERIA",
+    lineOne: "Build",
+    accentWord: "useful",
+    lineTwo: "things for",
+    serifWord: "Africa.",
+    description: "Digital products for real needs, built with intent.",
+    location: "INDEPENDENT BUILDER · BASED IN NIGERIA",
+    scroll: "Scroll to explore",
+    visualAlt: "Abstract three-dimensional wireframe form",
+  },
+  marquee: {
+    label: "Areas of practice",
+    items: ["FINTECH", "EDTECH", "CIVIC TECH", "AI", "MOBILE"],
+  },
+  work: {
+    eyebrow: "01 / SELECTED WORK",
+    title: "Made to matter.",
+    intro: "A selection of products, systems, and experiments.",
+    viewLabel: "VIEW",
+    tagsLabel: "Project technology tags",
+    sideNote: "Five selected builds",
+    fallbackLink: "#contact",
+  },
+  projects: [
+    {
+      name: "OpenBooks",
+      category: "Business finance tools",
+      description: "Nigeria-first open-source cashbook for small businesses.",
+      tags: ["Open source", "Fintech"],
+      theme: "yellow",
+      kind: "openbooks",
+      href: "#contact",
+    },
+    {
+      name: "Tech Skills Hub",
+      category: "Guided learning platform",
+      description: "Free, curated roadmaps. 32 tracks, one clear order.",
+      tags: ["Next.js", "Prisma", "Neon", "Paystack"],
+      theme: "dark",
+      kind: "techskills",
+      href: "https://techskillhub.cv",
+    },
+    {
+      name: "Flood Report",
+      category: "Civic safety app",
+      description: "Flood reporting for Southwest Nigeria, powered by AI.",
+      tags: ["React Native", "FastAPI", "Gemini AI"],
+      theme: "paper",
+      kind: "flood",
+      href: "#contact",
+    },
+    {
+      name: "Blancquake Foundation",
+      category: "Nonprofit",
+      description: "Built for Blancquake Foundation.",
+      tags: [],
+      theme: "pink",
+      kind: "blancquake",
+      href: "#contact",
+    },
+    {
+      name: "EmoHabit",
+      category: "Wellness app",
+      description: "AI-powered habit tracker.",
+      tags: ["React Native", "FastAPI", "Groq", "Firebase"],
+      theme: "yellow",
+      kind: "emohabit",
+      href: "#contact",
+    },
+  ] satisfies Project[],
+  services: {
+    eyebrow: "02 / WHAT I DO",
+    title: "Built around outcomes.",
+    intro: "From first sketch to production systems.",
+    items: [
+      {
+        number: "01",
+        name: "Web Apps",
+        description: "TODO: Describe production-ready web products.",
+        icon: "window",
+      },
+      {
+        number: "02",
+        name: "Mobile Apps",
+        description: "TODO: Describe mobile-first product experiences.",
+        icon: "phone",
+      },
+      {
+        number: "03",
+        name: "AI Products",
+        description: "TODO: Describe useful AI workflows.",
+        icon: "orbit",
+      },
+      {
+        number: "04",
+        name: "Fintech Systems",
+        description: "TODO: Describe trusted payment systems.",
+        icon: "layers",
+      },
+    ],
+  },
+  numbers: {
+    eyebrow: "03 / BY THE NUMBERS",
+    title: "A little perspective.",
+    stats: [
+      { value: 6, suffix: "", label: "Featured projects", detail: "Across the work selection" },
+      { value: 1, suffix: "", label: "Home country", detail: "Nigeria, building for Africa" },
+      { value: 4, suffix: "", label: "Ways to build", detail: "Web, mobile, AI, fintech" },
+    ],
+  },
+  process: {
+    eyebrow: "04 / THE PROCESS",
+    title: "From problem to product.",
+    hint: "Scroll to move through the process",
+    mobileTitle: "A clear way forward.",
+    steps: [
+      {
+        number: "01",
+        word: "Discover",
+        sentence: "Understand people, context, and constraints.",
+      },
+      {
+        number: "02",
+        word: "Shape",
+        sentence: "Turn the problem into a clear plan.",
+      },
+      {
+        number: "03",
+        word: "Build",
+        sentence: "Make the product real, fast, and carefully.",
+      },
+      {
+        number: "04",
+        word: "Validate",
+        sentence: "Test, refine, and prepare for launch.",
+      },
+    ],
+  },
+  contact: {
+    eyebrow: "05 / HAVE A GOOD PROBLEM?",
+    lineOne: "Let's build",
+    lineTwo: "something.",
+    button: "Start a conversation",
+    emailSubject: "Let's build something",
+    emailNote: "For products, partnerships, and good problems.",
+    email: "awesomeakokayo@gmail.com",
+    links: [
+      { label: "EMAIL", href: "mailto:awesomeakokayo@gmail.com" },
+      { label: "WHATSAPP", href: null },
+      { label: "GITHUB", href: "https://github.com/awesomeakokayo" },
+      { label: "LINKEDIN", href: "https://www.linkedin.com/in/awesome-stephens/" },
+    ],
+    whatsappTodo: "TODO: Add verified WhatsApp number.",
+  },
+  footer: {
+    location: "BASED IN NIGERIA · BUILDING FOR AFRICA",
+    copyright: "© 2026 AWESOME AKOKAYO",
+    backToTop: "BACK TO TOP",
+  },
+};
