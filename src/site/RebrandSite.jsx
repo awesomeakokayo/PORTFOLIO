@@ -623,7 +623,7 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
                     <span className="rb-entity-shadow" aria-hidden="true" />
                   </a>
                   <p className="rb-entity-caption">
-                    <span>The build</span> Idea to shipped
+                    <span>The process</span> Idea → real use
                   </p>
                 </div>
               </div>
@@ -644,9 +644,7 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
             <Reveal className="rb-logos-capsule-dark">
               <div className="rb-logos-capsule-head">
                 <span className="rb-capsule-dot" aria-hidden="true" />
-                <span id="rb-logos-title" className="rb-capsule-title">In the wild</span>
-                <span className="rb-capsule-divider" aria-hidden="true">/</span>
-                <span className="rb-capsule-sub">Products in the wild</span>
+                <span id="rb-logos-title" className="rb-capsule-title">Selected products</span>
               </div>
               <ul className="rb-logos-capsule-row">
                 {clientLogos.map((item) => (
@@ -844,7 +842,8 @@ export default function RebrandSite({ onEnterMuseum, museumEntryRef, museumOpen 
               Nigeria · Remote · Select projects
             </div>
           </div>
-        </section>      </main>
+        </section>
+      </main>
 
       <footer className="rb-footer">
         <div className="rb-container rb-footer-main">
