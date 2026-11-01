@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useCallback, useRef, useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import RebrandSite from "./site/RebrandSite.jsx";
+import AtelierSite from "./site/AtelierSite.jsx";
 import MuseumErrorBoundary from "./museum/MuseumErrorBoundary.jsx";
 import MuseumLoading from "./museum/MuseumLoading.jsx";
 
@@ -34,7 +34,7 @@ function App() {
 
   return (
     <>
-      <RebrandSite
+      <AtelierSite
         onEnterMuseum={openMuseum}
         museumEntryRef={museumEntryRef}
         museumOpen={museumOpen}
