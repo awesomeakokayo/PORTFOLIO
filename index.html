@@ -17,18 +17,26 @@
         level = Math.max(0, Math.min(100, level));
 
         var root = document.documentElement;
-        var dark = level >= 68;
+        var t = level / 100;
+        var surfaceMix = t;
+        var light = [246, 245, 240];
+        var night = [8, 11, 9];
+        var rgb = light.map(function (value, index) {
+          return Math.round(value + (night[index] - value) * surfaceMix);
+        });
+        var linear = function (channel) {
+          var value = channel / 255;
+          return value <= 0.04045 ? value / 12.92 : Math.pow((value + 0.055) / 1.055, 2.4);
+        };
+        var luminance =
+          0.2126 * linear(rgb[0]) +
+          0.7152 * linear(rgb[1]) +
+          0.0722 * linear(rgb[2]);
+        var dark = luminance < 0.179;
         root.dataset.rbTheme = dark ? "dark" : "light";
         root.style.colorScheme = dark ? "dark" : "light";
 
         if (level > 0) {
-          var t = level / 100;
-          var surfaceMix = t <= 0.5 ? t * 0.6 : 0.3 + (t - 0.5) * 1.4;
-          var light = [246, 245, 240];
-          var night = [8, 11, 9];
-          var rgb = light.map(function (value, index) {
-            return Math.round(value + (night[index] - value) * surfaceMix);
-          });
           var hex =
             "#" +
             rgb
