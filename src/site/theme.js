@@ -109,18 +109,21 @@ export function getThemeName(level) {
 }
 
 export function getThemeMode(level) {
-  return level >= 68 ? "dark" : "light";
+  const t = clamp(level, 0, 100) / 100;
+  const canvas = mix(LIGHT.canvas, DARK.canvas, t);
+  return luminance(canvas) < 0.179 ? "dark" : "light";
 }
 
 export function applyTheme(level) {
   if (typeof document === "undefined") return;
 
   const t = clamp(level, 0, 100) / 100;
-  const surfaceMix = t <= 0.5 ? t * 0.6 : 0.3 + (t - 0.5) * 1.4;
-  const dark = t >= 0.68;
-  const dusk = smoothstep(0.1, 0.55, t);
-
+  // The slider is a true 0–100 blend: its midpoint is exactly halfway between palettes.
+  const surfaceMix = t;
   const canvas = mix(LIGHT.canvas, DARK.canvas, surfaceMix);
+  const dark = luminance(canvas) < 0.179;
+  const dusk = smoothstep(0.1, 0.48, t);
+
   const surface = mix(LIGHT.surface, DARK.surface, surfaceMix);
   const surface2 = mix(LIGHT.surface2, DARK.surface2, surfaceMix);
   const line = mix(LIGHT.line, DARK.line, surfaceMix);
@@ -132,9 +135,9 @@ export function applyTheme(level) {
   const muted = dark ? DARK.muted : mix(LIGHT.muted, LIGHT.ink, dusk * 0.98);
   const faint = dark ? DARK.faint : mix(LIGHT.faint, LIGHT.ink, dusk * 0.94);
 
-  const accent = dark ? DARK.accent : mix(LIGHT.accent, LIGHT.ink, dusk * 0.55);
-  const accentDeep = dark ? DARK.accentDeep : mix(LIGHT.accentDeep, LIGHT.ink, dusk * 0.5);
-  const accentFill = dark ? DARK.accentFill : mix(LIGHT.accentFill, LIGHT.ink, dusk * 0.42);
+  const accent = mix(LIGHT.accent, DARK.accent, t);
+  const accentDeep = mix(LIGHT.accentDeep, DARK.accentDeep, t);
+  const accentFill = mix(LIGHT.accentFill, DARK.accentFill, t);
   const onAccent = luminance(accentFill) > 0.42 ? rgb(mix(DARK.canvas, [0, 0, 0], 0.4)) : "#f7f4e9";
 
   const glassAlpha = 0.6 - surfaceMix * 0.49;
